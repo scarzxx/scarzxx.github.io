@@ -11,6 +11,12 @@
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --menu-bg-color: #282c34; /* Tmavší šedá */
+    --menu-hover-bg-color: #373c47; /* Světlejší šedá při hover */
+    --menu-active-bg-color: #2962ff; /* Modrá pro aktivní položku */
+    --menu-text-color: #eee;
+    --menu-hover-text-color: #fff;
+    --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Výraznější stín */
 }
 
 body {
@@ -148,15 +154,15 @@ tr:hover {
     margin: 5px 0;
 }
 .top-menu {
-    background-color: #2962ff;
-    color: #fff;
+    background-color: var(--menu-bg-color);
+    color: var(--menu-text-color);
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--menu-shadow);
 }
 
 .top-menu ul {
@@ -172,17 +178,25 @@ tr:hover {
 }
 
 .top-menu a {
-    color: #fff;
+    color: var(--menu-text-color);
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 10px 15px; /* Větší padding */
+    border-radius: 20px; /* Zaoblenější rohy */
+    transition: background-color 0.3s, color 0.3s; /* Přidán přechod pro barvu textu */
+    font-size: 1.1em; /* Mírně větší písmo */
 }
 
 .top-menu a:hover {
-    background-color: #1f49b3;
+    background-color: var(--menu-hover-bg-color);
+    color: var(--menu-hover-text-color);
 }
+
+.top-menu a.active { /* Styl pro aktivní položku */
+    background-color: var(--menu-active-bg-color);
+    color: #fff;
+}
+
 .container {
     margin-top: 60px; /* Adjust this value based on the height of your menu */
 }
