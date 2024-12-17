@@ -61,3 +61,25 @@ function compare(a, b, column) {
         return a > b;
     }
 }
+// Funkce pro nastavení aktivní položky menu
+function setActiveMenuItem() {
+    const sections = ['gateway', 'comfort', 'bsg'];
+    const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+    });
+
+    const menuItems = document.querySelectorAll('.top-menu a');
+    menuItems.forEach(item => {
+        item.classList.remove('active');
+        if (currentSection && item.getAttribute('href') === `#${currentSection}`) {
+            item.classList.add('active');
+        }
+    });
+}
+
+// Zavolání funkce při načtení stránky a při skrolování
+window.addEventListener('load', setActiveMenuItem);
+window.addEventListener('scroll', setActiveMenuItem);
