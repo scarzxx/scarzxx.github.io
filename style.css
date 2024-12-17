@@ -28,6 +28,9 @@ h1, h2, h3 {
     margin-top: 20px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
+h2{
+    margin-top: 40px;
+}
 
 table {
     width: 90%;
@@ -50,6 +53,7 @@ th {
     background-color: var(--table-header-bg);
     color: var(--table-header-text);
     position: relative;
+    cursor: pointer;
 }
 
 th::after {
@@ -142,4 +146,43 @@ tr:hover {
 }
 .description-box p {
     margin: 5px 0;
+}
+.top-menu {
+    background-color: #2962ff;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.top-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top-menu li {
+    margin: 0 15px;
+}
+
+.top-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.top-menu a:hover {
+    background-color: #1f49b3;
+}
+.container {
+    margin-top: 60px; /* Adjust this value based on the height of your menu */
 }
