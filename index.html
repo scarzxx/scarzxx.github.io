@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seznam Řídících Jednotek</title>
+    <style>
+        :root {
+            --background-color: #181818;
+            --text-color: #eee;
+            --table-header-bg: #2962ff;
+            --table-header-text: #fff;
+            --table-row-even-bg: #222;
+            --table-row-hover-bg: #333;
+            --highlight-bg: #424221;
+            --high-end-bg: #274e13;
+            --high-end-text: #8fce00;
+            --compatible-yes-color: #4caf50;
+            --compatible-no-color: #f44336;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: var(--text-color);
+            margin-top: 20px;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: var(--box-shadow);
+            background-color: var(--background-color);
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            transition: background-color 0.3s;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            position: relative;
+        }
+
+        th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #2962ff, #6ec6ff);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-even-bg);
+        }
+
+        tr:hover {
+            background-color: var(--table-row-hover-bg);
+        }
+
+        .compatible-yes {
+            color: var(--compatible-yes-color);
+            font-weight: bold;
+        }
+
+        .compatible-no {
+            color: var(--compatible-no-color);
+            font-weight: bold;
+        }
+
+        .notes {
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+        }
+
+        .high-end {
+            background-color: var(--high-end-bg);
+            color: var(--high-end-text);
+        }
+        .high-end .notes{
+            color: var(--high-end-text);
+        }
+
+        .high-end-label {
+            font-weight: bold;
+            color: var(--high-end-text);
+            margin-left: 10px;
+        }
+
+        .fog-light-support {
+            color: var(--compatible-yes-color);
+        }
+
+        .no-fog-light-support {
+            color: var(--compatible-no-color);
+        }
+        .main-light-support{
+            color: var(--compatible-yes-color);
+        }
+
+        .unknown-fog-light-support {
+            color: #d3d30f;
+        }
+
+        .bsg-table {
+            width: 80%;
+        }
+
+        .container {
+            max-width: 95%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .maxidot-support {
+            color: var(--compatible-yes-color);
+        }
+        .description-box {
+            background-color: #222;
+            border: 1px solid #444;
+            padding: 10px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+        .description-box p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seznam Řídících Jednotek</h1>
+
+        <h2>Gateway Jednotky (Vybíjení Baterie)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Číslo Dílu Řídící Jednotky</th>
+                    <th>Verze Softwaru</th>
+                    <th>Kompatibilní</th>
+                    <th>Poznámky</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1K0-907-530-A</td>
+                    <td>0020</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-B</td>
+                    <td>0050/0070</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-C</td>
+                    <td>0080</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-D</td>
+                    <td>0100</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-E</td>
+                    <td>0110</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-F</td>
+                    <td>0120</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-G</td>
+                    <td>0130/0140</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-H</td>
+                    <td>0150</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-J</td>
+                    <td>0160</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-K</td>
+                    <td>0021</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Pouze výměna</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-K</td>
+                    <td>0170</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-K</td>
+                    <td>0178</td>
+                    <td class="compatible-yes">Ano</td>
+                    <td class="notes">-</td>
+                </tr>
+                <tr>
+                    <td>1K0-907-530-P</td>
+                    <td>0191/0192</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Pouze výměna</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="description-box">
+            <p><b>Zkratky v tabulce Komfortních Jednotek:</b></p>
+            <p><b>NAR – North American Region:</b> Vozidla nebo komponenty určené pro severoamerický trh (USA, Kanada). Splňují standardy DOT/SAE.</p>
+            <p><b>JOK – Japan, Oceania, Korea:</b> Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy a normami.</p>
+            <p><b>J – Japan:</b> Vozidla nebo komponenty specificky určené pro japonský trh.</p>
+        </div>
+
+        <h2>Komfortní Jednotky</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Číslo Dílu Komfortní Jednotky</th>
+                    <th>Počet Byte</th>
+                    <th>Frekvence (dle PR Kódu)</th>
+                    <th>Poznámky</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1K0-959-433-C</td>
+                    <td>12 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td>1K0-959-433-H</td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td>1K0-959-433-J</td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td>1K0-959-433-S</td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-T</td>
+                    <td>13 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-AF</td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td>1K0-959-433-AH</td>
+                    <td>14 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-AJ</td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-AK</td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-AM</td>
+                    <td>?? Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">Neznámý počet byte</td>
+                </tr>
+                <tr class="high-end">
+                    <td>1K0-959-433-AQ</td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-AR</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="high-end">
+                    <td>1K0-959-433-AS</td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-AT</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr>
+                    <td>1K0-959-433-BK</td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-BL</td>
+                    <td>13 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-BT</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CA</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CB</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CD</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CL</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-CM</td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td>1K0-959-433-CP</td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CR</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td>1K0-959-433-CT</td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+                <tr class="high-end">
+                    <td>1K0-959-433-DA</td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidot</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>BSG Jednotky</h2>
+        <table class="bsg-table">
+            <thead>
+                <tr>
+                    <th>Číslo Dílu BSG Jednotky</th>
+                    <th>Počet Byte</th>
+                    <th>Poznámky</th>
+                    <th>Přísvit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="high-end">
+                    <td>3C0-937-049-AA</td>
+                    <td>23 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C0-937-049-AC</td>
+                    <td>23 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr>
+                    <td>3C0-937-049-AD</td>
+                    <td>23 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C0-937-049-AE</td>
+                    <td>23 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C0-937-049-AG</td>
+                    <td>23 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr>
+                    <td>3C0-937-049-AH</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C0-937-049-AJ</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="fog-light-support"><b>Mlhovkami</b></td>
+                </tr>
+                <tr>
+                    <td>3C0-937-049-AK</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C0-937-049-AL</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="unknown-fog-light-support">Neznámá</td>
+                </tr>
+                <tr>
+                    <td>3C8-937-049-D</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td>3C8-937-049-E</td>
+                    <td>30 Byte</td>
+                    <td class="notes">Highend<span class="high-end-label"></span></td>
+                    <td class="fog-light-support"><
