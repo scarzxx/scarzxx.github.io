@@ -11,12 +11,12 @@
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    --menu-bg-color: #282c34; /* Tmavší šedá */
-    --menu-hover-bg-color: #373c47; /* Světlejší šedá při hover */
-    --menu-active-bg-color: #2962ff; /* Modrá pro aktivní položku */
+    --menu-bg-color: #282c34;
+    --menu-hover-bg-color: #373c47;
+    --menu-active-bg-color: #2962ff;
     --menu-text-color: #eee;
     --menu-hover-text-color: #fff;
-    --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Výraznější stín */
+    --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 body {
@@ -40,8 +40,8 @@ h2{
 }
 
 table {
-    width: 80%; /* Zmenšení tabulky */
-    max-width: 1000px; /* Maximální šířka */
+    width: 80%;
+    max-width: 1000px;
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: var(--box-shadow);
@@ -51,11 +51,11 @@ table {
 }
 
 th, td {
-    padding: 10px 15px; /* Zmenšení paddingu */
+    padding: 10px 15px;
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
-    font-size: 0.9em; /* Mírně menší písmo */
+    font-size: 0.9em;
 }
 
 th {
@@ -133,14 +133,15 @@ tr:hover {
 }
 
 .bsg-table {
-    width: 70%; /* Zmenšení tabulky */
-    max-width: 900px; /* Maximální šířka */
+    width: 70%;
+    max-width: 900px;
 }
 
 .container {
     max-width: 95%;
     margin: auto;
     overflow: hidden;
+     padding-top: 60px; /* přidáno pro posunutí obsahu pod fixní menu */
 }
 
 .maxidot-support {
@@ -166,7 +167,6 @@ tr:hover {
 .top-menu {
     background-color: var(--menu-bg-color);
     color: var(--menu-text-color);
-    padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -175,12 +175,21 @@ tr:hover {
     box-shadow: var(--menu-shadow);
 }
 
+.menu-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
 .top-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
+    transition: max-height 0.4s ease-in-out;
+    max-height: 100px;
 }
 
 .top-menu li {
@@ -211,7 +220,8 @@ tr:hover {
 .menu-icon {
     display: none; /* Skryjeme na desktopu */
     cursor: pointer;
-    padding: 10px 15px;
+    margin-right: auto;
+    padding: 10px;
 }
 
 .bar {
@@ -239,20 +249,20 @@ tr:hover {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
-    border-radius: 5px; /* Mírně zaoblené rohy obrázku */
+    border-radius: 5px;
 }
 
 .download-button {
     background-color: var(--menu-active-bg-color);
     color: #fff;
-    padding: 12px 25px; /* Větší tlačítko */
-    border-radius: 8px; /* Zaoblenější rohy tlačítka */
+    padding: 12px 25px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
-    display: inline-block; /* Aby tlačítko zabíralo jen potřebné místo */
+    display: inline-block;
     margin-bottom: 15px;
-    font-size: 1.1em; /* Mírně větší písmo */
+    font-size: 1.1em;
 }
 
 .download-button:hover {
@@ -262,21 +272,21 @@ tr:hover {
 .download-description {
     margin-top: 10px;
     font-size: 1em;
-    line-height: 1.5; /* Lepší čitelnost textu */
+    line-height: 1.5;
     margin-bottom: 20px;
 }
 
 .download-features {
-    text-align: left; /* Zarovnání textu doleva */
+    text-align: left;
     margin-bottom: 20px;
 }
 
 .download-features ul {
-    padding-left: 20px; /* Odsazení seznamu */
+    padding-left: 20px;
 }
 
 .download-features li {
-    margin-bottom: 8px; /* Mezera mezi položkami seznamu */
+    margin-bottom: 8px;
 }
 
 .download-note {
@@ -284,28 +294,35 @@ tr:hover {
     font-size: 0.8em;
     color: #bbb;
 }
+
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
     .container{
-        padding-top: 40px;
+        padding-top: 70px;
     }
+      .top-menu {
+        padding: 10px 0;
+    }
+
     .top-menu ul {
-        display: none; /* Skryjeme menu */
+        display: none;
         flex-direction: column;
         width: 100%;
         text-align: center;
+        max-height: 300px;
+        overflow: hidden;
     }
 
-    .top-menu ul.show {
-        display: flex; /* Zobrazíme menu po kliknutí */
-    }
+  .top-menu ul.show {
+      display: flex;
+  }
 
     .top-menu li {
         margin: 10px 0;
     }
 
     .menu-icon {
-        display: block; /* Zobrazíme hamburger menu */
+        display: block;
     }
 
     table {
@@ -334,4 +351,5 @@ tr:hover {
         font-size: 1em;
     }
 
+    
 }
