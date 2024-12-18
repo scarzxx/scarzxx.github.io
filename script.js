@@ -85,12 +85,15 @@ function toggleMenu() {
   const menuList = document.getElementById("menu-list");
   const isDownloadPage = window.location.pathname.endsWith("download.html");
 
-  if (window.innerWidth <= 768) {
-    // Na mobilu
-    if (!isDownloadPage || (isDownloadPage && menuList.classList.contains("show"))) {
-      // Pokud nejsme na download.html, nebo jsme na download.html a menu je rozbalené, tak ho zavřeme
-      menuList.classList.toggle("show");
+  if (isDownloadPage) {
+        // Jsme na stránce download.html
+        if (window.innerWidth <= 768) {
+            // Na mobilu se menu rozbalí po kliknutí na hamburger, ale nezavírá se automaticky
+            menuList.classList.toggle("show");
+        }
+        // Na desktopu se menu chová standardně (nezavírá se)
+    } else {
+        // Na ostatních stránkách se menu chová standardně
+        menuList.classList.toggle("show");
     }
-    // Pokud jsme na download.html a menu je sbalené, necháme ho zobrazené, protože uživatel je na aktivní stránce
-  }
 }
