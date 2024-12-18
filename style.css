@@ -141,7 +141,6 @@ tr:hover {
     max-width: 95%;
     margin: auto;
     overflow: hidden;
-    padding-top: 60px;
 }
 
 .maxidot-support {
@@ -285,9 +284,11 @@ tr:hover {
     font-size: 0.8em;
     color: #bbb;
 }
-
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
+    .container{
+        padding-top: 40px;
+    }
     .top-menu ul {
         display: none; /* Skryjeme menu */
         flex-direction: column;
@@ -333,7 +334,4 @@ tr:hover {
         font-size: 1em;
     }
 
-    .container {
-        margin-top: 70px;
-    }
 }
