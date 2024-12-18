@@ -304,7 +304,7 @@ tr:hover {
         padding: 10px;
     }
     .top-menu ul {
-        display: none; /* Skryjeme menu na mobilu */
+        display: flex; /* Skryjeme menu na mobilu */
         flex-direction: column;
         width: 100%;
         text-align: center;
