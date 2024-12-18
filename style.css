@@ -141,6 +141,7 @@ tr:hover {
     max-width: 95%;
     margin: auto;
     overflow: hidden;
+    padding-top: 60px;
 }
 
 .maxidot-support {
@@ -162,6 +163,7 @@ tr:hover {
     margin: 5px 0;
 }
 
+/* Menu */
 .top-menu {
     background-color: var(--menu-bg-color);
     color: var(--menu-text-color);
@@ -206,8 +208,19 @@ tr:hover {
     color: #fff;
 }
 
-.container {
-    margin-top: 60px; /* Posun obsahu pod menu */
+/* Styly pro hamburger menu */
+.menu-icon {
+    display: none; /* Skryjeme na desktopu */
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--menu-text-color);
+    margin: 5px 0;
+    transition: 0.4s;
 }
 
 /* Styly pro download.html */
@@ -267,4 +280,60 @@ tr:hover {
     margin-bottom: 8px; /* Mezera mezi položkami seznamu */
 }
 
-.download
+.download-note {
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: #bbb;
+}
+
+/* Styly pro mobilní zařízení */
+@media (max-width: 768px) {
+    .top-menu ul {
+        display: none; /* Skryjeme menu */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .top-menu ul.show {
+        display: flex; /* Zobrazíme menu po kliknutí */
+    }
+
+    .top-menu li {
+        margin: 10px 0;
+    }
+
+    .menu-icon {
+        display: block; /* Zobrazíme hamburger menu */
+    }
+
+    table {
+        width: 95%;
+        font-size: 0.8em;
+    }
+
+    .bsg-table {
+        width: 90%;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+
+    .description-box, .download-content {
+        width: 90%;
+    }
+
+    .download-image {
+        margin-bottom: 10px;
+    }
+
+    .download-button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .container {
+        margin-top: 70px;
+    }
+}
