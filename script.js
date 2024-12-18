@@ -68,14 +68,20 @@ function setActiveMenuItem() {
   const menuItems = document.querySelectorAll('.top-menu a');
 
   menuItems.forEach(item => {
-      item.classList.remove('active');
-      // Zkontrolujeme, zda je odkaz relativní a zda odpovídá aktuální cestě
-      if (currentPath.endsWith(item.getAttribute('href')) || (currentPath.endsWith('/') && item.getAttribute('href') === 'index.html')) {
-          item.classList.add('active');
-      }
+    item.classList.remove('active');
+    // Zkontrolujeme, zda je odkaz relativní a zda odpovídá aktuální cestě
+    if (currentPath.endsWith(item.getAttribute('href')) || (currentPath.endsWith('/') && item.getAttribute('href') === 'index.html')) {
+      item.classList.add('active');
+    }
   });
 }
 
 // Zavolání funkce při načtení stránky a při skrolování
 window.addEventListener('load', setActiveMenuItem);
 window.addEventListener('scroll', setActiveMenuItem);
+
+// Funkce pro zobrazení/skrytí menu po kliknutí na hamburger ikonu
+function toggleMenu() {
+  const menuList = document.getElementById("menu-list");
+  menuList.classList.toggle("show");
+}
