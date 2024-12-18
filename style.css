@@ -1,4 +1,5 @@
 :root {
+    /* Základní barvy a proměnné */
     --background-color: #181818;
     --text-color: #eee;
     --table-header-bg: #2962ff;
@@ -11,6 +12,7 @@
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Proměnné pro menu */
     --menu-bg-color: #282c34; /* Tmavší šedá */
     --menu-hover-bg-color: #373c47; /* Světlejší šedá při hover */
     --menu-active-bg-color: #2962ff; /* Modrá pro aktivní položku */
@@ -179,7 +181,7 @@ tr:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .top-menu ul {
@@ -220,7 +222,6 @@ tr:hover {
 .menu-icon {
     display: none; /* Skryjeme na desktopu */
     cursor: pointer;
-    padding: 10px 15px;
 }
 
 .bar {
@@ -293,39 +294,36 @@ tr:hover {
     font-size: 0.8em;
     color: #bbb;
 }
+
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
-
     .top-menu{
         padding: 0;
     }
-
+    .top-menu .menu-wrapper{
+        padding: 10px;
+    }
     .top-menu ul {
-        display: none;
+        display: none; /* Skryjeme menu na mobilu */
         flex-direction: column;
         width: 100%;
         text-align: center;
     }
 
-    .top-menu .menu-wrapper{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        
-    }
-
     .top-menu ul.show {
-        display: flex;
+        display: flex; /* Zobrazíme menu po kliknutí na hamburger */
     }
 
     .top-menu li {
         margin: 10px 0;
+        text-align: center;
+    }
+     .top-menu a{
+        font-size: 1em;
     }
 
     .menu-icon {
-        display: block;
-       
+        display: block; /* Zobrazíme hamburger menu na mobilu */
     }
 
     table {
@@ -354,7 +352,7 @@ tr:hover {
         font-size: 1em;
     }
     .container{
-        margin-top: 85px;
+        margin-top: 75px;
     }
 
 }
@@ -362,7 +360,11 @@ tr:hover {
 /* Styly pro desktop */
 @media (min-width: 769px) {
     .top-menu ul {
-        display: flex !important; /* Vynutí zobrazení menu na desktopu */
+        display: flex !important; /* Vynutíme zobrazení menu na desktopu */
+    }
+
+    .top-menu .menu-icon {
+        display: none !important; /* Skryjeme hamburger menu na desktopu */
     }
     .container{
         margin-top: 60px;
