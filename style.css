@@ -204,22 +204,39 @@ tr:hover {
 .container {
     margin-top: 60px; /* Adjust this value based on the height of your menu */
 }
-.download-box {
+.download-content {
     background-color: #222;
     border: 1px solid #444;
-    padding: 10px;
+    padding: 20px;
     margin: 20px auto;
     width: 80%;
-    max-width: 1000px;
+    max-width: 600px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+    text-align: center;
 }
 
-.download-link {
-    color: var(--compatible-yes-color);
+.download-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.download-button {
+    background-color: var(--menu-active-bg-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
     text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-.download-link:hover {
-    text-decoration: underline;
+.download-button:hover {
+    background-color: #1f49b3;
+}
+
+.download-description {
+    margin-top: 10px;
+    font-size: 0.9em;
 }
