@@ -79,25 +79,32 @@ menuItems.forEach(item => {
 });
 
 function copyToClipboard(spanElement) {
-  const tdElement = spanElement.parentNode;
-  const range = document.createRange();
-  range.selectNodeContents(tdElement);
-  const icon = tdElement.querySelector('.copy-icon');
-  range.setEndBefore(icon);
-  const selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
-  navigator.clipboard.writeText(range.toString().trim())
-    .then(() => {
-      const notification = document.createElement("div");
-      notification.classList.add("copy-notification");
-      notification.textContent = "Zkopírováno!";
-      document.body.appendChild(notification);
-      setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 2000);
-    })
-    .catch(err => {
-      console.error('Nepodařilo se zkopírovat text: ', err);
-    });
+    const tdElement = spanElement.parentNode;
+    const range = document.createRange();
+    range.selectNodeContents(tdElement);
+    const icon = tdElement.querySelector('.copy-icon');
+    range.setEndBefore(icon);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    navigator.clipboard.writeText(range.toString().trim())
+        .then(() => {
+            const notification = document.createElement("div");
+            notification.classList.add("copy-notification");
+            notification.textContent = "Zkopírováno!";
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.classList.add("show");
+            }, 10); // Přidání třídy show pro zobrazení notifikace
+            setTimeout(() => {
+                notification.classList.remove("show");
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Nepodařilo se zkopírovat text: ', err);
+        });
+}
 }
