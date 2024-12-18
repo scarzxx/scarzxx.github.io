@@ -107,4 +107,3 @@ function copyToClipboard(spanElement) {
             console.error('Nepodařilo se zkopírovat text: ', err);
         });
 }
-}
