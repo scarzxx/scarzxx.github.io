@@ -204,9 +204,12 @@ tr:hover {
     border-radius: 10px; /* Změna zaoblení */
     transition: background-color 0.3s, color 0.3s;
     font-size: 1.1em;
+    display: block;
+    line-height: 2;
 }
 
-.top-menu a:hover {
+/* Změna: Přidán specifický selektor pro neaktivní položky */
+.top-menu a:not(.active):hover {
     background-color: var(--menu-hover-bg-color);
     color: var(--menu-hover-text-color);
 }
