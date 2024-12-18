@@ -227,7 +227,7 @@ tr:hover {
 .top-menu a.active {
     background-color: var(--menu-active-bg-color);
     color: #fff;
-    border-bottom-color: var(--menu-active-bg-color); /* Barva borderu aktivní položky */
+    border-bottom-color: var (--menu-active-bg-color); /* Barva borderu aktivní položky */
 }
 
 /* Hover efekt pro neaktivní položky */
