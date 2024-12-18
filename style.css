@@ -250,4 +250,21 @@ tr:hover {
 .download-description {
     margin-top: 10px;
     font-size: 1em;
-    line-height: 1.5; /* Lepší čitelnost text
+    line-height: 1.5; /* Lepší čitelnost textu */
+    margin-bottom: 20px;
+}
+
+.download-features {
+    text-align: left; /* Zarovnání textu doleva */
+    margin-bottom: 20px;
+}
+
+.download-features ul {
+    padding-left: 20px; /* Odsazení seznamu */
+}
+
+.download-features li {
+    margin-bottom: 8px; /* Mezera mezi položkami seznamu */
+}
+
+.download
