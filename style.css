@@ -5,18 +5,13 @@
     --table-header-text: #fff;
     --table-row-even-bg: #222;
     --table-row-hover-bg: #333;
-    /*--highlight-bg: #424221;
-    --high-end-bg: #274e13;  */
     --high-end-text: #8fce00; 
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
-	--compitable-mainlight-color: #3270ff;
+    --compitable-mainlight-color: #3270ff;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     --menu-bg-color: #282c34;
-    /* --menu-hover-bg-color: #4d4d4d;  - nahrazeno dynamicky */
-    /* --menu-active-bg-color: #2962ff; - nahrazeno dynamicky */
     --menu-text-color: #eee;
-    /* --menu-hover-text-color: #fff; - nahrazeno dynamicky */
     --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
@@ -269,12 +264,12 @@ tr:hover {
     display: inline-block; /* Aby tlačítko zabíralo jen potřebné místo */
     margin-bottom: 15px;
     font-size: 1.1em; /* Mírně větší písmo */
-	color: #fff;
+    color: #fff;
 }
 
 .download-button:hover {
     background-color: #1f49b3;
-	
+    
 }
 
 .download-description {
@@ -282,14 +277,14 @@ tr:hover {
     font-size: 1em;
     line-height: 1.1; /* Lepší čitelnost textu */
     margin-bottom: 10px;
-	
+    
 }
 
 .download-features {
     text-align: left; /* Zarovnání textu doleva */
     margin-bottom: 10px;
-	
-	
+    
+    
 }
 
 .download-features ul {
@@ -371,9 +366,10 @@ tr:hover {
 .copy-icon {
     cursor: pointer;
     margin-left: 5px;
-    float: right;
+    display: inline; /* Změna z float na inline */
     color: var(--menu-text-color); /* Barva ikony */
     transition: color 0.3s; /* Plynulý přechod barvy */
+    vertical-align: middle; /* Zarovnání na střed řádku */
 }
 
 .copy-icon:hover {
