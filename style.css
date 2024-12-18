@@ -5,18 +5,19 @@
     --table-header-text: #fff;
     --table-row-even-bg: #222;
     --table-row-hover-bg: #333;
-    --highlight-bg: #424221;
-    --high-end-bg: #274e13;
-    --high-end-text: #8fce00;
+    /*--highlight-bg: #424221;
+    --high-end-bg: #274e13;  */
+    --high-end-text: #8fce00; 
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
+	--compitable-mainlight-color: #3270ff;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    --menu-bg-color: #282c34; /* Tmavší šedá */
-    --menu-hover-bg-color: #4d4d4d; /* Světlejší šedá při hover */
-    --menu-active-bg-color: #0077cc; /* Modrá pro aktivní položku */
+    --menu-bg-color: #282c34;
+    /* --menu-hover-bg-color: #4d4d4d;  - nahrazeno dynamicky */
+    /* --menu-active-bg-color: #2962ff; - nahrazeno dynamicky */
     --menu-text-color: #eee;
-    --menu-hover-text-color: #fff;
-    --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Výraznější stín */
+    /* --menu-hover-text-color: #fff; - nahrazeno dynamicky */
+    --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 body {
@@ -40,8 +41,8 @@ h2{
 }
 
 table {
-    width: 80%; /* Zmenšení tabulky */
-    max-width: 1000px; /* Maximální šířka */
+    width: 80%;
+    max-width: 1000px;
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: var(--box-shadow);
@@ -51,11 +52,11 @@ table {
 }
 
 th, td {
-    padding: 10px 15px; /* Zmenšení paddingu */
+    padding: 10px 15px;
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
-    font-size: 0.9em; /* Mírně menší písmo */
+    font-size: 0.9em;
 }
 
 th {
@@ -125,7 +126,7 @@ tr:hover {
 }
 
 .main-light-support{
-    color: var(--compatible-yes-color);
+    color: var(--compitable-mainlight-color);
 }
 
 .unknown-fog-light-support {
@@ -133,8 +134,8 @@ tr:hover {
 }
 
 .bsg-table {
-    width: 70%; /* Zmenšení tabulky */
-    max-width: 900px; /* Maximální šířka */
+    width: 70%;
+    max-width: 1000px;
 }
 
 .container {
@@ -188,8 +189,9 @@ tr:hover {
     margin: 0;
     display: flex;
     justify-content: center;
-    transition: max-height 0.4s ease-in-out;
     max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out; /* Přidána animace */
 }
 
 .top-menu li {
@@ -201,22 +203,26 @@ tr:hover {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
-    border-radius: 10px; /* Změna zaoblení */
+    border-radius: 0; /* Odstranění zaoblení */
     transition: background-color 0.3s, color 0.3s;
-    font-size: 1.1em;
+    font-size: 1.2em; /* Zvětšení písma */
+    line-height: 1.5;
     display: block;
-    line-height: 2;
+    border-bottom: 3px solid transparent; /* Přidán transparentní border */
 }
 
-/* Změna: Přidán specifický selektor pro neaktivní položky */
-.top-menu a:not(.active):hover {
-    background-color: var(--menu-hover-bg-color);
-    color: var(--menu-hover-text-color);
-}
-
+/* Aktivní položka menu */
 .top-menu a.active {
     background-color: var(--menu-active-bg-color);
     color: #fff;
+    border-bottom-color: var(--menu-active-bg-color); /* Barva borderu aktivní položky */
+}
+
+/* Hover efekt pro neaktivní položky */
+.top-menu a:not(.active):hover {
+    background-color: var(--menu-hover-bg-color);
+    color: var(--menu-hover-text-color);
+    border-bottom-color: var(--menu-hover-bg-color); /* Barva borderu při hoveru */
 }
 
 /* Styly pro hamburger menu */
@@ -255,7 +261,6 @@ tr:hover {
 
 .download-button {
     background-color: var(--menu-active-bg-color);
-    color: #fff;
     padding: 12px 25px; /* Větší tlačítko */
     border-radius: 8px; /* Zaoblenější rohy tlačítka */
     text-decoration: none;
@@ -264,22 +269,27 @@ tr:hover {
     display: inline-block; /* Aby tlačítko zabíralo jen potřebné místo */
     margin-bottom: 15px;
     font-size: 1.1em; /* Mírně větší písmo */
+	color: #fff;
 }
 
 .download-button:hover {
     background-color: #1f49b3;
+	
 }
 
 .download-description {
     margin-top: 10px;
     font-size: 1em;
-    line-height: 1.5; /* Lepší čitelnost textu */
-    margin-bottom: 20px;
+    line-height: 1.1; /* Lepší čitelnost textu */
+    margin-bottom: 10px;
+	
 }
 
 .download-features {
     text-align: left; /* Zarovnání textu doleva */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+	
+	
 }
 
 .download-features ul {
@@ -293,7 +303,7 @@ tr:hover {
 .download-note {
     margin-top: 10px;
     font-size: 0.8em;
-    color: #bbb;
+    color: #D2042D;
 }
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
@@ -310,11 +320,14 @@ tr:hover {
     }
 
     .top-menu li {
+        width: 100%;
         margin: 10px 0;
         text-align: center;
     }
      .top-menu a{
         font-size: 1em;
+        padding: 10px;
+        border-radius: 0;
     }
 
     .menu-icon {
@@ -349,7 +362,39 @@ tr:hover {
     .container{
         padding-top: 70px;
     }
+    .top-menu .menu-wrapper{
+        padding: 10px;
+    }
 
+}
+
+.copy-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    float: right;
+    color: var(--menu-text-color); /* Barva ikony */
+    transition: color 0.3s; /* Plynulý přechod barvy */
+}
+
+.copy-icon:hover {
+    color: var(--menu-hover-text-color); /* Barva ikony při najetí */
+}
+.copy-notification {
+    position: fixed;
+    top: 70px; /* Kousek pod menu */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--compatible-yes-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 200; /* Aby byla notifikace nad ostatním obsahem */
+}
+
+.copy-notification.show {
+    opacity: 1;
 }
 
 /* Styly pro desktop */
