@@ -1,17 +1,17 @@
 :root {
     --background-color: #181818;
     --text-color: #eee;
-    --table-header-bg: #0077cc; /* Modrá barva pro hlavičku tabulky */
+    --table-header-bg: #2962ff;
     --table-header-text: #fff;
     --table-row-even-bg: #222;
-    --table-row-hover-bg: #383838; /* Tmavší šedá při hover */
+    --table-row-hover-bg: #333;
     --highlight-bg: #424221;
     --high-end-bg: #274e13;
     --high-end-text: #8fce00;
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    --menu-bg-color: #282c34; /* Tmavší šedá pro menu */
+    --menu-bg-color: #282c34; /* Tmavší šedá */
     --menu-hover-bg-color: #4d4d4d; /* Světlejší šedá při hover */
     --menu-active-bg-color: #0077cc; /* Modrá pro aktivní položku */
     --menu-text-color: #eee;
@@ -72,7 +72,7 @@ th::after {
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(to right, var(--table-header-bg), #6ec6ff);
+    background: linear-gradient(to right, #2962ff, #6ec6ff);
 }
 
 tr:nth-child(even) {
@@ -173,14 +173,13 @@ tr:hover {
     width: 100%;
     z-index: 100;
     box-shadow: var(--menu-shadow);
-    padding: 10px 0; /* Přidáno padding */
 }
 
 .menu-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Přidán padding */
+    padding: 10px 20px;
 }
 
 .top-menu ul {
@@ -358,5 +357,8 @@ tr:hover {
 
     .top-menu .menu-icon {
         display: none !important; /* Skryjeme hamburger menu na desktopu */
+    }
+    .container{
+        padding-top: 60px;
     }
 }
