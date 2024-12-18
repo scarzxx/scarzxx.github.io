@@ -82,14 +82,14 @@ window.addEventListener('scroll', setActiveMenuItem);
 
 // Funkce pro zobrazení/skrytí menu po kliknutí na hamburger ikonu
 function toggleMenu() {
-  const menuList = document.getElementById("menu-list");
-  const isDownloadPage = window.location.pathname.endsWith("download.html");
+    const menuList = document.getElementById("menu-list");
+    const isDownloadPage = window.location.pathname.endsWith("download.html");
 
-  if (isDownloadPage) {
+    if (isDownloadPage) {
         // Jsme na stránce download.html
         if (window.innerWidth <= 768) {
             // Na mobilu se menu rozbalí po kliknutí na hamburger, ale nezavírá se automaticky
-            menuList.classList.toggle("show");
+            menuList.classList.toggle("show"); // Změna: toggle místo add
         }
         // Na desktopu se menu chová standardně (nezavírá se)
     } else {
