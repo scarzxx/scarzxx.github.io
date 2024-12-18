@@ -83,15 +83,9 @@ window.addEventListener('scroll', setActiveMenuItem);
 // Funkce pro zobrazení/skrytí menu po kliknutí na hamburger ikonu
 function toggleMenu() {
   const menuList = document.getElementById("menu-list");
-  const isDownloadPage = window.location.pathname.endsWith("download.html");
 
   if (window.innerWidth <= 768) {
-    // Na mobilu
-    if (!isDownloadPage || (isDownloadPage && menuList.classList.contains("show"))) {
-      // Pokud nejsme na download.html, nebo jsme na download.html a menu je rozbalené, tak ho zavřeme
-      menuList.classList.toggle("show");
-    }
-    // Pokud jsme na download.html a menu je sbalené, necháme ho zobrazené, protože uživatel je na aktivní stránce
+    menuList.classList.toggle("show");
   }
 }
 
