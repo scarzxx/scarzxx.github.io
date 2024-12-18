@@ -1,21 +1,19 @@
 :root {
-    /* Základní barvy a proměnné */
     --background-color: #181818;
     --text-color: #eee;
-    --table-header-bg: #2962ff;
+    --table-header-bg: #0077cc; /* Modrá barva pro hlavičku tabulky */
     --table-header-text: #fff;
     --table-row-even-bg: #222;
-    --table-row-hover-bg: #333;
+    --table-row-hover-bg: #383838; /* Tmavší šedá při hover */
     --highlight-bg: #424221;
     --high-end-bg: #274e13;
     --high-end-text: #8fce00;
     --compatible-yes-color: #4caf50;
     --compatible-no-color: #f44336;
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    /* Proměnné pro menu */
-    --menu-bg-color: #282c34; /* Tmavší šedá */
-    --menu-hover-bg-color: #373c47; /* Světlejší šedá při hover */
-    --menu-active-bg-color: #2962ff; /* Modrá pro aktivní položku */
+    --menu-bg-color: #282c34; /* Tmavší šedá pro menu */
+    --menu-hover-bg-color: #4d4d4d; /* Světlejší šedá při hover */
+    --menu-active-bg-color: #0077cc; /* Modrá pro aktivní položku */
     --menu-text-color: #eee;
     --menu-hover-text-color: #fff;
     --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Výraznější stín */
@@ -74,7 +72,7 @@ th::after {
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(to right, #2962ff, #6ec6ff);
+    background: linear-gradient(to right, var(--table-header-bg), #6ec6ff);
 }
 
 tr:nth-child(even) {
@@ -175,13 +173,14 @@ tr:hover {
     width: 100%;
     z-index: 100;
     box-shadow: var(--menu-shadow);
+    padding: 10px 0; /* Přidáno padding */
 }
 
 .menu-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 0 20px; /* Přidán padding */
 }
 
 .top-menu ul {
@@ -203,7 +202,7 @@ tr:hover {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 10px; /* Změna zaoblení */
     transition: background-color 0.3s, color 0.3s;
     font-size: 1.1em;
 }
@@ -294,15 +293,9 @@ tr:hover {
     font-size: 0.8em;
     color: #bbb;
 }
-
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
-    .top-menu{
-        padding: 0;
-    }
-    .top-menu .menu-wrapper{
-        padding: 10px;
-    }
+
     .top-menu ul {
         display: none; /* Skryjeme menu na mobilu */
         flex-direction: column;
@@ -352,7 +345,7 @@ tr:hover {
         font-size: 1em;
     }
     .container{
-        margin-top: 75px;
+        padding-top: 70px;
     }
 
 }
@@ -365,8 +358,5 @@ tr:hover {
 
     .top-menu .menu-icon {
         display: none !important; /* Skryjeme hamburger menu na desktopu */
-    }
-    .container{
-        margin-top: 60px;
     }
 }
