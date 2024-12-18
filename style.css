@@ -123,6 +123,7 @@ tr:hover {
 .no-fog-light-support {
     color: var(--compatible-no-color);
 }
+
 .main-light-support{
     color: var(--compatible-yes-color);
 }
@@ -189,10 +190,10 @@ tr:hover {
     color: var(--menu-text-color);
     text-decoration: none;
     font-weight: bold;
-    padding: 10px 15px; /* Větší padding */
-    border-radius: 20px; /* Zaoblenější rohy */
-    transition: background-color 0.3s, color 0.3s; /* Přidán přechod pro barvu textu */
-    font-size: 1.1em; /* Mírně větší písmo */
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.1em;
 }
 
 .top-menu a:hover {
@@ -200,7 +201,7 @@ tr:hover {
     color: var(--menu-hover-text-color);
 }
 
-.top-menu a.active { /* Styl pro aktivní položku */
+.top-menu a.active {
     background-color: var(--menu-active-bg-color);
     color: #fff;
 }
@@ -270,4 +271,51 @@ tr:hover {
     margin-top: 10px;
     font-size: 0.8em;
     color: #bbb;
+}
+
+/* Styly pro mobilní zařízení */
+@media (max-width: 768px) {
+    .top-menu ul {
+        flex-direction: column; /* Menu pod sebou */
+        align-items: center;
+    }
+
+    .top-menu li {
+        margin: 10px 0; /* Odsazení položek menu */
+    }
+
+    .top-menu a {
+        padding: 8px 12px; /* Menší padding */
+        font-size: 1em;
+    }
+
+    table {
+        width: 95%; /* Větší šířka tabulky */
+        font-size: 0.8em; /* Menší písmo v tabulce */
+    }
+
+    .bsg-table {
+        width: 90%; /* Větší šířka tabulky */
+    }
+
+    th, td {
+        padding: 8px 10px; /* Menší padding */
+    }
+
+    .description-box, .download-content {
+        width: 90%; /* Větší šířka boxů */
+    }
+
+    .download-image {
+        margin-bottom: 10px;
+    }
+
+    .download-button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .container {
+        margin-top: 85px;
+    }
 }
