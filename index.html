@@ -8,17 +8,19 @@
 </head>
 <body>
     <nav class="top-menu">
-        <div class="menu-icon" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+        <div class="menu-wrapper">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul id="menu-list">
+                <li><a href="#gateway" class="active">Gateway Jednotky</a></li>
+                <li><a href="#comfort">Komfortní Jednotky</a></li>
+                <li><a href="#bsg">BSG Jednotky</a></li>
+                <li><a href="download.html">Download</a></li>
+            </ul>
         </div>
-        <ul id="menu-list">
-            <li><a href="#gateway" class="active">Gateway Jednotky</a></li>
-            <li><a href="#comfort">Komfortní Jednotky</a></li>
-            <li><a href="#bsg">BSG Jednotky</a></li>
-            <li><a href="download.html">Download</a></li>
-        </ul>
     </nav>
     <div class="container">
         <h1>Seznam Jednotek</h1>
@@ -380,4 +382,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-    </html>
+</html>
