@@ -34,6 +34,7 @@ h1, h2, h3 {
     margin-top: 20px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
+
 h2{
     margin-top: 40px;
 }
@@ -144,6 +145,7 @@ tr:hover {
 .maxidot-support {
     color: var(--compatible-yes-color);
 }
+
 .description-box {
     background-color: #222;
     border: 1px solid #444;
@@ -154,9 +156,11 @@ tr:hover {
     border-radius: 10px;
     box-shadow: var(--box-shadow);
 }
+
 .description-box p {
     margin: 5px 0;
 }
+
 .top-menu {
     background-color: var(--menu-bg-color);
     color: var(--menu-text-color);
@@ -202,8 +206,10 @@ tr:hover {
 }
 
 .container {
-    margin-top: 60px; /* Adjust this value based on the height of your menu */
+    margin-top: 60px; /* Posun obsahu pod menu */
 }
+
+/* Styly pro download.html */
 .download-content {
     background-color: #222;
     border: 1px solid #444;
@@ -220,16 +226,20 @@ tr:hover {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 5px; /* Mírně zaoblené rohy obrázku */
 }
 
 .download-button {
     background-color: var(--menu-active-bg-color);
     color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px; /* Větší tlačítko */
+    border-radius: 8px; /* Zaoblenější rohy tlačítka */
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
+    display: inline-block; /* Aby tlačítko zabíralo jen potřebné místo */
+    margin-bottom: 15px;
+    font-size: 1.1em; /* Mírně větší písmo */
 }
 
 .download-button:hover {
@@ -238,5 +248,26 @@ tr:hover {
 
 .download-description {
     margin-top: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
+    line-height: 1.5; /* Lepší čitelnost textu */
+    margin-bottom: 20px;
+}
+
+.download-features {
+    text-align: left; /* Zarovnání textu doleva */
+    margin-bottom: 20px;
+}
+
+.download-features ul {
+    padding-left: 20px; /* Odsazení seznamu */
+}
+
+.download-features li {
+    margin-bottom: 8px; /* Mezera mezi položkami seznamu */
+}
+
+.download-note {
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: #bbb;
 }
