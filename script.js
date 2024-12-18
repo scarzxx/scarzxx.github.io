@@ -83,5 +83,17 @@ window.addEventListener('scroll', setActiveMenuItem);
 // Funkce pro zobrazení/skrytí menu po kliknutí na hamburger ikonu
 function toggleMenu() {
   const menuList = document.getElementById("menu-list");
-  menuList.classList.toggle("show");
+  const isDownloadPage = window.location.pathname.endsWith("download.html");
+
+  if (!isDownloadPage) {
+    // Pokud nejsme na stránce download.html, chováme se standardně
+    menuList.classList.toggle("show");
+  } else {
+    // Pokud jsme na stránce download.html, menu se na mobilu nezavře
+    if (window.innerWidth <= 768) {
+      menuList.classList.add("show"); // Force zobrazení menu na mobilu
+    } else {
+      menuList.classList.remove("show"); // Na desktopu se chováme standardně
+    }
+  }
 }
