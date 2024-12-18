@@ -61,13 +61,21 @@ function compare(a, b, column) {
         return a > b;
     }
 }
+
 // Funkce pro nastavení aktivní položky menu
 function setActiveMenuItem() {
-    const currentPath = window.location.pathname;
-    const menuItems = document.querySelectorAll('.top-menu a');
+  const currentPath = window.location.pathname;
+  const menuItems = document.querySelectorAll('.top-menu a');
 
-    if (currentPath.endsWith('download.html')) {
-        // Jsme na stránce download.html
-        menuItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === 'download.html
+  menuItems.forEach(item => {
+      item.classList.remove('active');
+      // Zkontrolujeme, zda je odkaz relativní a zda odpovídá aktuální cestě
+      if (currentPath.endsWith(item.getAttribute('href')) || (currentPath.endsWith('/') && item.getAttribute('href') === 'index.html')) {
+          item.classList.add('active');
+      }
+  });
+}
+
+// Zavolání funkce při načtení stránky a při skrolování
+window.addEventListener('load', setActiveMenuItem);
+window.addEventListener('scroll', setActiveMenuItem);
