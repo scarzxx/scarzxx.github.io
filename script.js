@@ -101,7 +101,7 @@ function copyToClipboard(spanElement) {
                 setTimeout(() => {
                     document.body.removeChild(notification);
                 }, 500);
-            }, 2000);
+            }, 3000);
         })
         .catch(err => {
             console.error('Nepodařilo se zkopírovat text: ', err);
