@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seznam Jednotek</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <nav class="top-menu">
@@ -15,8 +15,8 @@
             <div class="bar"></div>
         </div>
         <ul id="menu-list">
-            <li><a href="index.html#unit-list">Seznam jednotek</a></li>
-            <li><a href="download.html" class="active">Download</a></li>
+    <li><a href="index.html#unit-list">Seznam jednotek</a></li>
+    <li><a href="download.html" class="active">Download</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -32,13 +32,92 @@
                     <th onclick="sortTable('gatewayTable', 3)">Poznámky</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                <tr>
+                    <td class="copyable">1K0-907-530-A <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0020</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-B <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0050/0070</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-C <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0080</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-D <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0100</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-E <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0110</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-F <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0120</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-G <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0130/0140</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-H <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0150</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-J <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0160</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-K <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0021</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Pouze výměna</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-K <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0170</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Dostupná aktualizace</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-K <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0178</td>
+                    <td class="compatible-yes">Ano</td>
+                    <td class="notes">-</td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-907-530-P <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>0191/0192</td>
+                    <td class="compatible-no">Ne</td>
+                    <td class="notes">Pouze výměna</td>
+                </tr>
+            </tbody>
         </table>
 
         <div class="description-box">
             <p><b>Zkratky v tabulce Komfortních Jednotek:</b></p>
             <p><b>NAR – North American Region:</b> Vozidla nebo komponenty určené pro severoamerický trh (USA, Kanada). Splňují standardy DOT/SAE.</p>
-            <p><b>JOK – Japan, Oceania, Korea:</b> Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy [...]
+            <p><b>JOK – Japan, Oceania, Korea:</b> Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy a normami.</p>
             <p><b>J – Japan:</b> Vozidla nebo komponenty specificky určené pro japonský trh.</p>
         </div>
 
@@ -52,7 +131,164 @@
                     <th onclick="sortTable('comfortTable', 3)">Poznámky</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                <tr>
+                    <td class="copyable">1K0-959-433-C <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>12 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-959-433-H <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-959-433-J <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-959-433-S <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-T <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-959-433-BK <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-BL <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>13 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-AF <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr>
+                    <td class="copyable">1K0-959-433-AH <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td>-</td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-AJ <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-AK <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-AM <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>?? Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes">Neznámý počet byte</td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-CM <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="highlight">
+                    <td class="copyable">1K0-959-433-CP <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>14 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes"></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">1K0-959-433-AQ <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-AR <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">1K0-959-433-AS <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-AT <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-BT <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CA <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CB <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CD <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CL <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CR <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-yes">PR-5D1: 434 Mhz</b><br><b class="compatible-no">PR-5D9: 433,92 Mhz ("RC")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="highlight high-end">
+                    <td class="copyable">1K0-959-433-CT <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td><b class="compatible-no">PR-5D2: 315 Mhz ("NAR")<br>PR-5D3: 315 Mhz ("J")<br>PR-5D5: 315 Mhz ("ROK")</b></td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">1K0-959-433-DA <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>19 Byte</td>
+                    <td>-</td>
+                    <td class="notes high-end-cell">High End<br><span class="maxidot-support">Podpora Komfortního Menu v Maxidotu</span></td>
+                </tr>
+            </tbody>
         </table>
 
         <h2 id="bsg">BSG Jednotky</h2>
@@ -65,9 +301,82 @@
                     <th onclick="sortTable('bsgTable', 3)">Přísvit do zatáček</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                <tr>
+                    <td class="copyable">3C0-937-049-AD <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>23 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AA <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>23 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AC <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>23 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AE <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>23 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AG <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>23 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AL <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="no-fog-light-support"><b>Ne</b></td>
+                </tr>
+                <tr>
+                    <td class="copyable">3C0-937-049-AH <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými světly</b></td>
+                </tr>
+                <tr>
+                    <td class="copyable">3C0-937-049-AK <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými světly</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C0-937-049-AJ <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="fog-light-support"><b>Mlhovkami</b></td>
+                </tr>
+                <tr>
+                    <td class="copyable">3C8-937-049-D <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes">Medium</td>
+                    <td class="main-light-support"><b>Pouze dálkovými světly</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C8-937-049-E <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="fog-light-support"><b>Mlhovkami</b></td>
+                </tr>
+                <tr class="high-end">
+                    <td class="copyable">3C8-937-049-F <span class="copy-icon" onclick="copyToClipboard(this.parentNode)"><i class="fas fa-copy"></i></span></td>
+                    <td>30 Byte</td>
+                    <td class="notes high-end-cell">Highend<span class="high-end-label"></span></td>
+                    <td class="fog-light-support"><b>Mlhovkami</b></td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
