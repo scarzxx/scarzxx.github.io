@@ -1,3 +1,47 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch data from units.json
+    fetch('units.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Populate Gateway Units table
+            populateTable('gatewayTable', data.gatewayUnits, ['partNumber', 'softwareVersion', 'compatible', 'notes']);
+            // Populate Comfort Units table
+            populateTable('comfortTable', data.comfortUnits, ['partNumber', 'byteCount', 'frequency', 'notes']);
+            // Populate BSG Units table
+            populateTable('bsgTable', data.bsgUnits, ['partNumber', 'byteCount', 'notes', 'fogLightSupport']);
+        })
+        .catch(error => console.error('Error loading units:', error));
+});
+
+// Function to populate a table with data
+function populateTable(tableId, units, fields) {
+    const tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+    units.forEach(unit => {
+        const row = document.createElement('tr');
+        fields.forEach(field => {
+            const cell = document.createElement('td');
+            cell.textContent = unit[field];
+            if (field === 'partNumber') {
+                const copyIcon = document.createElement('span');
+                copyIcon.className = 'copy-icon';
+                copyIcon.innerHTML = '<i class="fas fa-copy"></i>';
+                copyIcon.onclick = function() {
+                    copyToClipboard(copyIcon);
+                };
+                cell.appendChild(copyIcon);
+            }
+            row.appendChild(cell);
+        });
+        tableBody.appendChild(row);
+    });
+}
+
+// Existing sortTable function
 function sortTable(tableId, column) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(tableId);
@@ -78,6 +122,7 @@ menuItems.forEach(item => {
   });
 });
 
+// Existing copyToClipboard function
 function copyToClipboard(spanElement) {
     const tdElement = spanElement.parentNode;
     const range = document.createRange();

@@ -1,0 +1,314 @@
+{
+    "gatewayUnits": [
+        {
+            "partNumber": "1K0-907-530-A",
+            "softwareVersion": "0020",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-B",
+            "softwareVersion": "0050/0070",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-C",
+            "softwareVersion": "0080",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-D",
+            "softwareVersion": "0100",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-E",
+            "softwareVersion": "0110",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-F",
+            "softwareVersion": "0120",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-G",
+            "softwareVersion": "0130/0140",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-H",
+            "softwareVersion": "0150",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-J",
+            "softwareVersion": "0160",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-K",
+            "softwareVersion": "0021",
+            "compatible": "Ne",
+            "notes": "Pouze výměna"
+        },
+        {
+            "partNumber": "1K0-907-530-K",
+            "softwareVersion": "0170",
+            "compatible": "Ne",
+            "notes": "Dostupná aktualizace"
+        },
+        {
+            "partNumber": "1K0-907-530-K",
+            "softwareVersion": "0178",
+            "compatible": "Ano",
+            "notes": "-"
+        },
+        {
+            "partNumber": "1K0-907-530-P",
+            "softwareVersion": "0191/0192",
+            "compatible": "Ne",
+            "notes": "Pouze výměna"
+        }
+    ],
+    "comfortUnits": [
+        {
+            "partNumber": "1K0-959-433-C",
+            "byteCount": "12 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-H",
+            "byteCount": "13 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-J",
+            "byteCount": "13 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-S",
+            "byteCount": "13 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-T",
+            "byteCount": "13 Byte",
+            "frequency": "PR-5D1: 434 Mhz",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-BK",
+            "byteCount": "13 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-BL",
+            "byteCount": "13 Byte",
+            "frequency": "PR-5D1: 434 Mhz",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AF",
+            "byteCount": "14 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AH",
+            "byteCount": "14 Byte",
+            "frequency": "-",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AJ",
+            "byteCount": "14 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AK",
+            "byteCount": "14 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AM",
+            "byteCount": "?? Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "Neznámý počet byte"
+        },
+        {
+            "partNumber": "1K0-959-433-CM",
+            "byteCount": "14 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-CP",
+            "byteCount": "14 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": ""
+        },
+        {
+            "partNumber": "1K0-959-433-AQ",
+            "byteCount": "19 Byte",
+            "frequency": "-",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-AR",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D1: 434 Mhz",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-AS",
+            "byteCount": "19 Byte",
+            "frequency": "-",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-AT",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-BT",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CA",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CB",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CD",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CL",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CR",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D1: 434 Mhz\nPR-5D9: 433,92 Mhz (\"RC\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-CT",
+            "byteCount": "19 Byte",
+            "frequency": "PR-5D2: 315 Mhz (\"NAR\")\nPR-5D3: 315 Mhz (\"J\")\nPR-5D5: 315 Mhz (\"ROK\")",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        },
+        {
+            "partNumber": "1K0-959-433-DA",
+            "byteCount": "19 Byte",
+            "frequency": "-",
+            "notes": "High End\nPodpora Komfortního Menu v Maxidotu"
+        }
+    ],
+    "bsgUnits": [
+        {
+            "partNumber": "3C0-937-049-AD",
+            "byteCount": "23 Byte",
+            "notes": "Medium",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AA",
+            "byteCount": "23 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AC",
+            "byteCount": "23 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AE",
+            "byteCount": "23 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AG",
+            "byteCount": "23 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AL",
+            "byteCount": "30 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Ne"
+        },
+        {
+            "partNumber": "3C0-937-049-AH",
+            "byteCount": "30 Byte",
+            "notes": "Medium",
+            "fogLightSupport": "Pouze dálkovými světly"
+        },
+        {
+            "partNumber": "3C0-937-049-AK",
+            "byteCount": "30 Byte",
+            "notes": "Medium",
+            "fogLightSupport": "Pouze dálkovými světly"
+        },
+        {
+            "partNumber": "3C0-937-049-AJ",
+            "byteCount": "30 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Mlhovkami"
+        },
+        {
+            "partNumber": "3C8-937-049-D",
+            "byteCount": "30 Byte",
+            "notes": "Medium",
+            "fogLightSupport": "Pouze dálkovými světly"
+        },
+        {
+            "partNumber": "3C8-937-049-E",
+            "byteCount": "30 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Mlhovkami"
+        },
+        {
+            "partNumber": "3C8-937-049-F",
+            "byteCount": "30 Byte",
+            "notes": "Highend",
+            "fogLightSupport": "Mlhovkami"
+        }
+    ]
+}
