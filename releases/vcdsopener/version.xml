@@ -10,4 +10,14 @@
       - Uprava kódu.
     </whatsNew>
   </update>
+    <update>
+    <version>1.0.3</version>
+    <hash>245757324454</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Přidán updater.
+      - Přidána verze do názvu.
+      - Uprava kódu.
+    </whatsNew>
+  </update>
 </updates>
