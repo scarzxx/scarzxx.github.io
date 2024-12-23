@@ -2,10 +2,10 @@
   <update>
     <version>1.0.2</version>
     <url>https://example.com/yourapp_v1.0.2.zip</url>
-    <whatsNew>
-      - Automatická lokalizace VCDS. (Pouze Anglická a Česká verze)
-      - Upráva kódu
-    </whatsNew>
+    <whatsNew><![CDATA[
+      - Kontrola složek pro extistenci vcds ( Pouze Anglická a Česká verze )
+      - Uprava kódu
+      - Kontrola aktualizace
+    ]]></whatsNew>
   </update>
-  </updates>
-
+</updates>
