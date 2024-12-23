@@ -1,5 +1,10 @@
-<update>
-<version>1.0.1</version>
-<url>https://example.com/yourapp.zip</url>
-<whatsNew><![CDATA[...]]></whatsNew>
-</update>
+<updates>
+  <update>
+    <version>1.0.2</version>
+    <url>https://example.com/yourapp_v1.0.2.zip</url>
+    <whatsNew>
+      - Automatická lokalizace VCDS. (Pouze Anglická a Česká verze)
+      - Upráva kódu
+    </whatsNew>
+  </update>
+
