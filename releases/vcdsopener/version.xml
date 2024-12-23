@@ -5,8 +5,9 @@
     <hash>51514787656485</hash>
     <url>https://example.com/yourapp_v1.0.2.zip</url>
     <whatsNew>
+      - První verze.
       - Kontrola složek pouze pro Anglickou a Českou verzi.
-      - Uprava kódu
+      - Uprava kódu.
     </whatsNew>
   </update>
 </updates>
