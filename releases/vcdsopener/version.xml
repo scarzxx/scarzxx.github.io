@@ -1,4 +1,5 @@
 <update>
 <version>1.0.1</version>
 <url>https://example.com/yourapp.zip</url>
+<whatsNew><![CDATA[...]]></whatsNew>
 </update>
