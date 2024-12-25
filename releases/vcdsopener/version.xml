@@ -38,4 +38,13 @@
       - Oprava kódu.
     </whatsNew>
   </update>
+          <update>
+    <version>1.0.6</version>
+    <hash>245757324454</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Přidána notifikace místo messageboxu.
+      - Oprava kódu.
+    </whatsNew>
+  </update>
 </updates>
