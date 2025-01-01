@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+  <update>
+    <version>1.0.2</version>
+    <hash>51514787656485</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - První verze.
+      - Kontrola složek pouze pro Anglickou a Českou verzi.
+      - Uprava kódu.
+    </whatsNew>
+  </update>
+    <update>
+    <version>1.0.3</version>
+    <hash>245757324454</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Přidán updater.
+      - Přidána verze do názvu.
+      - Uprava kódu.
+    </whatsNew>
+  </update>
+      <update>
+    <version>1.0.4</version>
+    <hash>99865641233</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Updater opraven.
+      - Staré soubory se smažou pokud existují.
+    </whatsNew>
+  </update>
+        <update>
+    <version>1.0.5</version>
+    <hash>5485165564100,</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Přidána kontrola aktualizací každý den.
+      - Oprava kódu.
+    </whatsNew>
+  </update>
+          <update>
+    <version>1.0.6</version>
+    <hash>548496321</hash>
+    <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+    <whatsNew>
+      - Přidána notifikace místo messageboxu.
+      - Oprava kódu.
+    </whatsNew>
+  </update>
+	<update>
+		<version>1.0.7</version>
+		<hash>485165624241</hash>
+		<url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+		- Přidáno button5 s popiskem "Uložit a Zavřít" do formuláře
+		- Nastaveno TextBox4 a TextBox3 na pouze pro čtení
+		- Implementována obsluha události button5_Click pro uložení a zavření
+		- Zavedena metoda FileMatches pro kontrolu shody souborového vzoru a fráze pomocí regulárních výrazů.
+		- Aktualizována metoda FileMatches pro použití Path.GetFileNameWithoutExtension.
+		- Upravená podmínka v metodě FileMatches pro shodu fráze jako celého slova nebo části názvu souboru.
+		- Přidán URL do výzvy k online vyhledávání chybového kódu s "vcds".
+		- Implementována obsluha události pictureBox1_Click pro zobrazení formuláře Settings.
+		</whatsNew>
+	</update>
+</updates>
