@@ -50,7 +50,7 @@
 	<update>
 		<version>1.0.7</version>
 		<hash>485165624241</hash>
-		<url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
 		<whatsNew>
 		- Přidáno button5 s popiskem "Uložit a Zavřít" do formuláře
 		- Nastaveno TextBox4 a TextBox3 na pouze pro čtení
