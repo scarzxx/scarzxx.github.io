@@ -22,7 +22,7 @@
   </update>
       <update>
     <version>1.0.4</version>
-    <hash>245757324454</hash>
+    <hash>99865641233</hash>
     <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
     <whatsNew>
       - Updater opraven.
@@ -31,7 +31,7 @@
   </update>
         <update>
     <version>1.0.5</version>
-    <hash>245757324454</hash>
+    <hash>5485165564100,</hash>
     <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
     <whatsNew>
       - Přidána kontrola aktualizací každý den.
@@ -40,11 +40,26 @@
   </update>
           <update>
     <version>1.0.6</version>
-    <hash>245757324454</hash>
+    <hash>548496321</hash>
     <url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
     <whatsNew>
       - Přidána notifikace místo messageboxu.
       - Oprava kódu.
     </whatsNew>
   </update>
+	<update>
+		<version>1.0.7</version>
+		<hash>485165624241</hash>
+		<url>https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+		- Přidáno button5 s popiskem "Uložit a Zavřít" do formuláře
+		- Nastaveno TextBox4 a TextBox3 na pouze pro čtení
+		- Implementována obsluha události button5_Click pro uložení a zavření
+		- Zavedena metoda FileMatches pro kontrolu shody souborového vzoru a fráze pomocí regulárních výrazů.
+		- Aktualizována metoda FileMatches pro použití Path.GetFileNameWithoutExtension.
+		- Upravená podmínka v metodě FileMatches pro shodu fráze jako celého slova nebo části názvu souboru.
+		- Přidán URL do výzvy k online vyhledávání chybového kódu s "vcds".
+		- Implementována obsluha události pictureBox1_Click pro zobrazení formuláře Settings.
+		</whatsNew>
+	</update>
 </updates>
