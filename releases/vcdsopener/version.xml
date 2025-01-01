@@ -72,4 +72,12 @@
 			Tím je zajištěno, že aplikace odkazuje na správné místo pro informace o aktualizacích.
 		</whatsNew>
 	</update>
+	<update>
+		<version>1.0.9</version>
+		<hash>485165624241</hash>
+		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+			- Aktualizován binární soubor updater.exe.
+		</whatsNew>
+	</update>
 </updates>
