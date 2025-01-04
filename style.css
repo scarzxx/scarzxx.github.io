@@ -2,7 +2,7 @@
 :root {
     --background-color: #181818;
     --text-color: #eee;
-    --table-header-bg: #2962ff;
+    --table-header-bg: #0945eb;
     --table-header-text: #fff;
     --table-row-even-bg: #222;
     --table-row-hover-bg: #333;
@@ -15,16 +15,79 @@
     --menu-text-color: #eee;
     --menu-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
     --accent-color: #ff4081;
-    --menu-active-bg-color: #2962ff;
+    --menu-active-bg-color: #6205f8;
     --menu-hover-bg-color: #3a3f47;
     --menu-hover-text-color: #fff;
+    --dark-background-gradient: linear-gradient(135deg, #31308d, #662525, #1e1e1e);
+    --dark-text-color: #e0e0e0;
+    --dark-table-header-bg: #1f1f1f;
+    --dark-table-row-even-bg: #1a1a1a;
+    --dark-table-row-hover-bg: #333;
+    --dark-menu-bg-color: #1c1c1c;
+    --dark-menu-text-color: #e0e0e0;
+    --dark-accent-color: #bb86fc;
 }
 
 /* Podpora pro tmavý a světlý režim */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: var(--background-color);
-        color: var(--text-color);
+        background: var(--dark-background-gradient);
+        color: var(--dark-text-color);
+    }
+
+    .top-menu {
+        background-color: var(--dark-menu-bg-color);
+        color: var(--dark-menu-text-color);
+    }
+
+    .top-menu a {
+        color: var(--dark-menu-text-color);
+    }
+
+    .top-menu a.active {
+        background-color: transparent;
+        color: var(--dark-menu-text-color);
+        border-bottom-color: var(--dark-accent-color);
+    }
+
+    .top-menu a:not(.active):hover {
+        background-color: var(--menu-hover-bg-color);
+        color: var(--menu-hover-text-color);
+    }
+
+    table {
+        background-color: var(--dark-background-color);
+    }
+
+    th {
+        background-color: var(--dark-table-header-bg);
+        color: var(--dark-text-color);
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--dark-table-row-even-bg);
+    }
+
+    tr:hover {
+        background-color: var(--dark-table-row-hover-bg);
+    }
+
+    .download-content {
+        background-color: var(--dark-background-color);
+        border: 1px solid #444;
+    }
+
+    .download-button {
+        background-color: var(--dark-accent-color);
+    }
+
+    .download-button:hover {
+        background-color: var(--accent-color);
+    }
+
+    .description-box {
+        background-color: var(--dark-background-color);
+        border: 1px solid #444;
     }
 }
 
@@ -158,6 +221,9 @@ tr:hover {
     margin: auto;
     overflow: hidden;
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .maxidot-support {
@@ -179,7 +245,7 @@ tr:hover {
     margin: 5px 0;
 }
 
-/* Menu */
+/* New Menu */
 .top-menu {
     background-color: var(--menu-bg-color);
     color: var(--menu-text-color);
@@ -193,6 +259,12 @@ tr:hover {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    transition: padding 0.3s, background-color 0.3s;
+}
+
+.top-menu.compact {
+    padding: 5px 10px;
+    background-color: #1c1f24;
 }
 
 .menu-wrapper {
@@ -214,17 +286,17 @@ tr:hover {
 }
 
 .top-menu li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 .top-menu a {
     color: var(--menu-text-color);
     text-decoration: none;
     font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 0;
+    padding: 8px 12px;
+    border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.5;
     display: block;
     border-bottom: 3px solid transparent;
@@ -232,9 +304,10 @@ tr:hover {
 
 /* Aktivní položka menu */
 .top-menu a.active {
-    background-color: var(--menu-active-bg-color);
-    color: #fff;
+    background-color: transparent; /* Remove background color */
+    color: var(--menu-text-color); /* Ensure text color remains consistent */
     border-bottom-color: var(--menu-active-bg-color);
+    transition: none; /* Remove transition to prevent blue flash */
 }
 
 /* Hover efekt pro neaktivní položky */
@@ -251,31 +324,30 @@ tr:hover {
 }
 
 .bar {
-    width: 25px;
-    height: 3px;
+    width: 20px;
+    height: 2px;
     background-color: var(--menu-text-color);
-    margin: 5px 0;
+    margin: 4px 0;
     transition: 0.4s;
 }
 
 /* Styly pro download.html */
 .download-content {
-    background-color: #222;
-    border: 1px solid #444;
+    background-color: var(--background-color);
+    margin: 20px;
     padding: 20px;
-    margin: 20px auto;
-    width: 80%;
+    border: 1px solid #444;
+    width: 100%;
     max-width: 600px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.download-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 5px;
+.download-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
 }
 
 .download-button {
@@ -292,7 +364,7 @@ tr:hover {
 }
 
 .download-button:hover {
-    background-color: #1f49b3;
+    background-color: var(--accent-color);
 }
 
 .download-description {
@@ -321,6 +393,33 @@ tr:hover {
     color: #D2042D;
 }
 
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.image-gallery img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 /* Styly pro mobilní zařízení */
 @media (max-width: 768px) {
 
@@ -337,13 +436,13 @@ tr:hover {
 
     .top-menu li {
         width: 100%;
-        margin: 10px 0;
+        margin: 5px 0;
         text-align: center;
     }
 
     .top-menu a {
-        font-size: 1em;
-        padding: 10px;
+        font-size: 0.9em;
+        padding: 8px;
         border-radius: 0;
     }
 

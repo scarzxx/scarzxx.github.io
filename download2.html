@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="top-menu" id="top-menu">
+        <div class="menu-wrapper">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul id="menu-list">
+                <li><a href="index.html#unit-list">Seznam jednotek</a></li>
+                <li><a href="download2.html" class="active">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="download-content">
+            <h2>Nástroj pro spuštění diagnostiky a vyhledávání chyb</h2>
+            <p class="download-description">
+                Tato aplikace vám zjednoduší a urychlí spuštění diagnostického nástroje VCDS a zároveň umožní rychlé vyhledávání chybových kódů.
+            </p>
+            <h3>Poslední Aktualizace:</h3>
+            <ul id="whats-new-list">
+                <!-- Nové funkce budou načteny zde -->
+            </ul>
+            <a href="https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip" class="download-button">Stáhnout</a>
+            <h3>Obrázky</h3>
+            <div class="image-gallery">
+                <img src="images/obrazek1.png" alt="Screenshot 1" onclick="openImage('images/obrazek1.png')">
+                <img src="images/obrazek2.png" alt="Screenshot 2" onclick="openImage('images/obrazek2.png')">
+            </div>
+        </div>
+        <div class="download-content">
+            <h2>Druhá aplikace</h2>
+            <p class="download-description">
+                Popis druhé aplikace.
+            </p>
+            <h3>Poslední Aktualizace:</h3>
+            <ul id="whats-new-list-2">
+                <!-- Nové funkce budou načteny zde -->
+            </ul>
+            <a href="https://scarzxx.github.io/releases/vcdsopener/anotherprogram.zip" class="download-button">Stáhnout</a>
+            <h3>Obrázky</h3>
+            <div class="image-gallery">
+                <img src="images/oscreen.png" alt="Screenshot" onclick="openImage('images/screenshot3.png')">
+                <img src="images/screenshot4.png" alt="Screenshot" onclick="openImage('images/screenshot4.png')">
+            </div>
+        </div>
+        <p class="download-note">
+            <b>Poznámka:</b> Autor neodpovídá za případné škody způsobené nesprávným použitím aplikace nebo diagnostického nástroje VCDS. Používání aplikace a VCDS je na vlastní riziko.
+        </p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('releases/vcdsopener/version.xml')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(data, 'application/xml');
+                    const updates = xml.getElementsByTagName('update');
+                    const latestUpdate = updates[updates.length - 1];
+                    const whatsNew = latestUpdate.getElementsByTagName('whatsNew')[0].textContent;
+                    const whatsNewList = document.getElementById('whats-new-list');
+                    whatsNew.split('\n').forEach(item => {
+                        if (item.trim()) {
+                            const li = document.createElement('li');
+                            li.textContent = item.trim();
+                            whatsNewList.appendChild(li);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching version.xml:', error));
+        });
+
+        function openImage(src) {
+            window.open(src, '_blank');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

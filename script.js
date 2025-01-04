@@ -107,3 +107,12 @@ function copyToClipboard(spanElement) {
             console.error('Nepodařilo se zkopírovat text: ', err);
         });
 }
+
+window.addEventListener('scroll', function() {
+  const topMenu = document.getElementById('top-menu');
+  if (window.scrollY > 50) {
+    topMenu.classList.add('compact');
+  } else {
+    topMenu.classList.remove('compact');
+  }
+});
