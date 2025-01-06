@@ -307,7 +307,12 @@ th::after {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 5px 0;
+    }
+
+    nav ul li a {
+        padding: 8px;
+        font-size: 0.9em;
     }
 
     section {
@@ -326,5 +331,9 @@ th::after {
 
     .image-gallery img {
         width: 80px;
+    }
+
+    body {
+        background-size: cover;
     }
 }
