@@ -9,9 +9,13 @@
 </head>
 <body>
     <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
         <ul>
-            <li><a href="index.html#units">Seznam jednotek</a></li>
-            <li><a href="#download">Download</a></li>
+            <li><a href="index.html" class="active">Domů</a></li>
+            <li><a href="gateway.html">Gateway Jednotky</a></li>
+            <li><a href="comfort.html">Komfortní Jednotky</a></li>
+            <li><a href="bsg.html">BSG/BCM Jednotky</a></li>
+            <li><a href="download.html">Download</a></li>
         </ul>
     </nav>
     <section id="download">
@@ -31,5 +35,10 @@
         </div>
         <p class="note">Poznámka: Autor neodpovídá za případné škody způsobené nesprávným použitím aplikace nebo diagnostického nástroje VCDS. Používání aplikace a VCDS je na vlastní riziko.</p>
     </section>
+    <script>
+        function toggleMenu() {
+            document.querySelector('nav').classList.toggle('expanded');
+        }
+    </script>
 </body>
 </html>

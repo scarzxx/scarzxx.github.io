@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSG/BCM Units</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <ul style="list-style-type: none; padding: 0;">
+            <li style="margin-bottom: 10px;"><a href="index.html" class="active">Domů</a></li>
+            <li style="margin-bottom: 10px;"><a href="gateway.html">Gateway Jednotky</a></li>
+            <li style="margin-bottom: 10px;"><a href="comfort.html">Komfortní Jednotky</a></li>
+            <li style="margin-bottom: 10px;"><a href="bsg.html">BSG/BCM Jednotky</a></li>
+            <li style="margin-bottom: 10px;"><a href="download.html">Download</a></li>
+        </ul>
+    </nav>
+    <section id="bsg">
+        <h1>BSG/BCM Jednotky (Přísvit)</h1>
+        <div id="bsgUnits"></div>
+    </section>
+    <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
+    <script src="script.js"></script>
+    <script>
+        function toggleMenu() {
+            document.querySelector('nav').classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>

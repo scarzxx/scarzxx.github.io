@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const page = window.location.pathname.split('/').pop();
     fetch('units.json')
         .then(response => response.json())
         .then(data => {
-            populateTable('gatewayUnits', data.gatewayUnits, formatGatewayUnits);
-            populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
-            populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
-            addComfortUnitsDescription();
-            addGatewayUnitsDescription();
+            if (page === 'gateway.html') {
+                populateTable('gatewayUnits', data.gatewayUnits, formatGatewayUnits);
+                addGatewayUnitsDescription();
+            } else if (page === 'comfort.html') {
+                populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
+                addComfortUnitsDescription();
+            } else if (page === 'bsg.html') {
+                populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
+            }
         });
 });
 
@@ -130,7 +135,7 @@ fetch('https://api.ipify.org?format=json')
     console.error('Chyba při získávání IP adresy:', error);
   });
 function addComfortUnitsDescription() {
-    const container = document.getElementById('comfortUnits');
+    const container = document.getElementById('comfortUnitsDescription');
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('description-container');
     descriptionContainer.innerHTML = `

@@ -1,3 +1,4 @@
+/* General body styling */
 body {
     background: linear-gradient(to right, purple, rgb(83, 45, 2), rgb(36, 38, 148));
     font-family: Arial, sans-serif;
@@ -6,41 +7,108 @@ body {
     padding: 0;
 }
 
+/* Navigation menu styling */
 nav {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
+    position: fixed;
+    width: 60px; /* Collapsed width */
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: width 0.3s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
+nav.expanded {
+    width: 250px; /* Expanded width */
+}
+
+/* Navigation list styling */
 nav ul {
     list-style: none;
-    display: flex;
-    justify-content: space-around;
     padding: 0;
     margin: 0;
+    width: 100%;
+    display: none; /* Hide menu items initially */
 }
 
+nav.expanded ul {
+    display: block; /* Show menu items when expanded */
+}
+
+/* Navigation list item styling */
 nav ul li {
-    margin: 0 15px;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
 }
 
+/* Navigation link styling */
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+    display: block;
+    padding: 15px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
 }
 
+/* Navigation link hover effect */
 nav ul li a:hover {
-    color: #6ec6ff;
+    background-color: #6ec6ff;
+    color: black;
 }
 
+/* Active navigation link styling */
+nav ul li a.active, nav ul li a[href="index.html"] {
+    background-color: #6ec6ff;
+    color: black;
+}
+
+/* Menu toggle button styling */
+.menu-toggle {
+    cursor: pointer;
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+nav.expanded .menu-toggle {
+    transform: rotate(90deg);
+}
+
+/* Section styling */
 section {
+    margin-left: 80px; /* Adjust margin to account for collapsed nav */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: margin-left 0.3s;
 }
 
+nav.expanded + section {
+    margin-left: 270px; /* Adjust margin to account for expanded nav */
+}
+
+/* Main page heading styling */
+#units h1 {
+    font-size: 2.5em; /* Increase font size */
+}
+
+/* Main page paragraph styling */
+#units p {
+    font-size: 1em; /* Increase font size */
+}
+
+/* Table container styling */
 .table-container {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
@@ -51,11 +119,13 @@ section {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Table container hover effect */
 .table-container:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -66,10 +136,12 @@ table {
     table-layout: fixed;
 }
 
+/* Table, header, and cell border styling */
 table, th, td {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Table header and cell padding and text alignment */
 th, td {
     padding: 10px 15px;
     text-align: left;
@@ -78,6 +150,7 @@ th, td {
     color: white;
 }
 
+/* Table header styling */
 th {
     background-color: rgba(29, 27, 107, 0.322);
     color: white;
@@ -85,14 +158,17 @@ th {
     cursor: pointer;
 }
 
+/* Even row styling */
 tr:nth-child(even) {
     background-color: rgba(58, 55, 55, 0.9);
 }
 
+/* Row hover effect */
 tr:hover {
     background-color: rgba(2, 54, 46, 0.5);
 }
 
+/* Copy icon styling */
 .copy-icon {
     margin-left: 10px;
     cursor: pointer;
@@ -100,10 +176,12 @@ tr:hover {
     transition: color 0.3s;
 }
 
+/* Copy icon hover effect */
 .copy-icon:hover {
     color: #6ec6ff;
 }
 
+/* Table header underline effect */
 th::after {
     content: '';
     position: absolute;
@@ -114,6 +192,7 @@ th::after {
     background: linear-gradient(to right, #2962ff, #6ec6ff);
 }
 
+/* Copy notification styling */
 .copy-notification {
     display: none;
     position: fixed;
@@ -127,6 +206,7 @@ th::after {
     z-index: 1000;
 }
 
+/* Compatibility cell styling */
 .compatible-no {
     color: red;
 }
@@ -136,6 +216,7 @@ th::after {
     font-weight: bold;
 }
 
+/* Notes cell styling */
 .notes-high-end {
     color: green;
     font-weight: bold;
@@ -155,6 +236,7 @@ th::after {
     font-weight: bold;
 }
 
+/* Fog light support cell styling */
 .fog-light-no {
     color: red;
     font-weight: bold;
@@ -169,6 +251,7 @@ th::after {
     color: rgb(51, 51, 245);
 }
 
+/* Download container styling */
 .download-container {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 40px;
@@ -179,11 +262,13 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Download container hover effect */
 .download-container:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Download link styling */
 .download-container a {
     color: white;
     text-decoration: none;
@@ -194,21 +279,31 @@ th::after {
     transition: background-color 0.3s;
 }
 
+/* Download link hover effect */
 .download-container a:hover {
     background-color: rgb(24, 144, 0);
 }
 
+/* Download container paragraph styling */
 .download-container p {
     margin-top: 10px;
     font-size: 0.9em;
 }
 
+/* Note paragraph styling */
 .note {
     color: red;
     margin-top: 20px;
     font-size: 0.8em;
 }
+/* Warning paragraph styling */
+.warning {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
+/* Description container styling */
 .description-container {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
@@ -222,11 +317,13 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Description container hover effect */
 .description-container:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Image gallery styling */
 .image-gallery {
     display: flex;
     justify-content: center;
@@ -235,6 +332,7 @@ th::after {
     margin-top: 20px;
 }
 
+/* Image gallery image styling */
 .image-gallery img {
     width: 100px;
     height: auto;
@@ -243,7 +341,72 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* Image gallery image hover effect */
 .image-gallery img:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    nav.expanded ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-toggle {
+        font-size: 1.5em;
+    }
+
+    section {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    nav.expanded + section {
+        margin-left: 0;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    table, th, td {
+        font-size: 0.8em;
+    }
+
+    .download-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .description-container {
+        padding: 10px;
+    }
+
+    .image-gallery img {
+        width: 80px;
+    }
 }
