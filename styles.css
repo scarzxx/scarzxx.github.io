@@ -1,7 +1,7 @@
 /* General body styling */
 body {
     background: linear-gradient(to right, purple, rgb(83, 45, 2), rgb(36, 38, 148));
-    background-size: cover; /* Ensure background covers the entire screen */
+    background-size: cover;
     font-family: Arial, sans-serif;
     color: white;
     margin: 0;
@@ -14,12 +14,13 @@ nav {
     padding: 10px;
     position: fixed;
     width: 100%;
-   height: 38px; /* Zkus pevnou výšku */
+    height: 60px; /* Set a fixed height for the navbar */
     top: 0;
     left: 0;
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Navigation list styling */
@@ -53,7 +54,8 @@ nav ul li a:hover {
 }
 
 /* Active navigation link styling */
-nav ul li a.active, nav ul li a[href="index.html"] {
+nav ul li a.active,
+nav ul li a[href="index.html"] {
     background-color: #175781;
     color: black;
 }
@@ -90,19 +92,23 @@ table {
     border-collapse: collapse;
     background-color: rgba(30, 30, 30, 0.9);
     border-radius: 10px;
-    overflow: hidden;
-    font-size: 0.9em; /* Reduce font size */
-    table-layout: fixed;
+     overflow-x: auto;
+     /* Remove overflow: hidden */
+    font-size: 0.9em;
+    table-layout: auto; /* Changed to auto */
 }
 
 /* Table, header, and cell border styling */
-table, th, td {
+table,
+th,
+td {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Table header and cell padding and text alignment */
-th, td {
-    padding: 6px 8px; /* Reduce padding */
+th,
+td {
+    padding: 6px 8px;
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
@@ -142,7 +148,7 @@ tr:hover {
 
 /* Table header underline effect */
 th::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -302,10 +308,19 @@ th::after {
 
 /* Responsive styling */
 @media (max-width: 768px) {
+  nav {
+        height: 50px; /* Menší výška pro mobilní verzi */
+    }
     nav ul {
         flex-direction: column;
         align-items: center;
         display: none; /* Hide menu by default */
+        position: absolute;
+        top: 50px; /* Adjust position below navbar */
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 0;
     }
 
     nav ul.show {
@@ -317,8 +332,8 @@ th::after {
     }
 
     nav ul li a {
-        padding: 8px;
-        font-size: 0.9em;
+         padding: 10px;
+        font-size: 1em;
     }
 
     .menu-toggle {
@@ -328,7 +343,7 @@ th::after {
         font-size: 1.5em;
         margin: 10px;
         position: absolute;
-        right: 10px; /* Adjust position */
+        right: 10px;
     }
 
     section {
@@ -343,11 +358,12 @@ th::after {
 
     table {
         width: 100%;
-        table-layout: auto; /* Allow table to adjust to content */
-        font-size: 0.7em; /* Reduce font size */
+       table-layout: auto; /* Allow table to adjust to content */
+        font-size: 0.8em; /* Reduce font size */
     }
 
-    th, td {
+    th,
+    td {
         padding: 6px 8px; /* Reduce padding */
     }
 
