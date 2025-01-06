@@ -327,6 +327,8 @@ th::after {
         color: white;
         font-size: 1.5em;
         margin: 10px;
+        position: absolute;
+        right: 10px; /* Move to the right side */
     }
 
     section {
@@ -355,5 +357,11 @@ th::after {
 
     body {
         background-size: cover;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Hide menu toggle on larger screens */
     }
 }
