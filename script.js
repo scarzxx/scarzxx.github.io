@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
         });
+    adjustMenuToggleSize();
+    window.addEventListener('resize', adjustMenuToggleSize);
 });
 
 function populateTable(id, units, formatter) {
@@ -204,4 +206,15 @@ function openImage(src) {
 function toggleMenu() {
     const menu = document.querySelector('nav ul');
     menu.classList.toggle('show');
+}
+
+function adjustMenuToggleSize() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (window.innerWidth <= 768) {
+        menuToggle.style.minWidth = '30px';
+        menuToggle.style.maxWidth = '50px';
+    } else {
+        menuToggle.style.minWidth = '';
+        menuToggle.style.maxWidth = '';
+    }
 }

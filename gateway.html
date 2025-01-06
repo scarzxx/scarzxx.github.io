@@ -16,7 +16,7 @@
             <li><a href="bsg.html">BSG/BCM Jednotky</a></li>
             <li><a href="download.html">Download</a></li>
         </ul>
-        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div id="menu-toggle" class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </nav>
     <section id="gateway">
         <h1>Gateway Jednotky (Vybíjení Baterie)</h1>
@@ -25,5 +25,18 @@
     </section>
     <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
     <script src="script.js"></script>
+    <style>
+        .menu-toggle {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
 </body>
 </html>
