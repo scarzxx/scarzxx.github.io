@@ -12,17 +12,17 @@ body {
 
 /* Navigation menu styling */
 nav {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* More transparent */
+    padding: 10px 20px; /* Add padding to ensure rounded corners are visible */
     position: fixed;
-    width: 100%;
-    height: auto;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Center the nav */
     z-index: 1000;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    border-radius: 10px; /* Rounded corners */
 }
 
 /* Navigation list styling */
@@ -32,7 +32,7 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: auto; /* Adjust width to fit content */
 }
 
 /* Navigation list item styling */
@@ -46,19 +46,21 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     display: block;
-    padding: 10px;
-    transition: background-color 0.3s;
+    padding: 10px 20px; /* Add padding to links */
+    transition: background-color 0.3s, color 0.3s; /* Add color transition */
+    border-radius: 10px; /* Rounded corners */
 }
 
 /* Navigation link hover effect */
 nav ul li a:hover {
     background-color: #224b66;
+    color: #fff; /* Ensure text color is white on hover */
 }
 
 /* Active navigation link styling */
-nav ul li a.active, nav ul li a[href="index.html"] {
-    background-color: #175781;
-    color: black;
+nav ul li a.active {
+    background-color: transparent; /* Remove background color for active link */
+    color: white; /* Ensure text color is white */
 }
 
 /* Section styling */
@@ -329,19 +331,24 @@ th::after {
 /* Responsive styling */
 @media (max-width: 768px) {
     nav {
-         height: 50px;
-     }
-  nav ul {
-     flex-direction: column;
-     align-items: center;
-     display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-     background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px 0;
-}
+        height: 50px;
+        left: 0;
+        transform: none; /* Remove centering for mobile */
+        width: 100%; /* Ensure full width on mobile */
+        padding: 10px; /* Adjust padding for mobile */
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 10px 0;
+        border-radius: 10px; /* Rounded corners */
+    }
 
     nav ul.show {
         display: flex; /* Show menu when toggled */
@@ -374,6 +381,8 @@ th::after {
     .table-container {
         padding: 10px;
         overflow-x: auto;
+        display: flex;
+        justify-content: center; /* Center the table container */
     }
 
     table {
