@@ -329,7 +329,7 @@ th::after {
         font-size: 1.5em;
         margin: 10px;
         position: absolute;
-        right: 20px; /* Adjust position */
+        right: 10px; /* Adjust position */
     }
 
     section {
@@ -363,6 +363,7 @@ th::after {
 
     body {
         background-size: cover;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
     }
 }
 
