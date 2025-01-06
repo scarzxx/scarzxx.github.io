@@ -147,9 +147,7 @@ function addGatewayUnitsDescription() {
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('description-container');
     descriptionContainer.innerHTML = `
-        <h2>Popis:</h2>
-<p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>
-    `;
+        <p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>`;
     container.appendChild(descriptionContainer);
 }
 
