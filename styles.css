@@ -48,12 +48,12 @@ nav ul li a {
 
 /* Navigation link hover effect */
 nav ul li a:hover {
-    background-color: #6ec6ff;
+    background-color: #224b66;
 }
 
 /* Active navigation link styling */
 nav ul li a.active, nav ul li a[href="index.html"] {
-    background-color: #6ec6ff;
+    background-color: #175781;
     color: black;
 }
 
@@ -297,4 +297,34 @@ th::after {
 .image-gallery img:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    section {
+        margin-top: 80px; /* Adjust margin to account for fixed nav */
+        padding: 10px;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    .download-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .image-gallery img {
+        width: 80px;
+    }
 }
