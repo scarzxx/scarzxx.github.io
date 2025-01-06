@@ -122,7 +122,7 @@ function formatBsgUnits(row, unit) {
 fetch('https://api.ipify.org?format=json')
   .then(response => response.json())
   .then(data => {
-    console.log('Vaše IP adresa (podle externí služby):', data.ip);
+    console.log('Vaše IP adresa:', data.ip);
     // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
     document.getElementById('ip-address').textContent = data.ip;
   })
@@ -146,8 +146,7 @@ function addGatewayUnitsDescription() {
     const container = document.getElementById('gatewayUnitsDescription');
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('description-container');
-    descriptionContainer.innerHTML = `
-        <p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>`;
+    descriptionContainer.innerHTML = '<p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>';
     container.appendChild(descriptionContainer);
 }
 
