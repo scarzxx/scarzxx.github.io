@@ -79,6 +79,7 @@ section {
     width: 100%;
     max-width: 1200px;
     transition: transform 0.3s, box-shadow 0.3s;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
 }
 
 /* Table container hover effect */
@@ -96,6 +97,7 @@ table {
     overflow: hidden;
     font-size: 0.9em; /* Reduce font size */
     table-layout: fixed;
+    margin: 0 auto; /* Center the table */
 }
 
 /* Table, header, and cell border styling */
@@ -302,7 +304,21 @@ th::after {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-
+.warning {
+    background-color: rgba(255, 255, 0, 0.2); /* Světle žluté pozadí */
+    border: 1px solid rgba(255, 255, 0, 0.5); /* Oranžový okraj */
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    color: #f0e68c; /* Trochu tmavší žlutá */
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+  
+  .warning strong {
+      font-weight: bold;
+      color: #ffd700;
+  }
 /* Responsive styling */
 @media (max-width: 768px) {
     nav {
@@ -357,6 +373,7 @@ th::after {
         width: 100%;
         table-layout: auto;
         font-size: 0.7em;
+        margin: 0 auto; /* Center the table */
     }
 
     th, td {
