@@ -82,8 +82,21 @@
             "partNumber": "1K0-907-530-L",
             "softwareVersion": "-",
             "compatible": "Ano",
-            "notes": "Nevybíjí baterii ✅"
+            "notes": "Nevybíjí baterii"
+        },
+        {
+            "partNumber": "1K0-907-530-Q",
+            "softwareVersion": "-",
+            "compatible": "Ano",
+            "notes": "Nevybíjí baterii"
+        },
+        {
+            "partNumber": "1K0-907-530-S",
+            "softwareVersion": "-",
+            "compatible": "Ano",
+            "notes": "Nevybíjí baterii"
         }
+        
     ],
     "comfortUnits": [
         {
