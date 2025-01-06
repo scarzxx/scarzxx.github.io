@@ -21,8 +21,7 @@ nav {
     left: 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-between; /* Adjust for modern look */
-    align-items: center; /* Center items vertically */
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -33,7 +32,7 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    width: auto; /* Adjust for modern look */
+    width: 100%;
 }
 
 /* Navigation list item styling */
@@ -48,13 +47,12 @@ nav ul li a {
     font-weight: bold;
     display: block;
     padding: 10px;
-    transition: background-color 0.3s, color 0.3s; /* Add color transition */
+    transition: background-color 0.3s;
 }
 
 /* Navigation link hover effect */
 nav ul li a:hover {
     background-color: #224b66;
-    color: #fff; /* Ensure text color is white on hover */
 }
 
 /* Active navigation link styling */
@@ -321,6 +319,13 @@ th::after {
       font-weight: bold;
       color: #ffd700;
   }
+  @media (max-width: 768px) {
+    .warning {
+      padding: 8px;
+      font-size: 0.8em;
+      margin: 10px 0;
+    }
+  }
 /* Responsive styling */
 @media (max-width: 768px) {
     nav {
@@ -369,8 +374,6 @@ th::after {
     .table-container {
         padding: 10px;
         overflow-x: auto;
-        display: flex;
-        justify-content: center; /* Center the table container */
     }
 
     table {
