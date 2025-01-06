@@ -132,6 +132,17 @@ function addComfortUnitsDescription() {
     container.appendChild(descriptionContainer);
 }
 
+function addGatewayUnitsDescription() {
+    const container = document.getElementById('GatewayUnitsDescription');
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('description-container');
+    descriptionContainer.innerHTML = `
+        <h2>Popis:</h2>
+<p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>
+    `;
+    container.appendChild(descriptionContainer);
+}
+
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         const notification = document.getElementById('copyNotification');
