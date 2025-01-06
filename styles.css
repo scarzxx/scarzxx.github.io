@@ -19,6 +19,7 @@ nav {
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Navigation list styling */
@@ -90,7 +91,7 @@ table {
     background-color: rgba(30, 30, 30, 0.9);
     border-radius: 10px;
     overflow: hidden;
-    font-size: 0.9em;
+    font-size: 0.8em; /* Reduce font size */
     table-layout: fixed;
 }
 
@@ -101,7 +102,7 @@ table, th, td {
 
 /* Table header and cell padding and text alignment */
 th, td {
-    padding: 10px 15px;
+    padding: 8px 10px; /* Reduce padding */
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
@@ -304,6 +305,11 @@ th::after {
     nav ul {
         flex-direction: column;
         align-items: center;
+        display: none; /* Hide menu by default */
+    }
+
+    nav ul.show {
+        display: flex; /* Show menu when toggled */
     }
 
     nav ul li {
@@ -313,6 +319,14 @@ th::after {
     nav ul li a {
         padding: 8px;
         font-size: 0.9em;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5em;
+        margin: 10px;
     }
 
     section {
