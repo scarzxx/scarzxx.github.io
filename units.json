@@ -77,6 +77,12 @@
             "softwareVersion": "0191/0192",
             "compatible": "Ne",
             "notes": "Pouze výměna"
+        },
+        {
+            "partNumber": "1K0-907-530-L",
+            "softwareVersion": "-",
+            "compatible": "Ano",
+            "notes": "-"
         }
     ],
     "comfortUnits": [
