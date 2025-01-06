@@ -2,6 +2,8 @@
 body {
     background: linear-gradient(to right, purple, rgb(83, 45, 2), rgb(36, 38, 148));
     background-size: cover; /* Ensure background covers the entire screen */
+    background-attachment: fixed; /* Fix background in place */
+    background-position: center; /* Center the background */
     font-family: Arial, sans-serif;
     color: white;
     margin: 0;
@@ -369,15 +371,10 @@ th::after {
     .image-gallery img {
         width: 80px;
     }
- /*     body {
-          overflow-x: hidden;
-    } */
 }
-@media (max-width: 768px) {
+
+@media (min-width: 769px) {
     .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        display: none;
     }
 }
