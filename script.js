@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
             populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             addComfortUnitsDescription();
+            addGatewayUnitsDescription();
         });
 });
 
