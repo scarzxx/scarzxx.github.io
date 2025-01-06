@@ -118,7 +118,16 @@ function formatBsgUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Vaše IP adresa (podle externí služby):', data.ip);
+    // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
+    document.getElementById('ip-address').textContent = data.ip;
+  })
+  .catch(error => {
+    console.error('Chyba při získávání IP adresy:', error);
+  });
 function addComfortUnitsDescription() {
     const container = document.getElementById('comfortUnits');
     const descriptionContainer = document.createElement('div');
