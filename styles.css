@@ -1,6 +1,7 @@
 /* General body styling */
 body {
     background: linear-gradient(to right, purple, rgb(83, 45, 2), rgb(36, 38, 148));
+    background-size: cover; /* Ensure background covers the entire screen */
     font-family: Arial, sans-serif;
     color: white;
     margin: 0;
@@ -91,7 +92,7 @@ table {
     background-color: rgba(30, 30, 30, 0.9);
     border-radius: 10px;
     overflow: hidden;
-    font-size: 0.8em; /* Reduce font size */
+    font-size: 0.7em; /* Reduce font size */
     table-layout: fixed;
 }
 
@@ -102,7 +103,7 @@ table, th, td {
 
 /* Table header and cell padding and text alignment */
 th, td {
-    padding: 8px 10px; /* Reduce padding */
+    padding: 6px 8px; /* Reduce padding */
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
@@ -328,7 +329,7 @@ th::after {
         font-size: 1.5em;
         margin: 10px;
         position: absolute;
-        right: 10px; /* Move to the right side */
+        right: 20px; /* Adjust position */
     }
 
     section {
@@ -344,6 +345,11 @@ th::after {
     table {
         width: 100%;
         table-layout: auto; /* Allow table to adjust to content */
+        font-size: 0.7em; /* Reduce font size */
+    }
+
+    th, td {
+        padding: 6px 8px; /* Reduce padding */
     }
 
     .download-container {
