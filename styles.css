@@ -338,27 +338,27 @@ th::after {
         font-size: 1.5em;
         margin: 10px;
         position: absolute;
-        right: 10px; /* Adjust position */
+        right: 10px;
     }
 
     section {
-        margin-top: 100px; /* Adjust margin to account for fixed nav */
+        margin-top: 100px;
         padding: 10px;
     }
 
     .table-container {
         padding: 10px;
-        overflow-x: auto; /* Enable horizontal scrolling */
+        overflow-x: auto;
     }
 
     table {
         width: 100%;
-        table-layout: auto; /* Allow table to adjust to content */
-        font-size: 0.7em; /* Reduce font size */
+        table-layout: auto;
+        font-size: 0.7em;
     }
 
     th, td {
-        padding: 6px 8px; /* Reduce padding */
+        padding: 6px 8px;
     }
 
     .download-container {
@@ -369,15 +369,13 @@ th::after {
     .image-gallery img {
         width: 80px;
     }
-
-    body {
-        background-size: cover;
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-    }
+ /*     body {
+          overflow-x: hidden;
+    } */
 }
 
 @media (min-width: 769px) {
     .menu-toggle {
-        display: none; /* Hide menu toggle on larger screens */
+        display: none;
     }
 }
