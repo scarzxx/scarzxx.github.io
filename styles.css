@@ -14,13 +14,12 @@ nav {
     padding: 10px;
     position: fixed;
     width: 100%;
-    height: auto;
+   height: 38px; /* Zkus pevnou výšku */
     top: 0;
     left: 0;
     z-index: 1000;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 /* Navigation list styling */
@@ -92,7 +91,7 @@ table {
     background-color: rgba(30, 30, 30, 0.9);
     border-radius: 10px;
     overflow: hidden;
-    font-size: 0.7em; /* Reduce font size */
+    font-size: 0.9em; /* Reduce font size */
     table-layout: fixed;
 }
 
