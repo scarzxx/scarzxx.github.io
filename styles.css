@@ -316,12 +316,18 @@ th::after {
     }
 
     section {
-        margin-top: 80px; /* Adjust margin to account for fixed nav */
+        margin-top: 100px; /* Adjust margin to account for fixed nav */
         padding: 10px;
     }
 
     .table-container {
         padding: 10px;
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    table {
+        width: 100%;
+        table-layout: auto; /* Allow table to adjust to content */
     }
 
     .download-container {
