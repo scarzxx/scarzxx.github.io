@@ -133,7 +133,7 @@ function addComfortUnitsDescription() {
 }
 
 function addGatewayUnitsDescription() {
-    const container = document.getElementById('GatewayUnitsDescription');
+    const container = document.getElementById('gatewayUnitsDescription');
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('description-container');
     descriptionContainer.innerHTML = `
