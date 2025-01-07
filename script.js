@@ -74,7 +74,7 @@ function formatComfortUnits(row, unit) {
             notes.forEach(note => {
                 const noteSpan = document.createElement('span');
                 noteSpan.textContent = note;
-                if (note.includes('High End')) {
+                if (note.includes('Highend')) {
                     noteSpan.classList.add('notes-high-end');
                 }
                 if (note.includes('Podpora Komfortního Menu v Maxidotu')) {
@@ -86,12 +86,12 @@ function formatComfortUnits(row, unit) {
         } else if (key === 'frequency' && unit[key].includes('PR-5D1: 434 Mhz')) {
             const frequencySpan = document.createElement('span');
             frequencySpan.textContent = unit[key];
-            frequencySpan.classList.add('notes-medium');
+            frequencySpan.classList.add('notes-comfort-menu');
             cell.appendChild(frequencySpan);
         } else if (key === 'frequency' && unit[key].includes('PR-5D')) {
             const frequencySpan = document.createElement('span');
             frequencySpan.textContent = unit[key];
-            frequencySpan.classList.add('notes-comfort-menu');
+            frequencySpan.classList.add('notes-medium');
             cell.appendChild(frequencySpan);
         } else {
             cell.textContent = unit[key];

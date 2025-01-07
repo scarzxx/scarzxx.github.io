@@ -1,9 +1,9 @@
 /* General body styling */
 body {
     background: linear-gradient(to right, purple, rgb(83, 45, 2), rgb(36, 38, 148));
-    background-size: cover; /* Ensure background covers the entire screen */
-    background-attachment: fixed; /* Fix background in place */
-    background-position: center; /* Center the background */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
     font-family: Arial, sans-serif;
     color: white;
     margin: 0;
@@ -12,17 +12,17 @@ body {
 
 /* Navigation menu styling */
 nav {
-    background-color: rgba(0, 0, 0, 0.5); /* More transparent */
-    padding: 10px 20px; /* Add padding to ensure rounded corners are visible */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
     position: fixed;
     top: 0;
     left: 50%;
-    transform: translateX(-50%); /* Center the nav */
+    transform: translateX(-50%);
     z-index: 1000;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
 }
 
 /* Navigation list styling */
@@ -32,7 +32,7 @@ nav ul {
     margin: 0;
     display: flex;
     justify-content: center;
-    width: auto; /* Adjust width to fit content */
+    width: auto;
 }
 
 /* Navigation list item styling */
@@ -46,26 +46,26 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     display: block;
-    padding: 10px 20px; /* Add padding to links */
-    transition: background-color 0.3s, color 0.3s; /* Add color transition */
-    border-radius: 10px; /* Rounded corners */
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 10px;
 }
 
 /* Navigation link hover effect */
 nav ul li a:hover {
     background-color: #224b66;
-    color: #fff; /* Ensure text color is white on hover */
+    color: #fff;
 }
 
 /* Active navigation link styling */
 nav ul li a.active {
-    background-color: transparent; /* Remove background color for active link */
-    color: white; /* Ensure text color is white */
+    background-color: transparent;
+    color: white;
 }
 
 /* Section styling */
 section {
-    margin-top: 60px; /* Adjust margin to account for fixed nav */
+    margin-top: 60px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@ section {
     width: 100%;
     max-width: 1200px;
     transition: transform 0.3s, box-shadow 0.3s;
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    /* overflow-x: auto;  Ponecháno pro případ, že by se na desktopu tabulka nevešla */
 }
 
 /* Table container hover effect */
@@ -97,9 +97,9 @@ table {
     background-color: rgba(30, 30, 30, 0.9);
     border-radius: 10px;
     overflow: hidden;
-    font-size: 0.9em; /* Reduce font size */
+    font-size: 0.9em;
     table-layout: fixed;
-    margin: 0 auto; /* Center the table */
+    margin: 0 auto;
 }
 
 /* Table, header, and cell border styling */
@@ -109,7 +109,7 @@ table, th, td {
 
 /* Table header and cell padding and text alignment */
 th, td {
-    padding: 6px 8px; /* Reduce padding */
+    padding: 6px 8px;
     text-align: left;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s;
@@ -192,6 +192,7 @@ th::after {
     color: rgb(99, 165, 99);
     font-weight: bold;
 }
+
 .notes-medium {
     color: orange;
 }
@@ -200,16 +201,24 @@ th::after {
     color: green;
     font-weight: bold;
 }
+
 /* Styl pro odkaz "více info" */
-#show7N0Table, #toggle7N0Info {
+#toggle7N0Info {
     color: #09ff00;
-    text-decoration: underline; /* Podtržení pro zvýraznění */
-    cursor: pointer; /* Změna kurzoru na ruku */
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-#show7N0Table:hover, #toggle7N0Info:hover {
-    color: #a7b300; /* Tmavší modrá při najetí myší */
+#toggle7N0Info:hover {
+    color: #a7b300;
 }
+
+/* Styl pro text "7N0-907-530-XX" */
+.infogateway strong:first-child {
+    color: white;
+    text-decoration: none;
+}
+
 /* Fog light support cell styling */
 .fog-light-no {
     color: red;
@@ -314,50 +323,55 @@ th::after {
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
 .warning {
-    background-color: rgba(255, 255, 0, 0.2); /* Světle žluté pozadí */
-    border: 1px solid rgba(255, 255, 0, 0.5); /* Oranžový okraj */
+    background-color: rgba(255, 255, 0, 0.2);
+    border: 1px solid rgba(255, 255, 0, 0.5);
     padding: 10px;
     margin: 15px 0;
     border-radius: 5px;
-    color: #f0e68c; /* Trochu tmavší žlutá */
+    color: #f0e68c;
     font-size: 0.9em;
     line-height: 1.3em;
-  }
-  .warning strong {
+}
+
+.warning strong {
     font-weight: bold;
     color: #ffd700;
 }
-  .infogateway {
-    background-color: rgba(5, 97, 172, 0.2); /* Světle žluté pozadí */
-    border: 1px solid rgba(11, 154, 255, 0.2); /* Oranžový okraj */
+
+.infogateway {
+    background-color: rgba(5, 97, 172, 0.2);
+    border: 1px solid rgba(11, 154, 255, 0.2);
     padding: 10px;
     margin: 15px 0;
     border-radius: 5px;
-    color: #ffffff; /* Trochu tmavší žlutá */
+    color: #ffffff;
     font-size: 0.9em;
     line-height: 1.3em;
-  }
-  .infogateway strong {
-      font-weight: bold;
-      color: #006eff;
-  }
-  @media (max-width: 768px) {
-    .warning {
-      padding: 8px;
-      font-size: 0.8em;
-      margin: 10px 0;
-    }
-  }
-/* Responsive styling */
+}
+
+.infogateway strong {
+    font-weight: bold;
+    color: #006eff;
+}
+
+/* Styly pro mobilní zobrazení */
 @media (max-width: 768px) {
+    .warning {
+        padding: 8px;
+        font-size: 0.8em;
+        margin: 10px 0;
+    }
+
     nav {
         height: 50px;
         left: 0;
-        transform: none; /* Remove centering for mobile */
-        width: 100%; /* Ensure full width on mobile */
-        padding: 10px; /* Adjust padding for mobile */
+        transform: none;
+        width: 100%;
+        padding: 10px;
     }
+
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -368,11 +382,11 @@ th::after {
         width: 100%;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 10px 0;
-        border-radius: 10px; /* Rounded corners */
+        border-radius: 10px;
     }
 
     nav ul.show {
-        display: flex; /* Show menu when toggled */
+        display: flex;
     }
 
     nav ul li {
@@ -400,21 +414,26 @@ th::after {
     }
 
     .table-container {
+        width: 100%;
         padding: 10px;
         overflow-x: auto;
-        display: flex;
-        justify-content: center; /* Center the table container */
+        display: block;
+        -webkit-overflow-scrolling: touch;
     }
 
     table {
         width: 100%;
         table-layout: auto;
         font-size: 0.7em;
-        margin: 0 auto; /* Center the table */
+        margin: 0 auto;
+        display: block;
+        overflow-x: auto;
     }
-
     th, td {
         padding: 6px 8px;
+        display: table-cell;
+        text-align: left;
+        vertical-align: top;
     }
 
     .download-container {
