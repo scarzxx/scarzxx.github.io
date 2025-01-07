@@ -55,6 +55,8 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #224b66;
     color: #fff;
+    transform: scale(1.1);
+    transition: transform 0.3s;
 }
 
 /* Active navigation link styling */
@@ -86,8 +88,8 @@ section {
 
 /* Table container hover effect */
 .table-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
 /* Table styling */
@@ -131,7 +133,9 @@ tr:nth-child(even) {
 
 /* Row hover effect */
 tr:hover {
-    background-color: rgba(2, 54, 46, 0.5);
+    background-color: rgba(2, 54, 46, 0.7);
+    transform: scale(1.02);
+    transition: transform 0.3s;
 }
 
 /* Copy icon styling */
@@ -145,6 +149,15 @@ tr:hover {
 /* Copy icon hover effect */
 .copy-icon:hover {
     color: #6ec6ff;
+    transform: rotate(20deg);
+    transition: transform 0.3s;
+}
+
+/* Info icon hover effect */
+.info-icon:hover {
+    color: #6ec6ff;
+    transform: rotate(20deg);
+    transition: transform 0.3s;
 }
 
 /* Table header underline effect */

@@ -21,9 +21,9 @@
         <div id="menu-toggle" class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </nav>
     <section id="units">
-        <h1>Vítejte</h1>
-        <p>Vyberte kategorii z menu pro zobrazení.</p>
         <p class="warning"><strong>Upozornění:</strong> Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.</p>
+        <h1 class="fade-in">Vítejte</h1>
+        <p class="slide-in">Vyberte kategorii z menu pro zobrazení.</p>
     </section>
     <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
     <script src="script.js"></script>
@@ -37,6 +37,44 @@
                 position: absolute;
                 top: 10px;
                 right: 10px;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        .slide-in {
+            animation: slideIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .warning {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
             }
         }
     </style>
