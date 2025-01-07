@@ -131,13 +131,6 @@ tr:nth-child(even) {
     background-color: rgba(58, 55, 55, 0.9);
 }
 
-/* Row hover effect */
-tr:hover {
-    background-color: rgba(2, 54, 46, 0.7);
-    transform: scale(1.02);
-    transition: transform 0.3s;
-}
-
 /* Copy icon styling */
 .copy-icon {
     margin-left: 10px;

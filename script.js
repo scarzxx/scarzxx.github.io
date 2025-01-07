@@ -14,7 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     adjustMenuToggleSize();
     window.addEventListener('resize', adjustMenuToggleSize);
+    fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
 });
+
+function fetchUpdates() {
+    fetch('releases/vcdsopener/version.xml')
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data, 'application/xml');
+            const updates = xml.getElementsByTagName('update');
+            const latestUpdate = updates[updates.length - 1];
+            const whatsNew = latestUpdate.getElementsByTagName('whatsNew')[0].textContent;
+            const whatsNewList = document.getElementById('whats-new-list');
+            whatsNew.split('\n').forEach(item => {
+                if (item.trim()) {
+                    const li = document.createElement('li');
+                    li.textContent = item.trim();
+                    whatsNewList.appendChild(li);
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching version.xml:', error));
+}
 
 function populateTable(id, units, formatter) {
     const container = document.getElementById(id);
@@ -59,6 +81,15 @@ function formatGatewayUnits(row, unit) {
         }
         if (key === 'compatible' && unit[key] === 'Ano') {
             cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Dostupná aktualizace') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Nevybíjí baterii') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Pouze výměna') {
+            cell.classList.add('compatible-no');
         }
         row.appendChild(cell);
     });
@@ -224,27 +255,6 @@ function sortTable(table, columnIndex) {
     });
     rows.forEach(row => table.tBodies[0].appendChild(row));
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('releases/vcdsopener/version.xml')
-        .then(response => response.text())
-        .then(data => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data, 'application/xml');
-            const updates = xml.getElementsByTagName('update');
-            const latestUpdate = updates[updates.length - 1];
-            const whatsNew = latestUpdate.getElementsByTagName('whatsNew')[0].textContent;
-            const whatsNewList = document.getElementById('whats-new-list');
-            whatsNew.split('\n').forEach(item => {
-                if (item.trim()) {
-                    const li = document.createElement('li');
-                    li.textContent = item.trim();
-                    whatsNewList.appendChild(li);
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching version.xml:', error));
-});
 
 function openImage(src) {
     window.open(src, '_blank');
