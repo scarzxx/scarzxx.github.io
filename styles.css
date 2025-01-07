@@ -72,23 +72,7 @@ section {
     align-items: center;
 }
 
-/* Table container styling */
-.table-container {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1200px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    /* overflow-x: auto;  Ponecháno pro případ, že by se na desktopu tabulka nevešla */
-}
 
-/* Table container hover effect */
-.table-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
 
 /* Table styling */
 table {
