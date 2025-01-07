@@ -56,13 +56,15 @@ nav ul li a:hover {
     background-color: #224b66;
     color: #fff;
     transform: scale(1.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 
 /* Active navigation link styling */
 nav ul li a.active {
-    background-color: transparent;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 2px solid #6ec6ff;
+    transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 
 /* Section styling */
@@ -389,6 +391,7 @@ th::after {
         background-color: rgba(0, 0, 0, 0.8);
         padding: 10px 0;
         border-radius: 10px;
+        animation: slideDown 0.5s ease-in-out;
     }
 
     nav ul.show {
@@ -412,6 +415,11 @@ th::after {
         margin: 10px;
         position: absolute;
         right: 10px;
+        transition: transform 0.3s;
+    }
+
+    .menu-toggle:hover {
+        transform: rotate(90deg);
     }
 
     section {
@@ -464,5 +472,16 @@ th::after {
 @media (min-width: 769px) {
     .menu-toggle {
         display: none;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
