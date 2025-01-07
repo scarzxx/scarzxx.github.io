@@ -231,7 +231,8 @@ th::after {
 }
 
 .fog-light-dalkovymi {
-    color: rgb(51, 51, 245);
+    color: rgb(4, 113, 255);
+    font-weight: bold;
 }
 
 /* Download container styling */
@@ -422,9 +423,7 @@ th::after {
     /* Optimalizace pro tablety a mobilní telefony */
      .table-container {
         width: 100%;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
+        padding: 10px;
         overflow-x: auto;
         display: block;
         -webkit-overflow-scrolling: touch;
@@ -434,7 +433,7 @@ th::after {
         width: 100%;
         table-layout: auto;
         font-size: 0.7em;
-        margin: 0;
+        margin: 0 auto;
         display: table;
     }
      th, td {
