@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (page === 'gateway.html') {
                 populateTable('gatewayUnits', data.gatewayUnits, formatGatewayUnits);
-                addGatewayUnitsDescription();
             } else if (page === 'comfort.html') {
                 populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
                 addComfortUnitsDescription();
@@ -87,6 +86,11 @@ function formatComfortUnits(row, unit) {
         } else if (key === 'frequency' && unit[key].includes('PR-5D1: 434 Mhz')) {
             const frequencySpan = document.createElement('span');
             frequencySpan.textContent = unit[key];
+            frequencySpan.classList.add('notes-medium');
+            cell.appendChild(frequencySpan);
+        } else if (key === 'frequency' && unit[key].includes('PR-5D')) {
+            const frequencySpan = document.createElement('span');
+            frequencySpan.textContent = unit[key];
             frequencySpan.classList.add('notes-comfort-menu');
             cell.appendChild(frequencySpan);
         } else {
@@ -95,7 +99,57 @@ function formatComfortUnits(row, unit) {
         row.appendChild(cell);
     });
 }
+function populate7N0Table() {
+    fetch('units7N0.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('7N0TableContainer');
+            const tableContainer = document.createElement('div');
+            tableContainer.classList.add('table-container');
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
 
+            const headers = Object.keys(data.gatewayUnits[0]);
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                th.addEventListener('click', () => sortTable(table, headers.indexOf(header)));
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            data.gatewayUnits.forEach(unit => {
+                const row = document.createElement('tr');
+                formatGatewayUnits(row, unit); // Použijeme stejnou funkci pro formátování jako u ostatních gateway jednotek
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            tableContainer.appendChild(table);
+            container.appendChild(tableContainer);
+        });
+}
+
+// Zobrazí/skryje tabulku po kliknutí na odkaz 
+document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
+    event.preventDefault();
+    const tableContainer = document.getElementById('7N0TableContainer');
+    if (tableContainer.innerHTML === '') {
+        populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
+    }
+    if (tableContainer.style.display === 'none') {
+        tableContainer.style.display = 'block';
+        // Přidáme posun na tabulku
+        setTimeout(() => {
+            tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50); // Malé zpoždění pro plynulejší animaci
+    } else {
+        tableContainer.style.display = 'none';
+    }
+});
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
@@ -149,13 +203,6 @@ function addComfortUnitsDescription() {
     container.appendChild(descriptionContainer);
 }
 
-function addGatewayUnitsDescription() {
-    const container = document.getElementById('gatewayUnitsDescription');
-    const descriptionContainer = document.createElement('div');
-    descriptionContainer.classList.add('description-container');
-    descriptionContainer.innerHTML = '<p>Jednotky s číslem 7N0 907 530 XX nezpůsobují vybíjení baterie.</p>';
-    container.appendChild(descriptionContainer);
-}
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
