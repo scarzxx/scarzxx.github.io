@@ -413,7 +413,8 @@ th::after {
         padding: 10px;
     }
 
-    .table-container {
+    /* Optimalizace pro tablety a mobilní telefony */
+     .table-container {
         width: 100%;
         padding: 10px;
         overflow-x: auto;
@@ -426,14 +427,14 @@ th::after {
         table-layout: auto;
         font-size: 0.7em;
         margin: 0 auto;
-        display: block;
-        overflow-x: auto;
+        display: table;
     }
-    th, td {
+     th, td {
         padding: 6px 8px;
         display: table-cell;
         text-align: left;
         vertical-align: top;
+        word-wrap: break-word;
     }
 
     .download-container {
