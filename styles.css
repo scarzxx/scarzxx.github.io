@@ -37,7 +37,34 @@ nav ul {
 
 /* Navigation list item styling */
 nav ul li {
+    position: relative;
     margin: 0 10px;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    border-radius: 10px;
+    z-index: 1000;
+    flex-direction: column;
+    width: 200px;
+}
+
+nav ul li:hover ul {
+    display: flex;
+}
+
+nav ul li ul li {
+    margin: 5px 0;
+}
+
+nav ul li ul li a {
+    padding: 8px;
+    font-size: 0.9em;
 }
 
 /* Navigation link styling */
@@ -364,51 +391,8 @@ th::after {
     color: #006eff;
 }
 
-/* Dropdown menu styling */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1001;
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #224b66;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #224b66;
-}
-
 /* Styly pro mobilní zobrazení */
 @media (max-width: 768px) {
-   /* Tabulka hover odstranění */
-    .table-container:hover {
-    transform: none;
-    box-shadow: none;
-}
-   tr:hover {
-    background-color: initial;
-    }
-
     .warning {
         padding: 8px;
         font-size: 0.8em;
@@ -450,6 +434,11 @@ th::after {
         font-size: 0.9em;
     }
 
+    nav ul li ul {
+        position: static;
+        width: 100%;
+    }
+
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -460,10 +449,12 @@ th::after {
         right: 10px;
         transition: transform 0.3s;
     }
+
     .menu-toggle:hover {
         transform: rotate(90deg);
     }
-   section {
+
+    section {
         margin-top: 100px;
         padding: 10px;
     }
@@ -507,37 +498,6 @@ th::after {
 
     .image-gallery img {
         width: 80px;
-    }
- .dropdown-content {
-        position: relative; /* Změna na relative pro mobilní zobrazení */
-        background-color: rgba(0, 0, 0, 0.8);
-        min-width: 100%;
-        box-shadow: none;
-       display: none;
-        z-index: 1001;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-
-   .dropdown .dropbtn {
-        display: block;
-        width: 100%;
-        text-align: left;
-    }
-    
-    .dropdown .dropbtn::after {
-        content: '\25BC';
-        float: right;
-        margin-right: 10px;
-    }
-
-    .dropdown-content.show {
-         display: block;
-    }
-     .dropdown-content a {
-        color: white; /* nastavíme barvu textu na bílou */
     }
 }
 

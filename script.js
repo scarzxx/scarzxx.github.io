@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     adjustMenuToggleSize();
     window.addEventListener('resize', adjustMenuToggleSize);
     fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
-    setupDropdownToggle(); // Přidáno volání funkce pro nastavení dropmenu
 });
 
 function fetchUpdates() {
@@ -131,7 +130,6 @@ function formatComfortUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-
 function populate7N0Table() {
     fetch('units7N0.json')
         .then(response => response.json())
@@ -163,10 +161,6 @@ function populate7N0Table() {
             table.appendChild(tbody);
             tableContainer.appendChild(table);
             container.appendChild(tableContainer);
-            // Přidáme posun na tabulku po načtení
-            setTimeout(() => {
-                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 50); // Malé zpoždění pro plynulejší animaci
         });
 }
 
@@ -174,24 +168,19 @@ function populate7N0Table() {
 document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
     event.preventDefault();
     const tableContainer = document.getElementById('7N0TableContainer');
-    const toggleLink = document.getElementById('toggle7N0Info');
     if (tableContainer.innerHTML === '') {
         populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
+    }
+    if (tableContainer.style.display === 'none') {
+        tableContainer.style.display = 'block';
+        // Přidáme posun na tabulku
+        setTimeout(() => {
+            tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50); // Malé zpoždění pro plynulejší animaci
     } else {
-        if (tableContainer.style.display === 'none' || tableContainer.style.display === '') {
-            tableContainer.style.display = 'block';
-            toggleLink.textContent = 'Skrýt tabulku.';
-            // Přidáme posun na tabulku
-            setTimeout(() => {
-                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 50); // Malé zpoždění pro plynulejší animaci
-        } else {
-            tableContainer.style.display = 'none';
-            toggleLink.textContent = 'Zobrazit tabulku.';
-        }
+        tableContainer.style.display = 'none';
     }
 });
-
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
@@ -222,7 +211,6 @@ function formatBsgUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-
 fetch('https://api.ipify.org?format=json')
   .then(response => response.json())
   .then(data => {
@@ -233,7 +221,6 @@ fetch('https://api.ipify.org?format=json')
   .catch(error => {
     console.error('Chyba při získávání IP adresy:', error);
   });
-
 function addComfortUnitsDescription() {
     const container = document.getElementById('comfortUnitsDescription');
     const descriptionContainer = document.createElement('div');
@@ -246,6 +233,7 @@ function addComfortUnitsDescription() {
     `;
     container.appendChild(descriptionContainer);
 }
+
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -288,13 +276,14 @@ function adjustMenuToggleSize() {
     }
 }
 
-function setupDropdownToggle() {
-    const dropdowns = document.querySelectorAll('.dropdown .dropbtn');
-    dropdowns.forEach(dropdown => {
-        dropdown.addEventListener('click', (event) => {
-            event.preventDefault();
-            const dropdownContent = dropdown.nextElementSibling;
-            dropdownContent.classList.toggle('show');
-        });
-    });
+function toggleDropdown(event) {
+    const dropdown = event.currentTarget.querySelector('ul');
+    if (dropdown) {
+        dropdown.classList.toggle('show');
+    }
 }
+
+// Add event listeners for dropdown toggle
+document.querySelectorAll('nav ul li').forEach(item => {
+    item.addEventListener('click', toggleDropdown);
+});
