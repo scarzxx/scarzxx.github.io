@@ -163,6 +163,10 @@ function populate7N0Table() {
             table.appendChild(tbody);
             tableContainer.appendChild(table);
             container.appendChild(tableContainer);
+            // Přidáme posun na tabulku po načtení
+            setTimeout(() => {
+                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50); // Malé zpoždění pro plynulejší animaci
         });
 }
 
@@ -173,17 +177,18 @@ document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
     const toggleLink = document.getElementById('toggle7N0Info');
     if (tableContainer.innerHTML === '') {
         populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
-    }
-    if (tableContainer.style.display === 'none' || tableContainer.style.display === '') {
-        tableContainer.style.display = 'block';
-        toggleLink.textContent = 'Skrýt tabulku.';
-        // Přidáme posun na tabulku
-        setTimeout(() => {
-            tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50); // Malé zpoždění pro plynulejší animaci
     } else {
-        tableContainer.style.display = 'none';
-        toggleLink.textContent = 'Zobrazit tabulku.';
+        if (tableContainer.style.display === 'none' || tableContainer.style.display === '') {
+            tableContainer.style.display = 'block';
+            toggleLink.textContent = 'Skrýt tabulku.';
+            // Přidáme posun na tabulku
+            setTimeout(() => {
+                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50); // Malé zpoždění pro plynulejší animaci
+        } else {
+            tableContainer.style.display = 'none';
+            toggleLink.textContent = 'Zobrazit tabulku.';
+        }
     }
 });
 
