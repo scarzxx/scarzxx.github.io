@@ -376,7 +376,7 @@ th::after {
     background-color: rgba(0, 0, 0, 0.8);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 1001;
 }
 
 .dropdown-content a {
@@ -408,7 +408,6 @@ th::after {
    tr:hover {
     background-color: initial;
     }
-
 
     .warning {
         padding: 8px;
@@ -515,27 +514,31 @@ th::after {
         min-width: 100%;
         box-shadow: none;
        display: none;
+        z-index: 1001;
     }
 
     .dropdown:hover .dropdown-content {
-      display: none;
+        display: none;
     }
 
    .dropdown .dropbtn {
-    display: block;
-    width: 100%;
-    text-align: left;
+        display: block;
+        width: 100%;
+        text-align: left;
     }
-   
-      .dropdown .dropbtn::after {
-           content: '\25BC'; /* Ikona šipky dolů */
+    
+    .dropdown .dropbtn::after {
+        content: '\25BC';
         float: right;
         margin-right: 10px;
     }
-   .dropdown-content.show { /* Přidána třída .show pro zobrazení */
-       display: block; /* Zobrazuje obsah, když má třídu show */
-   }
 
+    .dropdown-content.show {
+         display: block;
+    }
+     .dropdown-content a {
+        color: white; /* nastavíme barvu textu na bílou */
+    }
 }
 
 @media (min-width: 769px) {
