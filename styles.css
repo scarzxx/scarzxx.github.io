@@ -371,7 +371,16 @@ th::after {
         font-size: 0.8em;
         margin: 10px 0;
     }
-
+/* Remove hover effect for table container */
+    .table-container:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    /* Remove hover effect for table header and cells */
+    th:hover, td:hover {
+        background-color: inherit;
+    }
     nav {
         height: 50px;
         left: 0;
