@@ -37,34 +37,7 @@ nav ul {
 
 /* Navigation list item styling */
 nav ul li {
-    position: relative;
     margin: 0 10px;
-}
-
-nav ul li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px 0;
-    border-radius: 10px;
-    z-index: 1000;
-    flex-direction: column;
-    width: 200px;
-}
-
-nav ul li.show ul {
-    display: flex;
-}
-
-nav ul li ul li {
-    margin: 5px 0;
-}
-
-nav ul li ul li a {
-    padding: 8px;
-    font-size: 0.9em;
 }
 
 /* Navigation link styling */
@@ -393,6 +366,35 @@ th::after {
 
 /* Styly pro mobilní zobrazení */
 @media (max-width: 768px) {
+    nav ul li a:hover {
+        background-color: initial;
+        color: initial;
+        transform: none;
+    }
+
+    .menu-toggle:hover {
+        transform: none;
+    }
+
+    .copy-icon:hover {
+        color: initial;
+        transform: none;
+    }
+
+    .info-icon:hover {
+        color: initial;
+        transform: none;
+    }
+
+    .download-container a:hover {
+        background-color: initial;
+    }
+
+    .image-gallery img:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
     .warning {
         padding: 8px;
         font-size: 0.8em;
@@ -434,11 +436,6 @@ th::after {
         font-size: 0.9em;
     }
 
-    nav ul li ul {
-        position: static;
-        width: 100%;
-    }
-
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -448,10 +445,6 @@ th::after {
         position: absolute;
         right: 10px;
         transition: transform 0.3s;
-    }
-
-    .menu-toggle:hover {
-        transform: rotate(90deg);
     }
 
     section {
