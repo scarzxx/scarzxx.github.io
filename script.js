@@ -289,10 +289,12 @@ function adjustMenuToggleSize() {
 }
 
 function setupDropdownToggle() {
-    const dropdown = document.querySelector('.dropdown .dropbtn');
-    dropdown.addEventListener('click', (event) => {
-        event.preventDefault();
-        const dropdownContent = dropdown.nextElementSibling;
-        dropdownContent.classList.toggle('show');
+    const dropdowns = document.querySelectorAll('.dropdown .dropbtn');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', (event) => {
+            event.preventDefault();
+            const dropdownContent = dropdown.nextElementSibling;
+            dropdownContent.classList.toggle('show');
+        });
     });
 }
