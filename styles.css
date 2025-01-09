@@ -54,7 +54,7 @@ nav ul li ul {
     width: 200px;
 }
 
-nav ul li:hover ul {
+nav ul li.show ul {
     display: flex;
 }
 

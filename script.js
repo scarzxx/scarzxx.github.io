@@ -277,13 +277,19 @@ function adjustMenuToggleSize() {
 }
 
 function toggleDropdown(event) {
-    const dropdown = event.currentTarget.querySelector('ul');
-    if (dropdown) {
-        dropdown.classList.toggle('show');
-    }
+    event.stopPropagation();
+    const dropdown = event.currentTarget;
+    dropdown.classList.toggle('show');
 }
 
 // Add event listeners for dropdown toggle
 document.querySelectorAll('nav ul li').forEach(item => {
     item.addEventListener('click', toggleDropdown);
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', () => {
+    document.querySelectorAll('nav ul li').forEach(item => {
+        item.classList.remove('show');
+    });
 });
