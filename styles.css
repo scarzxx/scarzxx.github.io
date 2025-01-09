@@ -468,7 +468,7 @@ th::after {
     }
 
     /* Optimalizace pro tablety a mobilní telefony */
-     .table-container {
+    .table-container {
         width: 100%;
         padding: 0;
         margin: 0;
@@ -476,6 +476,8 @@ th::after {
         overflow-x: auto;
         display: block;
         -webkit-overflow-scrolling: touch;
+        transform: none; /* Odstranění efektu hover */
+        box-shadow: none; /* Odstranění efektu hover */
     }
 
     table {
