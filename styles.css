@@ -37,7 +37,35 @@ nav ul {
 
 /* Navigation list item styling */
 nav ul li {
+    position: relative;
     margin: 0 10px;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    border-radius: 10px;
+    z-index: 1000;
+    flex-direction: column;
+    width: 200px;
+}
+
+nav ul li:hover ul,
+nav ul li.show ul {
+    display: flex;
+}
+
+nav ul li ul li {
+    margin: 5px 0;
+}
+
+nav ul li ul li a {
+    padding: 8px;
+    font-size: 0.9em;
 }
 
 /* Navigation link styling */
@@ -400,6 +428,11 @@ th::after {
 
     nav ul li {
         margin: 5px 0;
+    }
+
+    nav ul li ul {
+        position: static;
+        width: 100%;
     }
 
     nav ul li a {
