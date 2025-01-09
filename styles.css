@@ -321,7 +321,7 @@ th::after {
 .image-gallery img {
     width: 100px;
     height: auto;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -364,6 +364,40 @@ th::after {
     color: #006eff;
 }
 
+/* Dropdown menu styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #224b66;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #224b66;
+}
+
 /* Styly pro mobilní zobrazení */
 @media (max-width: 768px) {
     .warning {
@@ -371,16 +405,7 @@ th::after {
         font-size: 0.8em;
         margin: 10px 0;
     }
-/* Remove hover effect for table container */
-    .table-container:hover {
-        transform: none;
-        box-shadow: none;
-    }
-    
-    /* Remove hover effect for table header and cells */
-    th:hover, td:hover {
-        background-color: inherit;
-    }
+
     nav {
         height: 50px;
         left: 0;
@@ -475,6 +500,33 @@ th::after {
 
     .image-gallery img {
         width: 80px;
+    }
+
+    .dropdown-content {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.8);
+        min-width: 100%;
+        box-shadow: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    .dropdown .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .dropdown .dropbtn::after {
+        content: '\25BC';
+        float: right;
+        margin-right: 10px;
+    }
+
+    .dropdown-content.show {
+        display: block;
     }
 }
 

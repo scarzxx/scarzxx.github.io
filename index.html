@@ -13,9 +13,14 @@
     <nav>
         <ul>
             <li><a href="index.html">Domů</a></li>
-            <li><a href="gateway.html">Gateway Jednotky</a></li>
-            <li><a href="comfort.html">Komfortní Jednotky</a></li>
-            <li><a href="bsg.html">BSG/BCM Jednotky</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Jednotky</a>
+                <div class="dropdown-content">
+                    <a href="gateway.html">Gateway Jednotky</a>
+                    <a href="bsg.html">BSG/BCM Jednotky</a>
+                    <a href="comfort.html">Komfortní Jednotky</a>
+                </div>
+            </li>
             <li><a href="download.html">Download</a></li>
         </ul>
         <div id="menu-toggle" class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -76,6 +81,33 @@
             100% {
                 transform: scale(1);
             }
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #224b66;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #224b66;
         }
     </style>
 </body>
