@@ -400,21 +400,15 @@ th::after {
 
 /* Styly pro mobilní zobrazení */
 @media (max-width: 768px) {
-  /* Odstranění hover efektů */
-   *:hover {
-    transform: none !important;
-    box-shadow: none !important;
-    background-color: initial !important;
-    color: initial !important;
-  }
+   /* Tabulka hover odstranění */
+    .table-container:hover {
+    transform: none;
+    box-shadow: none;
+}
+   tr:hover {
+    background-color: initial;
+    }
 
-    .download-container a:hover {
-      background-color: rgb(16, 94, 0) !important;
-    }
-    
-    .menu-toggle:hover {
-         transform: rotate(0) !important;
-    }
 
     .warning {
         padding: 8px;
@@ -467,8 +461,10 @@ th::after {
         right: 10px;
         transition: transform 0.3s;
     }
-
-    section {
+    .menu-toggle:hover {
+        transform: rotate(90deg);
+    }
+   section {
         margin-top: 100px;
         padding: 10px;
     }
