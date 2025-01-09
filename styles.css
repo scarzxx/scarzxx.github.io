@@ -509,33 +509,33 @@ th::after {
     .image-gallery img {
         width: 80px;
     }
-
-    .dropdown-content {
-        position: relative;
+ .dropdown-content {
+        position: relative; /* Změna na relative pro mobilní zobrazení */
         background-color: rgba(0, 0, 0, 0.8);
         min-width: 100%;
         box-shadow: none;
+       display: none;
     }
 
     .dropdown:hover .dropdown-content {
-        display: none;
+      display: none;
     }
 
-    .dropdown .dropbtn {
-        display: block;
-        width: 100%;
-        text-align: left;
+   .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
     }
-
-    .dropdown .dropbtn::after {
-        content: '\25BC';
+   
+      .dropdown .dropbtn::after {
+           content: '\25BC'; /* Ikona šipky dolů */
         float: right;
         margin-right: 10px;
     }
+   .dropdown-content.show { /* Přidána třída .show pro zobrazení */
+       display: block; /* Zobrazuje obsah, když má třídu show */
+   }
 
-    .dropdown-content.show {
-        display: block;
-    }
 }
 
 @media (min-width: 769px) {
