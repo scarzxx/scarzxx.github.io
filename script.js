@@ -262,7 +262,14 @@ function openImage(src) {
 
 function toggleMenu() {
     const menu = document.querySelector('nav ul');
+    const menuIcon = document.querySelector('.menu-icon');
     menu.classList.toggle('show');
+
+    if (menu.classList.contains('show')) {
+        menuIcon.style.border = '1px solid red'; // Změna border při otevření menu
+    } else {
+        menuIcon.style.border = '1px solid transparent'; // Změna border při zavření menu
+    }
 }
 
 function adjustMenuToggleSize() {
