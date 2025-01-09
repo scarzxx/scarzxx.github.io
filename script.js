@@ -275,29 +275,3 @@ function adjustMenuToggleSize() {
         menuToggle.style.maxWidth = '';
     }
 }
-
-function toggleDropdown(event) {
-    event.preventDefault(); // Prevent default action
-    event.stopPropagation(); // Stop propagation
-    const dropdown = event.currentTarget;
-    dropdown.classList.toggle('show');
-}
-
-// Add event listeners for dropdown toggle
-document.querySelectorAll('nav ul li > a').forEach(item => {
-    item.addEventListener('click', toggleDropdown);
-});
-
-// Close dropdowns when clicking outside
-document.addEventListener('click', () => {
-    document.querySelectorAll('nav ul li').forEach(item => {
-        item.classList.remove('show');
-    });
-});
-
-// Prevent closing dropdown when clicking inside
-document.querySelectorAll('nav ul li ul').forEach(item => {
-    item.addEventListener('click', event => {
-        event.stopPropagation();
-    });
-});
