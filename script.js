@@ -234,7 +234,6 @@ function addComfortUnitsDescription() {
     container.appendChild(descriptionContainer);
 }
 
-
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         const notification = document.getElementById('copyNotification');
@@ -276,28 +275,37 @@ function adjustMenuToggleSize() {
     }
 }
 
+// Upravená funkce pro otevírání/zavírání dropdownu
 function toggleDropdown(event) {
     event.preventDefault();
     event.stopPropagation();
-    const dropdown = event.currentTarget.parentElement;
-    dropdown.classList.toggle('show');
+    const listItem = event.currentTarget.parentElement;
+    const isCurrentlyOpen = listItem.classList.contains('show');
+
+    document.querySelectorAll('nav ul li.show').forEach(item => {
+        item.classList.remove('show');
+    });
+
+    if (!isCurrentlyOpen) {
+        listItem.classList.add('show');
+    }
 }
 
-// Add event listeners for dropdown toggle
-document.querySelectorAll('nav ul li > a').forEach(item => {
-    item.addEventListener('click', toggleDropdown);
-});
-
-// Close dropdowns when clicking outside
+// Zavře dropdown menu, když se klikne mimo něj
 document.addEventListener('click', () => {
-    document.querySelectorAll('nav ul li').forEach(item => {
+    document.querySelectorAll('nav ul li.show').forEach(item => {
         item.classList.remove('show');
     });
 });
 
-// Prevent closing dropdown when clicking inside
+// Zabrání zavření dropdownu, když se klikne dovnitř dropdownu
 document.querySelectorAll('nav ul li ul').forEach(item => {
     item.addEventListener('click', event => {
         event.stopPropagation();
     });
+});
+
+// Přidáme event listenery pro otevírání dropdownu na kliknutí
+document.querySelectorAll('nav ul li > a').forEach(item => {
+    item.addEventListener('click', toggleDropdown);
 });
