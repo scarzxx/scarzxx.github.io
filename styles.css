@@ -12,7 +12,7 @@ body {
 
 /* Navigation menu styling */
 nav {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(11, 22, 36, 0.5);
     padding: 10px 20px;
     position: fixed;
     top: 0;
@@ -41,11 +41,6 @@ nav ul li {
     margin: 0 10px;
 }
 
-/* Styly pro zobrazeny dropdown */
-nav ul li.show ul {
-    display: flex;
-}
-
 nav ul li ul {
     display: none;
     position: absolute;
@@ -59,11 +54,10 @@ nav ul li ul {
     width: 200px;
 }
 
-/* Odstraněny tyto řádky */
-/*nav ul li:hover ul,
+nav ul li:hover ul,
 nav ul li.show ul {
     display: flex;
-}*/
+}
 
 nav ul li ul li {
     margin: 5px 0;
@@ -85,12 +79,11 @@ nav ul li a {
     border-radius: 10px;
 }
 
-/* Navigation link hover effect */
+/* Remove hover effect */
 nav ul li a:hover {
-    background-color: #224b66;
-    color: #fff;
-    transform: scale(1.1);
-    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    background-color: initial;
+    color: initial;
+    transform: none;
 }
 
 /* Active navigation link styling */
@@ -122,10 +115,10 @@ section {
     overflow-x: auto;
 }
 
-/* Table container hover effect */
+/* Remove hover effect */
 .table-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+    transform: none;
+    box-shadow: none;
 }
 
 /* Table styling */
@@ -175,18 +168,16 @@ tr:nth-child(even) {
     transition: color 0.3s;
 }
 
-/* Copy icon hover effect */
+/* Remove hover effect */
 .copy-icon:hover {
-    color: #6ec6ff;
-    transform: rotate(20deg);
-    transition: transform 0.3s;
+    color: initial;
+    transform: none;
 }
 
-/* Info icon hover effect */
+/* Remove hover effect */
 .info-icon:hover {
-    color: #6ec6ff;
-    transform: rotate(20deg);
-    transition: transform 0.3s;
+    color: initial;
+    transform: none;
 }
 
 /* Table header underline effect */
@@ -287,10 +278,10 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Download container hover effect */
+/* Remove hover effect */
 .download-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: none;
+    box-shadow: none;
 }
 
 /* Download link styling */
@@ -304,9 +295,9 @@ th::after {
     transition: background-color 0.3s;
 }
 
-/* Download link hover effect */
+/* Remove hover effect */
 .download-container a:hover {
-    background-color: rgb(24, 144, 0);
+    background-color: initial;
 }
 
 /* Download container paragraph styling */
@@ -360,10 +351,10 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Image gallery image hover effect */
+/* Remove hover effect */
 .image-gallery img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: none;
+    box-shadow: none;
 }
 
 .warning {
@@ -446,6 +437,7 @@ th::after {
         font-size: 0.9em;
     }
 
+    /* Remove hover effect */
     nav ul li a:hover {
         background-color: initial;
         color: initial;
@@ -463,6 +455,7 @@ th::after {
         transition: transform 0.3s;
     }
 
+    /* Remove hover effect */
     .menu-toggle:hover {
         transform: none;
     }
@@ -489,6 +482,7 @@ th::after {
         -webkit-overflow-scrolling: touch;
     }
 
+    /* Remove hover effect */
     .table-container:hover {
         transform: none;
         box-shadow: none;
@@ -509,33 +503,29 @@ th::after {
         word-wrap: break-word;
     }
 
+    /* Remove hover effect */
     th:hover, td:hover {
         background-color: initial;
     }
 
+    /* Remove hover effect */
     .copy-icon:hover {
         color: initial;
         transform: none;
     }
 
+    /* Remove hover effect */
     .info-icon:hover {
         color: initial;
         transform: none;
     }
 
-    .download-container {
-        width: 90%;
-        padding: 20px;
-    }
-
+    /* Remove hover effect */
     .download-container a:hover {
         background-color: initial;
     }
 
-    .image-gallery img {
-        width: 80px;
-    }
-
+    /* Remove hover effect */
     .image-gallery img:hover {
         transform: none;
         box-shadow: none;
@@ -557,4 +547,4 @@ th::after {
         transform: translateY(0);
         opacity: 1;
     }
-        }
+}
