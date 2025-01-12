@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     adjustMenuToggleSize();
     window.addEventListener('resize', adjustMenuToggleSize);
+    setupDropdownMenu(); // Add this line to setup dropdown menu
     fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
 });
 
@@ -274,4 +275,13 @@ function adjustMenuToggleSize() {
         menuToggle.style.minWidth = '';
         menuToggle.style.maxWidth = '';
     }
+}
+
+function setupDropdownMenu() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', () => {
+            dropdown.classList.toggle('open');
+        });
+    });
 }

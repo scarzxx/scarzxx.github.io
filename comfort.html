@@ -13,7 +13,7 @@
     <nav>
         <ul>
             <li><a href="index.html">Domů</a></li>
-            <li>
+            <li class="dropdown">
                 <a href="#">Jednotky</a>
                 <ul class="dropdown-menu">
                     <li><a href="gateway.html">Gateway Jednotky</a></li>
@@ -37,19 +37,18 @@
     </section>
     <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
     <script src="script.js"></script>
-</body>
-</html>
-<style>
-    .menu-toggle {
-        display: none;
-    }
-
-    @media (max-width: 768px) {
+    <style>
         .menu-toggle {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
                 display: block;
                 position: absolute;
                 top: 10px;
                 right: 10px;
             }
-    }
-</style>
+        }
+    </style>
+</body>
+</html>

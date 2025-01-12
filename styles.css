@@ -86,10 +86,12 @@ nav ul li .dropdown-menu {
     text-align: left;
 }
 
-/* Show dropdown menu on hover */
-nav ul li:hover .dropdown-menu {
-    display: block;
-    animation: slideDown 0.3s ease-in-out;
+/* Show dropdown menu on hover for desktop */
+@media (min-width: 769px) {
+    nav ul li:hover .dropdown-menu {
+        display: block;
+        animation: slideDown 0.3s ease-in-out;
+    }
 }
 
 /* Dropdown menu link styling */
