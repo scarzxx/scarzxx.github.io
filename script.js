@@ -12,22 +12,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
         });
-    fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
+    fetchUpdates();
 
     // Kliknutí na dropdown položku pro mobilní menu
     document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
-        dropdownToggle.addEventListener('click', function(event) {
+         dropdownToggle.addEventListener('click', function(event) {
             if (window.innerWidth <= 768) {
-                event.preventDefault();
+               event.preventDefault();
                 const parentDropdown = this.parentElement;
-                parentDropdown.classList.toggle('active');
-                // Zde přidáme logiku pro srolování menu
                 const dropdownMenu = parentDropdown.querySelector('.dropdown-menu');
-                 if(parentDropdown.classList.contains('active')){
-                   dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
-                 } else {
-                    dropdownMenu.style.maxHeight = null;
-                 }
+
+                // Zkontrolujeme, zda dropdown menu existuje
+                if (dropdownMenu) {
+                     // Zrušíme aktivní třídu u ostatních dropdownů
+                    document.querySelectorAll('.dropdown.active').forEach(activeDropdown => {
+                       if(activeDropdown !== parentDropdown){
+                            activeDropdown.classList.remove('active');
+                           const otherDropdownMenu = activeDropdown.querySelector('.dropdown-menu')
+                            otherDropdownMenu.style.maxHeight = null;
+                       }
+                    })
+                     // Přidáme/odebereme třídu 'active' pro zobrazení/skrytí dropdownu
+                     parentDropdown.classList.toggle('active');
+                     //nastavíme max-height
+                     if(parentDropdown.classList.contains('active')){
+                        dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
+                    } else {
+                        dropdownMenu.style.maxHeight = null;
+                    }
+
+                } else { // Pokud je to odkaz bez dropdown menu, tak necháme navigaci proběhnout
+                     window.location.href = this.getAttribute('href');
+                }
 
             }
         });
@@ -182,7 +198,7 @@ function populate7N0Table() {
         });
 }
 
-// Zobrazí/skryje tabulku po kliknutí na odkaz 
+// Zobrazí/skryje tabulku po kliknutí na odkaz
 document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
     event.preventDefault();
     const tableContainer = document.getElementById('7N0TableContainer');
