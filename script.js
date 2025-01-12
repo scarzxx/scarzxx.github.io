@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
         });
-    fetchUpdates();
-    setupMobileMenu();
+    adjustMenuToggleSize();
+    window.addEventListener('resize', adjustMenuToggleSize);
+    fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
 });
 
 function fetchUpdates() {
@@ -129,7 +130,6 @@ function formatComfortUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-
 function populate7N0Table() {
     fetch('units7N0.json')
         .then(response => response.json())
@@ -153,7 +153,7 @@ function populate7N0Table() {
 
             data.gatewayUnits.forEach(unit => {
                 const row = document.createElement('tr');
-                formatGatewayUnits(row, unit);
+                formatGatewayUnits(row, unit); // Použijeme stejnou funkci pro formátování jako u ostatních gateway jednotek
                 tbody.appendChild(row);
             });
 
@@ -164,22 +164,23 @@ function populate7N0Table() {
         });
 }
 
+// Zobrazí/skryje tabulku po kliknutí na odkaz 
 document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
     event.preventDefault();
     const tableContainer = document.getElementById('7N0TableContainer');
     if (tableContainer.innerHTML === '') {
-        populate7N0Table();
+        populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
     }
     if (tableContainer.style.display === 'none') {
         tableContainer.style.display = 'block';
+        // Přidáme posun na tabulku
         setTimeout(() => {
             tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
+        }, 50); // Malé zpoždění pro plynulejší animaci
     } else {
         tableContainer.style.display = 'none';
     }
 });
-
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
@@ -210,7 +211,16 @@ function formatBsgUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Vaše IP adresa:', data.ip);
+    // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
+    document.getElementById('ip-address').textContent = data.ip;
+  })
+  .catch(error => {
+    console.error('Chyba při získávání IP adresy:', error);
+  });
 function addComfortUnitsDescription() {
     const container = document.getElementById('comfortUnitsDescription');
     const descriptionContainer = document.createElement('div');
@@ -223,6 +233,7 @@ function addComfortUnitsDescription() {
     `;
     container.appendChild(descriptionContainer);
 }
+
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -249,10 +260,18 @@ function openImage(src) {
     window.open(src, '_blank');
 }
 
-function setupMobileMenu() {
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.querySelector('.nav__list');
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('show');
-    });
+function toggleMenu() {
+    const menu = document.querySelector('nav ul');
+    menu.classList.toggle('show');
+}
+
+function adjustMenuToggleSize() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (window.innerWidth <= 768) {
+        menuToggle.style.minWidth = '30px';
+        menuToggle.style.maxWidth = '50px';
+    } else {
+        menuToggle.style.minWidth = '';
+        menuToggle.style.maxWidth = '';
+    }
 }
