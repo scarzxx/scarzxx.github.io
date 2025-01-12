@@ -12,9 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
         });
-    adjustMenuToggleSize();
-    window.addEventListener('resize', adjustMenuToggleSize);
     fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
+
+    // Kliknutí na dropdown položku pro mobilní menu
+    document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+        dropdownToggle.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768) {
+                event.preventDefault();
+                const parentDropdown = this.parentElement;
+                parentDropdown.classList.toggle('active');
+                // Zde přidáme logiku pro srolování menu
+                const dropdownMenu = parentDropdown.querySelector('.dropdown-menu');
+                 if(parentDropdown.classList.contains('active')){
+                   dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
+                 } else {
+                    dropdownMenu.style.maxHeight = null;
+                 }
+
+            }
+        });
+    });
+
 });
 
 function fetchUpdates() {
@@ -261,47 +279,6 @@ function openImage(src) {
 }
 
 function toggleMenu() {
-    const menu = document.querySelector('nav ul');
+    const menu = document.querySelector('.menu');
     menu.classList.toggle('show');
 }
-
-function adjustMenuToggleSize() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    if (window.innerWidth <= 768) {
-        menuToggle.style.minWidth = '30px';
-        menuToggle.style.maxWidth = '50px';
-    } else {
-        menuToggle.style.minWidth = '';
-        menuToggle.style.maxWidth = '';
-    }
-}
-
-function toggleDropdown(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const dropdown = event.currentTarget.nextElementSibling;
-    if (dropdown) {
-        dropdown.classList.toggle('show');
-    }
-}
-
-// Add event listeners for dropdown toggle
-document.querySelectorAll('nav ul li > a').forEach(item => {
-    if (item.nextElementSibling) {
-        item.addEventListener('click', toggleDropdown);
-    }
-});
-
-// Close dropdowns when clicking outside
-document.addEventListener('click', () => {
-    document.querySelectorAll('nav ul li ul').forEach(item => {
-        item.classList.remove('show');
-    });
-});
-
-// Prevent closing dropdown when clicking inside
-document.querySelectorAll('nav ul li ul').forEach(item => {
-    item.addEventListener('click', event => {
-        event.stopPropagation();
-    });
-});

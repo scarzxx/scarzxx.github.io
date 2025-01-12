@@ -11,19 +11,26 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="index.html">Domů</a></li>
-            <li>
-                <a href="#">Jednotky</a>
-                <ul>
-                    <li><a href="gateway.html">Gateway Jednotky</a></li>
-                    <li><a href="comfort.html">Komfortní Jednotky</a></li>
-                    <li><a href="bsg.html">BSG/BCM Jednotky</a></li>
-                </ul>
-            </li>
-            <li><a href="download.html">Download</a></li>
-        </ul>
-        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="menu-container">
+            <div class="logo">Units List</div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul class="menu">
+                <li class="dropdown">
+                    <a href="index.html">Domů</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Jednotky <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gateway.html">Gateway Jednotky</a></li>
+                        <li><a href="comfort.html">Komfortní Jednotky</a></li>
+                        <li><a href="bsg.html">BSG/BCM Jednotky</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="download.html">Download</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <section id="download">
         <h1>Download</h1>
