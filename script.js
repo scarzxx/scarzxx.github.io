@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     fetchUpdates();
+    setupMobileMenu();
 });
 
 function fetchUpdates() {
@@ -209,15 +210,7 @@ function formatBsgUnits(row, unit) {
         row.appendChild(cell);
     });
 }
-fetch('https://api.ipify.org?format=json')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Vaše IP adresa:', data.ip);
-    document.getElementById('ip-address').textContent = data.ip;
-  })
-  .catch(error => {
-    console.error('Chyba při získávání IP adresy:', error);
-  });
+
 function addComfortUnitsDescription() {
     const container = document.getElementById('comfortUnitsDescription');
     const descriptionContainer = document.createElement('div');
@@ -230,7 +223,6 @@ function addComfortUnitsDescription() {
     `;
     container.appendChild(descriptionContainer);
 }
-
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -257,7 +249,10 @@ function openImage(src) {
     window.open(src, '_blank');
 }
 
-function toggleMenu() {
+function setupMobileMenu() {
+    const toggle = document.getElementById('nav-toggle');
     const menu = document.querySelector('.nav__list');
-    menu.classList.toggle('show');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+    });
 }
