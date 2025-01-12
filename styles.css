@@ -12,7 +12,7 @@ body {
 
 /* Navigation menu styling */
 nav {
-    background-color: rgba(11, 22, 36, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     position: fixed;
     top: 0;
@@ -79,11 +79,12 @@ nav ul li a {
     border-radius: 10px;
 }
 
-/* Remove hover effect */
+/* Navigation link hover effect */
 nav ul li a:hover {
-    background-color: initial;
-    color: initial;
-    transform: none;
+    background-color: #224b66;
+    color: #fff;
+    transform: scale(1.1);
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 
 /* Active navigation link styling */
@@ -115,10 +116,10 @@ section {
     overflow-x: auto;
 }
 
-/* Remove hover effect */
+/* Table container hover effect */
 .table-container:hover {
-    transform: none;
-    box-shadow: none;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
 /* Table styling */
@@ -168,16 +169,18 @@ tr:nth-child(even) {
     transition: color 0.3s;
 }
 
-/* Remove hover effect */
+/* Copy icon hover effect */
 .copy-icon:hover {
-    color: initial;
-    transform: none;
+    color: #6ec6ff;
+    transform: rotate(20deg);
+    transition: transform 0.3s;
 }
 
-/* Remove hover effect */
+/* Info icon hover effect */
 .info-icon:hover {
-    color: initial;
-    transform: none;
+    color: #6ec6ff;
+    transform: rotate(20deg);
+    transition: transform 0.3s;
 }
 
 /* Table header underline effect */
@@ -265,7 +268,6 @@ th::after {
 
 .fog-light-dalkovymi {
     color: rgb(51, 51, 245);
-    font-weight: bold;
 }
 
 /* Download container styling */
@@ -279,10 +281,10 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Remove hover effect */
+/* Download container hover effect */
 .download-container:hover {
-    transform: none;
-    box-shadow: none;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Download link styling */
@@ -296,9 +298,9 @@ th::after {
     transition: background-color 0.3s;
 }
 
-/* Remove hover effect */
+/* Download link hover effect */
 .download-container a:hover {
-    background-color: initial;
+    background-color: rgb(24, 144, 0);
 }
 
 /* Download container paragraph styling */
@@ -352,10 +354,10 @@ th::after {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Remove hover effect */
+/* Image gallery image hover effect */
 .image-gallery img:hover {
-    transform: none;
-    box-shadow: none;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .warning {
@@ -438,13 +440,6 @@ th::after {
         font-size: 0.9em;
     }
 
-    /* Remove hover effect */
-    nav ul li a:hover {
-        background-color: initial;
-        color: initial;
-        transform: none;
-    }
-
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -456,9 +451,8 @@ th::after {
         transition: transform 0.3s;
     }
 
-    /* Remove hover effect */
     .menu-toggle:hover {
-        transform: none;
+        transform: rotate(90deg);
     }
 
     section {
@@ -483,12 +477,6 @@ th::after {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Remove hover effect */
-    .table-container:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
     table {
         width: 100%;
         table-layout: auto;
@@ -504,32 +492,13 @@ th::after {
         word-wrap: break-word;
     }
 
-    /* Remove hover effect */
-    th:hover, td:hover {
-        background-color: initial;
+    .download-container {
+        width: 90%;
+        padding: 20px;
     }
 
-    /* Remove hover effect */
-    .copy-icon:hover {
-        color: initial;
-        transform: none;
-    }
-
-    /* Remove hover effect */
-    .info-icon:hover {
-        color: initial;
-        transform: none;
-    }
-
-    /* Remove hover effect */
-    .download-container a:hover {
-        background-color: initial;
-    }
-
-    /* Remove hover effect */
-    .image-gallery img:hover {
-        transform: none;
-        box-shadow: none;
+    .image-gallery img {
+        width: 80px;
     }
 }
 
