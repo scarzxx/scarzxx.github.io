@@ -265,6 +265,7 @@ th::after {
 
 .fog-light-dalkovymi {
     color: rgb(51, 51, 245);
+    font-weight: bold;
 }
 
 /* Download container styling */
