@@ -13,42 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     fetchUpdates();
-
-    // Kliknutí na dropdown položku pro mobilní menu
-    document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
-         dropdownToggle.addEventListener('click', function(event) {
-            if (window.innerWidth <= 768) {
-               event.preventDefault();
-                const parentDropdown = this.parentElement;
-                const dropdownMenu = parentDropdown.querySelector('.dropdown-menu');
-
-                // Zkontrolujeme, zda dropdown menu existuje
-                if (dropdownMenu) {
-                     // Zrušíme aktivní třídu u ostatních dropdownů
-                    document.querySelectorAll('.dropdown.active').forEach(activeDropdown => {
-                       if(activeDropdown !== parentDropdown){
-                            activeDropdown.classList.remove('active');
-                           const otherDropdownMenu = activeDropdown.querySelector('.dropdown-menu')
-                            otherDropdownMenu.style.maxHeight = null;
-                       }
-                    })
-                     // Přidáme/odebereme třídu 'active' pro zobrazení/skrytí dropdownu
-                     parentDropdown.classList.toggle('active');
-                     //nastavíme max-height
-                     if(parentDropdown.classList.contains('active')){
-                        dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
-                    } else {
-                        dropdownMenu.style.maxHeight = null;
-                    }
-
-                } else { // Pokud je to odkaz bez dropdown menu, tak necháme navigaci proběhnout
-                     window.location.href = this.getAttribute('href');
-                }
-
-            }
-        });
-    });
-
 });
 
 function fetchUpdates() {
@@ -164,6 +128,7 @@ function formatComfortUnits(row, unit) {
         row.appendChild(cell);
     });
 }
+
 function populate7N0Table() {
     fetch('units7N0.json')
         .then(response => response.json())
@@ -187,7 +152,7 @@ function populate7N0Table() {
 
             data.gatewayUnits.forEach(unit => {
                 const row = document.createElement('tr');
-                formatGatewayUnits(row, unit); // Použijeme stejnou funkci pro formátování jako u ostatních gateway jednotek
+                formatGatewayUnits(row, unit);
                 tbody.appendChild(row);
             });
 
@@ -198,23 +163,22 @@ function populate7N0Table() {
         });
 }
 
-// Zobrazí/skryje tabulku po kliknutí na odkaz
 document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
     event.preventDefault();
     const tableContainer = document.getElementById('7N0TableContainer');
     if (tableContainer.innerHTML === '') {
-        populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
+        populate7N0Table();
     }
     if (tableContainer.style.display === 'none') {
         tableContainer.style.display = 'block';
-        // Přidáme posun na tabulku
         setTimeout(() => {
             tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50); // Malé zpoždění pro plynulejší animaci
+        }, 50);
     } else {
         tableContainer.style.display = 'none';
     }
 });
+
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
@@ -249,7 +213,6 @@ fetch('https://api.ipify.org?format=json')
   .then(response => response.json())
   .then(data => {
     console.log('Vaše IP adresa:', data.ip);
-    // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
     document.getElementById('ip-address').textContent = data.ip;
   })
   .catch(error => {
@@ -295,6 +258,6 @@ function openImage(src) {
 }
 
 function toggleMenu() {
-    const menu = document.querySelector('.menu');
+    const menu = document.querySelector('.nav__list');
     menu.classList.toggle('show');
 }
