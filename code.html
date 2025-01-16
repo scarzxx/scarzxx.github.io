@@ -105,12 +105,59 @@
         .water-level-text {
             color: #0b5ed7;
         }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Kalkulačka ředění</h2>
-
+    <div class="dropdown">
+        <button class="dropbtn">Možnosti</button>
+        <div class="dropdown-content">
+            <a href="#" onclick="saveToLocalStorage()">Uložit</a>
+            <a href="#" onclick="loadFromLocalStorage()">Načíst</a>
+            <a href="#" onclick="clearLocalStorage()">Vymazat</a>
+        </div>
+    </div>
     <label for="totalVolume">Celkové množství roztoku:</label>
     <input type="number" id="totalVolume" value="1000">
     <select id="totalVolumeUnit" class="unit-select">
@@ -249,6 +296,39 @@ document.getElementById("ratioSelect").addEventListener("change", function() {
     customRatioInput.style.display = "none";
   }
 });
+
+// Funkce pro práci s LocalStorage
+function saveToLocalStorage() {
+    const data = {
+        totalVolume: document.getElementById("totalVolume").value,
+        totalVolumeUnit: document.getElementById("totalVolumeUnit").value,
+        ratioSelect: document.getElementById("ratioSelect").value,
+        customRatio: document.getElementById("customRatio").value,
+        round: document.getElementById("round").checked
+    };
+    localStorage.setItem("dilutionCalculatorData", JSON.stringify(data));
+    alert("Data byla uložena do LocalStorage.");
+}
+
+function loadFromLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("dilutionCalculatorData"));
+    if (data) {
+        document.getElementById("totalVolume").value = data.totalVolume;
+        document.getElementById("totalVolumeUnit").value = data.totalVolumeUnit;
+        document.getElementById("ratioSelect").value = data.ratioSelect;
+        document.getElementById("customRatio").value = data.customRatio;
+        document.getElementById("round").checked = data.round;
+        calculate();
+        alert("Data byla načtena z LocalStorage.");
+    } else {
+        alert("Žádná data nebyla nalezena v LocalStorage.");
+    }
+}
+
+function clearLocalStorage() {
+    localStorage.removeItem("dilutionCalculatorData");
+    alert("Data byla vymazána z LocalStorage.");
+}
 
 // Event listenery pro automatický výpočet
 document.getElementById("totalVolume").addEventListener("input", calculate);
