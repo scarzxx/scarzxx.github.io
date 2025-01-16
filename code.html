@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kalkulačka ředění</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="number"] {
+  width: 100px;
+}
+button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Kalkulačka ředění</h2>
+
+<label for="totalVolume">Celkové množství roztoku (ml):</label>
+<input type="number" id="totalVolume" value="1000">
+
+<label for="ratio">Poměr ředění (1:X):</label>
+<input type="number" id="ratio" value="15">
+
+<button onclick="calculate()">Vypočítat</button>
+
+<p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
+<p>Potřebné množství vody: <span id="water"></span> ml</p>
+
+<script>
+function calculate() {
+  const totalVolume = parseFloat(document.getElementById("totalVolume").value);
+  const ratio = parseFloat(document.getElementById("ratio").value);
+
+  const concentrate = totalVolume / (1 + ratio);
+  const water = totalVolume - concentrate;
+
+  document.getElementById("concentrate").textContent = concentrate.toFixed(2);
+  document.getElementById("water").textContent = water.toFixed(2);
+}
+</script>
+
+</body>
+</html>
