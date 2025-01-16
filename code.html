@@ -9,90 +9,104 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Styly přidané mnou - měly by přepsat styly ze styles.css, pokud existují konflikty */
+        body {
+          font-family: sans-serif; /* Místo konkrétního fontu použijeme výchozí sans-serif */
+          background-color: #f5f5f5;
+          color: #333;
+        }
+        h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #4CAF50;
+        }
         label {
           display: block;
           margin-bottom: 5px;
+          font-weight: bold;
         }
         input[type="number"], select {
           width: 100px;
-          margin-bottom: 5px;
-        }
-        label[for="round"] {
-          display: inline-block;
-          margin-left: 5px;
-          cursor: pointer;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-bottom: 10px;
         }
         input[type="checkbox"] {
           cursor: pointer;
           margin-right: 5px;
         }
+        .ratio-select-container {
+          display: inline-block;
+        }
         .results {
-          margin-top: 10px;
+          margin-top: 20px;
+          font-size: 1.1em;
+          border: 1px solid #ccc;
+          padding: 15px;
+          border-radius: 4px;
+          background-color: #fafafa;
+        }
+        .results p {
+          margin: 5px 0;
+        }
+        .results span {
+          font-weight: bold;
         }
         .unit-select {
           width: 60px;
         }
-        .ratio-select-container {
-          display: inline-block;
-        }
-        #chart {
-          width: 100%;
-          height: 300px;
-          max-width: 500px;
-          margin: 20px auto;
-          border: 1px solid #ccc;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <h2>Kalkulačka ředění</h2>
 
-<h2>Kalkulačka ředění</h2>
+    <label for="totalVolume">Celkové množství roztoku:</label>
+    <input type="number" id="totalVolume" value="1000">
+    <select id="totalVolumeUnit" class="unit-select">
+        <option value="ml">ml</option>
+        <option value="l">l</option>
+        <option value="oz">oz</option>
+        <option value="gal">gal</option>
+    </select>
 
-<label for="totalVolume">Celkové množství roztoku:</label>
-<input type="number" id="totalVolume" value="1000">
-<select id="totalVolumeUnit" class="unit-select">
-    <option value="ml">ml</option>
-    <option value="l">l</option>
-    <option value="oz">oz</option>
-    <option value="gal">gal</option>
-</select>
+    <label for="ratioSelect">Poměr ředění:</label>
+    <div class="ratio-select-container">
+        <select id="ratioSelect">
+            <option value="1:1">1:1</option>
+            <option value="1:2">1:2</option>
+            <option value="1:5">1:5</option>
+            <option value="1:10">1:10</option>
+            <option value="1:15" selected>1:15</option>
+            <option value="1:20">1:20</option>
+            <option value="1:50">1:50</option>
+            <option value="1:100">1:100</option>
+            <option value="custom">Vlastní</option>
+        </select>
+    </div>
+    <input type="number" id="customRatio" style="display: none;" placeholder="Zadejte X">
 
-<label for="ratioSelect">Poměr ředění:</label>
-<div class="ratio-select-container">
-<select id="ratioSelect">
-    <option value="1:1">1:1</option>
-    <option value="1:2">1:2</option>
-    <option value="1:5">1:5</option>
-    <option value="1:10">1:10</option>
-    <option value="1:15" selected>1:15</option>
-    <option value="1:20">1:20</option>
-    <option value="1:50">1:50</option>
-    <option value="1:100">1:100</option>
-    <option value="custom">Vlastní</option>
-</select>
+    <div>
+        <input type="checkbox" id="round" checked>
+        <label for="round">Zaokrouhlovat na 2 desetinná místa</label>
+    </div>
+
+    <div class="results">
+        <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
+        <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
+    </div>
 </div>
-<input type="number" id="customRatio" style="display: none;" placeholder="Zadejte X">
-
-<div>
-    <input type="checkbox" id="round" checked>
-    <label for="round">Zaokrouhlovat na 2 desetinná místa</label>
-</div>
-
-<div class="results">
-    <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
-    <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
-</div>
-
-<div id="chart"></div>
-
 <script>
-// Import knihovny Chart.js
-const script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
-document.head.appendChild(script);
-
-let myChart = null; // Proměnná pro uložení instance grafu
-
 function calculate() {
   const totalVolume = parseFloat(document.getElementById("totalVolume").value);
   const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
@@ -106,7 +120,7 @@ function calculate() {
   } else {
     ratio = parseFloat(ratioSelect.split(":")[1]);
   }
-    
+
   // Konverze na ml
   let totalVolumeMl = convertToMl(totalVolume, totalVolumeUnit);
 
@@ -124,12 +138,9 @@ function calculate() {
     document.getElementById("concentrate").textContent = concentrate;
     document.getElementById("water").textContent = water;
   }
-  
+
     document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
     document.getElementById("waterUnit").textContent = totalVolumeUnit;
-
-  // Aktualizace grafu
-  updateChart(concentrateMl, waterMl);
 }
 
 function convertToMl(value, unit) {
@@ -156,47 +167,6 @@ function convertFromMl(value, unit) {
     default: // ml
       return value;
   }
-}
-
-// Vytvoření a aktualizace grafu
-function updateChart(concentrate, water) {
-  const chartCanvas = document.getElementById("chart");
-
-  if (myChart) {
-    myChart.destroy(); // Zničení předchozí instance grafu
-  }
-
-  myChart = new Chart(chartCanvas, {
-    type: 'bar', // Typ grafu - sloupcový
-    data: {
-      labels: ['Přípravek', 'Voda'],
-      datasets: [{
-        label: 'Množství (ml)',
-        data: [concentrate, water],
-        backgroundColor: [
-          'rgba(54, 162, 235, 0.5)', // Modrá pro přípravek
-          'rgba(75, 192, 192, 0.5)' // Zelená pro vodu
-        ],
-        borderColor: [
-          'rgba(54, 162, 235, 1)',
-          'rgba(75, 192, 192, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-        plugins: {
-          legend: {
-            display: false // Skryje legendu, není potřeba
-          }
-        }
-    }
-  });
 }
 
 // Zobrazení/skrytí pole pro vlastní poměr
