@@ -44,7 +44,7 @@ body {
 }
 
 /* Table container styling */
-.table-container {
+/*.table-container {
     background-color: #1e1e1e;
     padding: 20px;
     border-radius: 10px;
@@ -52,7 +52,7 @@ body {
     width: 100%;
     max-width: 1200px;
     overflow-x: auto;
-}
+}*/
 
 /* Table styling */
 table {
@@ -188,7 +188,7 @@ tr:nth-child(odd) {
             background-color: #121212;
             color: #ffffff;
         }
-        .download-container {
+       /* .download-container {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 40px;
             text-align: center;
@@ -197,6 +197,7 @@ tr:nth-child(odd) {
             max-width: 1200px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
+            */
         .download-container:hover {
             transform: scale(1.02);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -205,6 +206,7 @@ tr:nth-child(odd) {
             color: white;
             text-decoration: none;
             font-weight: bold;
+           
             padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s;
