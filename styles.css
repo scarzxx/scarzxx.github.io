@@ -8,7 +8,6 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Navigation menu styling */
@@ -39,7 +38,6 @@ nav ul {
 /* Navigation list item styling */
 nav ul li {
     margin: 0 10px;
-    position: relative; /* Required for dropdown positioning */
 }
 
 /* Navigation link styling */
@@ -67,44 +65,6 @@ nav ul li a.active {
     color: #fff;
     border: 2px solid #6ec6ff;
     transition: border 0.3s, background-color 0.3s, color 0.3s;
-}
-
-/* Dropdown menu styling */
-nav ul li .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1000;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 200px;
-    text-align: left;
-}
-
-/* Show dropdown menu on hover for desktop */
-@media (min-width: 769px) {
-    nav ul li:hover .dropdown-menu {
-        display: block;
-        animation: slideDown 0.3s ease-in-out;
-    }
-}
-
-/* Dropdown menu link styling */
-nav ul li .dropdown-menu li a {
-    padding: 10px 15px;
-    display: block;
-    text-decoration: none;
-    color: white;
-}
-
-/* Dropdown menu link hover effect */
-nav ul li .dropdown-menu li a:hover {
-    background-color: #224b66;
 }
 
 /* Section styling */
