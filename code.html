@@ -9,9 +9,17 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        label[for="round"] {
+        label {
           display: block;
           margin-bottom: 5px;
+        }
+        input[type="number"], select {
+          width: 100px;
+          margin-bottom: 5px;
+        }
+        label[for="round"] {
+          display: inline-block;
+          margin-left: 5px;
           cursor: pointer;
         }
         input[type="checkbox"] {
@@ -21,17 +29,42 @@
         .results {
           margin-top: 10px;
         }
+        .unit-select {
+          width: 60px;
+        }
+        .ratio-select-container {
+          display: inline-block;
+        }
     </style>
 </head>
 <body>
 
 <h2>Kalkulačka ředění</h2>
 
-<label for="totalVolume">Celkové množství roztoku (ml):</label>
+<label for="totalVolume">Celkové množství roztoku:</label>
 <input type="number" id="totalVolume" value="1000">
+<select id="totalVolumeUnit" class="unit-select">
+    <option value="ml">ml</option>
+    <option value="l">l</option>
+    <option value="oz">oz</option>
+    <option value="gal">gal</option>
+</select>
 
-<label for="ratio">Poměr ředění (1:X):</label>
-<input type="number" id="ratio" value="15">
+<label for="ratioSelect">Poměr ředění:</label>
+<div class="ratio-select-container">
+<select id="ratioSelect">
+    <option value="1:1">1:1</option>
+    <option value="1:2">1:2</option>
+    <option value="1:5">1:5</option>
+    <option value="1:10">1:10</option>
+    <option value="1:15" selected>1:15</option>
+    <option value="1:20">1:20</option>
+    <option value="1:50">1:50</option>
+    <option value="1:100">1:100</option>
+    <option value="custom">Vlastní</option>
+</select>
+</div>
+<input type="number" id="customRatio" style="display: none;" placeholder="Zadejte X">
 
 <div>
     <input type="checkbox" id="round" checked>
@@ -39,18 +72,34 @@
 </div>
 
 <div class="results">
-    <p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
-    <p>Potřebné množství vody: <span id="water"></span> ml</p>
+    <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
+    <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
 </div>
 
 <script>
 function calculate() {
   const totalVolume = parseFloat(document.getElementById("totalVolume").value);
-  const ratio = parseFloat(document.getElementById("ratio").value);
+  const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
+  const ratioSelect = document.getElementById("ratioSelect").value;
+  const customRatio = parseFloat(document.getElementById("customRatio").value);
   const round = document.getElementById("round").checked;
 
-  const concentrate = totalVolume / (1 + ratio);
-  const water = totalVolume - concentrate;
+  let ratio;
+  if (ratioSelect === "custom") {
+    ratio = customRatio;
+  } else {
+    ratio = parseFloat(ratioSelect.split(":")[1]);
+  }
+    
+  // Konverze na ml
+  let totalVolumeMl = convertToMl(totalVolume, totalVolumeUnit);
+
+  const concentrateMl = totalVolumeMl / (1 + ratio);
+  const waterMl = totalVolumeMl - concentrateMl;
+
+  // Konverze zpět na zvolené jednotky
+  const concentrate = convertFromMl(concentrateMl, totalVolumeUnit);
+  const water = convertFromMl(waterMl, totalVolumeUnit);
 
   if (round) {
     document.getElementById("concentrate").textContent = concentrate.toFixed(2);
@@ -59,14 +108,55 @@ function calculate() {
     document.getElementById("concentrate").textContent = concentrate;
     document.getElementById("water").textContent = water;
   }
+  
+    document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
+    document.getElementById("waterUnit").textContent = totalVolumeUnit;
 }
 
-// Spuštění výpočtu při změně hodnot
+function convertToMl(value, unit) {
+  switch (unit) {
+    case "l":
+      return value * 1000;
+    case "oz":
+      return value * 29.5735;
+    case "gal":
+      return value * 3785.41;
+    default: // ml
+      return value;
+  }
+}
+
+function convertFromMl(value, unit) {
+  switch (unit) {
+    case "l":
+      return value / 1000;
+    case "oz":
+      return value / 29.5735;
+    case "gal":
+      return value / 3785.41;
+    default: // ml
+      return value;
+  }
+}
+
+// Zobrazení/skrytí pole pro vlastní poměr
+document.getElementById("ratioSelect").addEventListener("change", function() {
+  const customRatioInput = document.getElementById("customRatio");
+  if (this.value === "custom") {
+    customRatioInput.style.display = "inline-block";
+  } else {
+    customRatioInput.style.display = "none";
+  }
+});
+
+// Event listenery pro automatický výpočet
 document.getElementById("totalVolume").addEventListener("input", calculate);
-document.getElementById("ratio").addEventListener("input", calculate);
+document.getElementById("totalVolumeUnit").addEventListener("change", calculate);
+document.getElementById("ratioSelect").addEventListener("change", calculate);
+document.getElementById("customRatio").addEventListener("input", calculate);
 document.getElementById("round").addEventListener("change", calculate);
 
-// Prvotní výpočet při načtení stránky
+// Prvotní výpočet
 calculate();
 </script>
 
