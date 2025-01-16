@@ -8,14 +8,18 @@
     <title>Kalkulačka Ředění</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style> /* Přidáno pro lepší vzhled checkboxu */
+    <style>
         label[for="round"] {
-          display: inline-block;
-          margin-left: 5px;
+          display: block;
+          margin-bottom: 5px;
           cursor: pointer;
         }
         input[type="checkbox"] {
           cursor: pointer;
+          margin-right: 5px;
+        }
+        .results {
+          margin-top: 10px;
         }
     </style>
 </head>
@@ -29,13 +33,15 @@
 <label for="ratio">Poměr ředění (1:X):</label>
 <input type="number" id="ratio" value="15">
 
-<label for="round">Zaokrouhlovat</label>
-<input type="checkbox" id="round" checked>
+<div>
+    <input type="checkbox" id="round" checked>
+    <label for="round">Zaokrouhlovat na 2 desetinná místa</label>
+</div>
 
-<button onclick="calculate()">Vypočítat</button>
-
-<p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
-<p>Potřebné množství vody: <span id="water"></span> ml</p>
+<div class="results">
+    <p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
+    <p>Potřebné množství vody: <span id="water"></span> ml</p>
+</div>
 
 <script>
 function calculate() {
@@ -54,6 +60,14 @@ function calculate() {
     document.getElementById("water").textContent = water;
   }
 }
+
+// Spuštění výpočtu při změně hodnot
+document.getElementById("totalVolume").addEventListener("input", calculate);
+document.getElementById("ratio").addEventListener("input", calculate);
+document.getElementById("round").addEventListener("change", calculate);
+
+// Prvotní výpočet při načtení stránky
+calculate();
 </script>
 
 </body>
