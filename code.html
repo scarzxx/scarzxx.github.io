@@ -11,75 +11,77 @@
         /* Vlastní styly - pro přepsání Bootstrap stylů */
         body {
           font-family: sans-serif; /* Místo konkrétního fontu použijeme výchozí sans-serif */
-          background-color: #f5f5f5;
-          color: #333;
+          background-color: #212529; /* Tmavé pozadí */
+          color: #f8f9fa; /* Světlý text */
         }
         h2 {
-          color: #28a745; /* Změna barvy nadpisu na zelenou z Bootstrapu */
+          color: #66bb6a; /* Tmavší zelená pro nadpis */
         }
-        .glass-container {
-            width: 100px;
-            height: 200px;
-            margin: 20px auto;
-            border: 2px solid #333;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
+        label {
+          font-weight: bold;
         }
-
-        .water {
-            background-color: #ADD8E6; /* Světle modrá */
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            transition: height 0.5s ease; /* Animace pro plynulou změnu výšky */
+        .results {
+          margin-top: 20px;
+          font-size: 1.1em;
+          border: 1px solid #6c757d; /* Tmavší rámeček */
+          padding: 15px;
+          border-radius: 4px;
+          background-color: #343a40; /* Tmavší pozadí pro výsledky */
         }
-
-        .concentrate {
-            background-color: #90EE90; /* Světle zelená */
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            transition: height 0.5s ease; /* Animace pro plynulou změnu výšky */
+        .results p {
+          margin: 5px 0;
         }
-        .water-level-text,
-        .concentrate-level-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #000;
-            font-weight: bold;
-            font-size: 14px;
-            z-index: 3;
+        .results span {
+          font-weight: bold;
         }
 
-        .water-level-text {
-            color: #0b5ed7;
-        }
-
-        /* Styly pro Bootstrap menu */
+        /* Styly pro Bootstrap menu v tmavém režimu */
         .navbar {
-            background-color: #28a745; /* Zelená barva */
+            background-color: #343a40; /* Tmavě šedá */
+            border-bottom: 1px solid #6c757d; /* Tmavší oddělovač */
             margin-bottom: 20px;
-            border-radius: 0 0 8px 8px;
+            border-radius: 0;
         }
 
         .navbar-brand {
-            color: #fff;
-            font-weight: bold;
+            color: #f8f9fa; /* Světlý text */
         }
 
         .navbar-nav .nav-link {
-            color: #fff;
+            color: #f8f9fa; /* Světlý text */
         }
 
         .navbar-nav .nav-link:hover {
-            color: #f8f9fa;
+            color: #fff; /* Ještě světlejší text při hoveru */
+        }
+
+        .navbar-toggler-icon {
+          background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.55)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Bílá ikona toggleru */
+        }
+
+        .navbar-toggler {
+          border-color: rgba(255, 255, 255, 0.1); /* Světlý okraj toggleru */
+        }
+
+        .form-control,
+        .form-select,
+        .form-check-input {
+          background-color: #495057; /* Tmavší inputy */
+          color: #f8f9fa; /* Světlý text */
+          border-color: #6c757d; /* Tmavší rámečky */
+        }
+        .form-check-input:checked {
+            background-color: #66bb6a; /* Zelená pro zaškrtnutý checkbox */
+            border-color: #66bb6a;
+        }
+        .alert-success {
+          background-color: #28a745;
+          border-color: #28a745;
+          color: #fff;
         }
     </style>
 </head>
-<body>
+<body data-bs-theme="dark">
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Kalkulačka ředění</a>
@@ -104,7 +106,7 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 offset-md-3">
           <div class="mb-3">
               <label for="totalVolume" class="form-label">Celkové množství roztoku:</label>
               <div class="input-group">
@@ -146,15 +148,6 @@
               <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
           </div>
       </div>
-
-      <div class="col-md-6 d-flex justify-content-center align-items-center">
-        <div class="glass-container">
-            <div class="water"></div>
-            <div class="concentrate"></div>
-            <div class="water-level-text"></div>
-            <div class="concentrate-level-text"></div>
-        </div>
-      </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -193,9 +186,6 @@ function calculate() {
 
     document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
     document.getElementById("waterUnit").textContent = totalVolumeUnit;
-
-  // Aktualizace sklenice
-  updateGlass(concentrateMl, waterMl);
 }
 
 function convertToMl(value, unit) {
@@ -222,28 +212,6 @@ function convertFromMl(value, unit) {
     default: // ml
       return value;
   }
-}
-
-function updateGlass(concentrate, water) {
-    const glassContainer = document.querySelector(".glass-container");
-    const waterDiv = glassContainer.querySelector(".water");
-    const concentrateDiv = glassContainer.querySelector(".concentrate");
-    const waterLevelText = glassContainer.querySelector(".water-level-text");
-    const concentrateLevelText = glassContainer.querySelector(".concentrate-level-text");
-
-    const total = concentrate + water;
-    const waterHeight = (water / total) * 100;
-    const concentrateHeight = (concentrate / total) * 100;
-
-    waterDiv.style.height = `${waterHeight}%`;
-    concentrateDiv.style.height = `${concentrateHeight}%`;
-    concentrateDiv.style.bottom = `${waterHeight}%`;
-    waterLevelText.style.bottom = `${waterHeight / 2}%`; // Umístění textu do poloviny výšky vody
-    concentrateLevelText.style.bottom = `${waterHeight + concentrateHeight / 2}%`; // Umístění textu do poloviny výšky koncentrátu + výška vody
-
-    // Aktualizace textu s úrovní hladiny
-    waterLevelText.textContent = `${(waterHeight).toFixed(0)}%`;
-    concentrateLevelText.textContent = `${(concentrateHeight).toFixed(0)}%`;
 }
 
 // Zobrazení/skrytí pole pro vlastní poměr
