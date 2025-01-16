@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (page === 'bsg.html') {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
-            if (page === 'download.html') {
-                fetchUpdates();
-              }
         });
         
     adjustMenuToggleSize();
