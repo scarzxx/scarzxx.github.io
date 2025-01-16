@@ -65,6 +65,46 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .glass-container {
+            width: 100px;
+            height: 200px;
+            margin: 20px auto;
+            border: 2px solid #333;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .water {
+            background-color: #ADD8E6; /* Světle modrá */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 0.5s ease; /* Animace pro plynulou změnu výšky */
+        }
+
+        .concentrate {
+            background-color: #90EE90; /* Světle zelená */
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 0.5s ease; /* Animace pro plynulou změnu výšky */
+        }
+        .water-level-text,
+        .concentrate-level-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 3;
+        }
+
+        .water-level-text {
+            color: #0b5ed7;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +145,12 @@
         <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
         <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
     </div>
+    <div class="glass-container">
+        <div class="water"></div>
+        <div class="concentrate"></div>
+        <div class="water-level-text"></div>
+        <div class="concentrate-level-text"></div>
+    </div>
 </div>
 <script>
 function calculate() {
@@ -141,6 +187,9 @@ function calculate() {
 
     document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
     document.getElementById("waterUnit").textContent = totalVolumeUnit;
+
+  // Aktualizace sklenice
+  updateGlass(concentrateMl, waterMl);
 }
 
 function convertToMl(value, unit) {
@@ -167,6 +216,28 @@ function convertFromMl(value, unit) {
     default: // ml
       return value;
   }
+}
+
+function updateGlass(concentrate, water) {
+    const glassContainer = document.querySelector(".glass-container");
+    const waterDiv = glassContainer.querySelector(".water");
+    const concentrateDiv = glassContainer.querySelector(".concentrate");
+    const waterLevelText = glassContainer.querySelector(".water-level-text");
+    const concentrateLevelText = glassContainer.querySelector(".concentrate-level-text");
+
+    const total = concentrate + water;
+    const waterHeight = (water / total) * 100;
+    const concentrateHeight = (concentrate / total) * 100;
+
+    waterDiv.style.height = `${waterHeight}%`;
+    concentrateDiv.style.height = `${concentrateHeight}%`;
+    concentrateDiv.style.bottom = `${waterHeight}%`;
+    waterLevelText.style.bottom = `${waterHeight / 2}%`; // Umístění textu do poloviny výšky vody
+    concentrateLevelText.style.bottom = `${waterHeight + concentrateHeight / 2}%`; // Umístění textu do poloviny výšky koncentrátu + výška vody
+
+    // Aktualizace textu s úrovní hladiny
+    waterLevelText.textContent = `${(waterHeight).toFixed(0)}%`;
+    concentrateLevelText.textContent = `${(concentrateHeight).toFixed(0)}%`;
 }
 
 // Zobrazení/skrytí pole pro vlastní poměr
