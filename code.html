@@ -35,6 +35,13 @@
         .ratio-select-container {
           display: inline-block;
         }
+        #chart {
+          width: 100%;
+          height: 300px;
+          max-width: 500px;
+          margin: 20px auto;
+          border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +83,16 @@
     <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
 </div>
 
+<div id="chart"></div>
+
 <script>
+// Import knihovny Chart.js
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+document.head.appendChild(script);
+
+let myChart = null; // Proměnná pro uložení instance grafu
+
 function calculate() {
   const totalVolume = parseFloat(document.getElementById("totalVolume").value);
   const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
@@ -111,6 +127,9 @@ function calculate() {
   
     document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
     document.getElementById("waterUnit").textContent = totalVolumeUnit;
+
+  // Aktualizace grafu
+  updateChart(concentrateMl, waterMl);
 }
 
 function convertToMl(value, unit) {
@@ -137,6 +156,47 @@ function convertFromMl(value, unit) {
     default: // ml
       return value;
   }
+}
+
+// Vytvoření a aktualizace grafu
+function updateChart(concentrate, water) {
+  const chartCanvas = document.getElementById("chart");
+
+  if (myChart) {
+    myChart.destroy(); // Zničení předchozí instance grafu
+  }
+
+  myChart = new Chart(chartCanvas, {
+    type: 'bar', // Typ grafu - sloupcový
+    data: {
+      labels: ['Přípravek', 'Voda'],
+      datasets: [{
+        label: 'Množství (ml)',
+        data: [concentrate, water],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.5)', // Modrá pro přípravek
+          'rgba(75, 192, 192, 0.5)' // Zelená pro vodu
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+        plugins: {
+          legend: {
+            display: false // Skryje legendu, není potřeba
+          }
+        }
+    }
+  });
 }
 
 // Zobrazení/skrytí pole pro vlastní poměr
