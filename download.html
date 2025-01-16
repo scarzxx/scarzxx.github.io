@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>Download</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="novestyly.css">
 </head>
 <body data-bs-theme="dark">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">AutoDiag</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,26 +19,26 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Domů</a>
+                        <a class="nav-link" href="index.html">Domů</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Jednotky
+                         Jednotky
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="gateway.html">Gateway</a></li>
-                            <li><a class="dropdown-item" href="comfort.html">Komfortní</a></li>
-                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM</a></li>
+                            <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
+                            <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
+                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="download.html">Download</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Ostatní
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownOther">
                             <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
                         </ul>
                     </li>
@@ -44,21 +46,21 @@
             </div>
         </div>
     </nav>
-    <section id="download" class="container mt-4">
-        <h1 class="text-center mb-4">Download</h1>
-        <div class="download-container alert alert-secondary">
+    <section id="download" class="container mt-4 text-center">
+        <h1>Download</h1>
+        <div class="download-container alert alert-success mx-auto">
             <p>Nástroj pro spuštění diagnostiky a vyhledávání chyb. Tato aplikace vám zjednoduší a urychlí spuštění diagnostického nástroje VCDS a zároveň umožní rychlé vyhledávání chybových kódů.</p>
             <h3>Poslední Aktualizace:</h3>
             <ul id="whats-new-list">
                 <!-- Nové funkce budou načteny zde -->
             </ul>
-            <a href="releases/vcdsopener/autodiagnostika.zip" download class="btn btn-success">Stáhnout</a>
+            <a href="releases/vcdsopener/autodiagnostika.zip" download class="btn btn-primary">Stáhnout</a>
             <div class="image-gallery mt-3">
                 <img src="images/obrazek1.png" alt="Screenshot 1" class="img-thumbnail" onclick="openImage('images/obrazek1.png')">
                 <img src="images/obrazek2.png" alt="Screenshot 2" class="img-thumbnail" onclick="openImage('images/obrazek2.png')">
             </div>
         </div>
-        <p class="note alert alert-danger mt-3">Poznámka: Autor neodpovídá za případné škody způsobené nesprávným použitím aplikace nebo diagnostického nástroje VCDS. Používání aplikace a VCDS je na vlastní riziko.</p>
+        <p class="note alert alert-warning">Poznámka: Autor neodpovídá za případné škody způsobené nesprávným použitím aplikace nebo diagnostického nástroje VCDS. Používání aplikace a VCDS je na vlastní riziko.</p>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>

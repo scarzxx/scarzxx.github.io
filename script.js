@@ -7,14 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateTable('gatewayUnits', data.gatewayUnits, formatGatewayUnits);
             } else if (page === 'comfort.html') {
                 populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
+                addComfortUnitsDescription();
             } else if (page === 'bsg.html') {
                 populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
             }
+            if (page === 'download.html') {
+                fetchUpdates();
+              }
         });
-        if (page === 'download.html') {
-          fetchUpdates();
-        }
-    
+        
+    adjustMenuToggleSize();
+    window.addEventListener('resize', adjustMenuToggleSize);
+    fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
+    if (page === 'code.html') {
+        // Event listenery pro automatický výpočet
+        document.getElementById("totalVolume").addEventListener("input", calculate);
+        document.getElementById("totalVolumeUnit").addEventListener("change", calculate);
+        document.getElementById("ratioSelect").addEventListener("change", calculate);
+        document.getElementById("customRatio").addEventListener("input", calculate);
+        document.getElementById("round").addEventListener("change", calculate);
+        // Prvotní výpočet
+        calculate();
+    }
 });
 
 function fetchUpdates() {
@@ -41,9 +55,8 @@ function fetchUpdates() {
 function populateTable(id, units, formatter) {
     const container = document.getElementById(id);
     const tableContainer = document.createElement('div');
-    tableContainer.classList.add('table-responsive'); // Přidáno pro responzivní tabulky
+    tableContainer.classList.add('table-container');
     const table = document.createElement('table');
-    table.classList.add('table', 'table-striped', 'table-bordered', 'table-hover'); // Přidány Bootstrap třídy pro tabulku
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
 
@@ -51,7 +64,6 @@ function populateTable(id, units, formatter) {
     const headerRow = document.createElement('tr');
     headers.forEach(header => {
         const th = document.createElement('th');
-        th.scope = 'col'; // Přidáno pro správné zobrazení v Bootstrapu
         th.textContent = header;
         th.addEventListener('click', () => sortTable(table, headers.indexOf(header)));
         headerRow.appendChild(th);
@@ -78,14 +90,19 @@ function formatGatewayUnits(row, unit) {
         } else {
             cell.textContent = unit[key];
         }
-        // Změněno z 'compatible' na 'notes'
-        if (key === 'notes' && unit[key].includes('Nevybíjí baterii')) {
+        if (key === 'compatible' && unit[key] === 'Ne') {
+            cell.classList.add('compatible-no');
+        }
+        if (key === 'compatible' && unit[key] === 'Ano') {
             cell.classList.add('compatible-yes');
         }
-        if (key === 'notes' && unit[key].includes('Dostupná aktualizace')) {
+        if (key === 'notes' && unit[key] === 'Dostupná aktualizace') {
             cell.classList.add('compatible-yes');
         }
-        if (key === 'notes' && unit[key].includes('Pouze výměna')) {
+        if (key === 'notes' && unit[key] === 'Nevybíjí baterii') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Pouze výměna') {
             cell.classList.add('compatible-no');
         }
         row.appendChild(cell);
@@ -135,7 +152,6 @@ function populate7N0Table() {
             const tableContainer = document.createElement('div');
             tableContainer.classList.add('table-container');
             const table = document.createElement('table');
-            table.classList.add('table', 'table-striped', 'table-bordered', 'table-hover');
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
@@ -179,7 +195,6 @@ document.getElementById('toggle7N0Info').addEventListener('click', (event) => {
         tableContainer.style.display = 'none';
     }
 });
-
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
@@ -210,166 +225,140 @@ function formatBsgUnits(row, unit) {
         row.appendChild(cell);
     });
 }
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Vaše IP adresa:', data.ip);
+    // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
+    document.getElementById('ip-address').textContent = data.ip;
+  })
+  .catch(error => {
+    console.error('Chyba při získávání IP adresy:', error);
+  });
+function addComfortUnitsDescription() {
+    const container = document.getElementById('comfortUnitsDescription');
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('description-container');
+    descriptionContainer.innerHTML = `
+        <h2>Zkratky v tabulce Komfortních Jednotek:</h2>
+        <p><strong>NAR</strong> – North American Region: Vozidla nebo komponenty určené pro severoamerický trh (USA, Kanada). Splňují standardy DOT/SAE.</p>
+        <p><strong>JOK</strong> – Japan, Oceania, Korea: Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy a normami.</p>
+        <p><strong>J</strong> – Japan: Vozidla nebo komponenty specificky určené pro japonský trh.</p>
+    `;
+    container.appendChild(descriptionContainer);
+}
+
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         const notification = document.getElementById('copyNotification');
-        notification.classList.add('show'); // Přidáme třídu pro zobrazení
+        notification.style.display = 'block';
         setTimeout(() => {
-            notification.classList.remove('show'); // Odebereme třídu pro skrytí
+            notification.style.display = 'none';
         }, 2000);
     });
 }
 
 function sortTable(table, columnIndex) {
-    const tbody = table.tBodies[0];
-    const rows = Array.from(tbody.rows);
-    const isAscending = !table.tHead.rows[0].cells[columnIndex].classList.contains('asc');
-    
-    // Odstranění tříd 'asc' a 'desc' ze všech hlaviček
-    Array.from(table.tHead.rows[0].cells).forEach(header => {
-        header.classList.remove('asc', 'desc');
-    });
-
-    // Přidání třídy 'asc' nebo 'desc' na kliknutou hlavičku
-    table.tHead.rows[0].cells[columnIndex].classList.toggle('asc', isAscending);
-    table.tHead.rows[0].cells[columnIndex].classList.toggle('desc', !isAscending);
-
+    const rows = Array.from(table.tBodies[0].rows);
+    const isAscending = table.tHead.rows[0].cells[columnIndex].classList.toggle('asc');
     rows.sort((rowA, rowB) => {
         const cellA = rowA.cells[columnIndex].textContent.trim();
         const cellB = rowB.cells[columnIndex].textContent.trim();
-        // Porovnání jako čísla, pokud je to možné, jinak jako stringy
-        const numA = parseFloat(cellA);
-        const numB = parseFloat(cellB);
-        if (!isNaN(numA) && !isNaN(numB)) {
-            return isAscending ? numA - numB : numB - numA;
-        } else {
-            return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-        }
+        return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
     });
-
-    // Odstranění existujících řádků a vložení seřazených
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
-    rows.forEach(row => tbody.appendChild(row));
+    rows.forEach(row => table.tBodies[0].appendChild(row));
 }
 
 function openImage(src) {
     window.open(src, '_blank');
 }
 
+function toggleMenu() {
+    const menu = document.querySelector('nav ul');
+    menu.classList.toggle('show');
+}
+
+function adjustMenuToggleSize() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (window.innerWidth <= 768) {
+        menuToggle.style.minWidth = '30px';
+        menuToggle.style.maxWidth = '50px';
+    } else {
+        menuToggle.style.minWidth = '';
+        menuToggle.style.maxWidth = '';
+    }
+}
+
+// Dilution calculator functions
 function calculate() {
     const totalVolume = parseFloat(document.getElementById("totalVolume").value);
     const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
     const ratioSelect = document.getElementById("ratioSelect").value;
     const customRatio = parseFloat(document.getElementById("customRatio").value);
     const round = document.getElementById("round").checked;
-  
+
     let ratio;
     if (ratioSelect === "custom") {
-      ratio = customRatio;
+        ratio = customRatio;
     } else {
-      ratio = parseFloat(ratioSelect.split(":")[1]);
+        ratio = parseFloat(ratioSelect.split(":")[1]);
     }
-  
+
     // Konverze na ml
     let totalVolumeMl = convertToMl(totalVolume, totalVolumeUnit);
-  
+
     const concentrateMl = totalVolumeMl / (1 + ratio);
     const waterMl = totalVolumeMl - concentrateMl;
-  
+
     // Konverze zpět na zvolené jednotky
     const concentrate = convertFromMl(concentrateMl, totalVolumeUnit);
     const water = convertFromMl(waterMl, totalVolumeUnit);
-  
+
     if (round) {
-      document.getElementById("concentrate").textContent = concentrate.toFixed(2);
-      document.getElementById("water").textContent = water.toFixed(2);
+        document.getElementById("concentrate").textContent = concentrate.toFixed(2);
+        document.getElementById("water").textContent = water.toFixed(2);
     } else {
-      document.getElementById("concentrate").textContent = concentrate;
-      document.getElementById("water").textContent = water;
+        document.getElementById("concentrate").textContent = concentrate;
+        document.getElementById("water").textContent = water;
     }
-  
-      document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
-      document.getElementById("waterUnit").textContent = totalVolumeUnit;
-  }
-  
-  function convertToMl(value, unit) {
+
+    document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
+    document.getElementById("waterUnit").textContent = totalVolumeUnit;
+}
+
+function convertToMl(value, unit) {
     switch (unit) {
-      case "l":
-        return value * 1000;
-      case "oz":
-        return value * 29.5735;
-      case "gal":
-        return value * 3785.41;
-      default: // ml
-        return value;
+        case "l":
+            return value * 1000;
+        case "oz":
+            return value * 29.5735;
+        case "gal":
+            return value * 3785.41;
+        default: // ml
+            return value;
     }
-  }
-  
-  function convertFromMl(value, unit) {
+}
+
+function convertFromMl(value, unit) {
     switch (unit) {
-      case "l":
-        return value / 1000;
-      case "oz":
-        return value / 29.5735;
-      case "gal":
-        return value / 3785.41;
-      default: // ml
-        return value;
+        case "l":
+            return value / 1000;
+        case "oz":
+            return value / 29.5735;
+        case "gal":
+            return value / 3785.41;
+        default: // ml
+            return value;
     }
-  }
-  
-  // Zobrazení/skrytí pole pro vlastní poměr
-  document.getElementById("ratioSelect").addEventListener("change", function() {
+}
+
+// Zobrazení/skrytí pole pro vlastní poměr
+document.getElementById("ratioSelect").addEventListener("change", function() {
     const customRatioInput = document.getElementById("customRatio");
     if (this.value === "custom") {
-      customRatioInput.style.display = "inline-block";
+        customRatioInput.style.display = "inline-block";
     } else {
-      customRatioInput.style.display = "none";
+        customRatioInput.style.display = "none";
     }
-  });
-  
-  // Funkce pro práci s LocalStorage
-  function saveToLocalStorage() {
-      const data = {
-          totalVolume: document.getElementById("totalVolume").value,
-          totalVolumeUnit: document.getElementById("totalVolumeUnit").value,
-          ratioSelect: document.getElementById("ratioSelect").value,
-          customRatio: document.getElementById("customRatio").value,
-          round: document.getElementById("round").checked
-      };
-      localStorage.setItem("dilutionCalculatorData", JSON.stringify(data));
-      alert("Data byla uložena do LocalStorage.");
-  }
-  
-  function loadFromLocalStorage() {
-      const data = JSON.parse(localStorage.getItem("dilutionCalculatorData"));
-      if (data) {
-          document.getElementById("totalVolume").value = data.totalVolume;
-          document.getElementById("totalVolumeUnit").value = data.totalVolumeUnit;
-          document.getElementById("ratioSelect").value = data.ratioSelect;
-          document.getElementById("customRatio").value = data.customRatio;
-          document.getElementById("round").checked = data.round;
-          calculate();
-          alert("Data byla načtena z LocalStorage.");
-      } else {
-          alert("Žádná data nebyla nalezena v LocalStorage.");
-      }
-  }
-  
-  function clearLocalStorage() {
-      localStorage.removeItem("dilutionCalculatorData");
-      alert("Data byla vymazána z LocalStorage.");
-  }
-  
-  // Event listenery pro automatický výpočet
-  document.getElementById("totalVolume").addEventListener("input", calculate);
-  document.getElementById("totalVolumeUnit").addEventListener("change", calculate);
-  document.getElementById("ratioSelect").addEventListener("change", calculate);
-  document.getElementById("customRatio").addEventListener("input", calculate);
-  document.getElementById("round").addEventListener("change", calculate);
-  
-  // Prvotní výpočet
-  calculate();
+});

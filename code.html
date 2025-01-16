@@ -1,98 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulačka Ředění</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="novestyly.css">
+
 </head>
 <body data-bs-theme="dark">
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">AutoDiag</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.html">Domů</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Jednotky
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="gateway.html">Gateway</a></li>
-            <li><a class="dropdown-item" href="comfort.html">Komfortní</a></li>
-            <li><a class="dropdown-item" href="bsg.html">BSG/BCM</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="download.html">Download</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Ostatní
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item active" href="code.html">Kalkulačka ředění</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">AutoDiag</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Domů</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Jednotky
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
+                        <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
+                        <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="download.html">Download</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ostatní
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownOther">
+                        <li><a class="dropdown-item active" href="code.html">Kalkulačka ředění</a></li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-      </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
 <div class="container mt-4">
     <h2 class="text-center mb-4">Kalkulačka ředění</h2>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
-          <div class="mb-3">
-              <label for="totalVolume" class="form-label">Celkové množství roztoku:</label>
-              <div class="input-group">
-                  <input type="number" id="totalVolume" class="form-control" value="1000">
-                  <select id="totalVolumeUnit" class="form-select">
-                      <option value="ml">ml</option>
-                      <option value="l">l</option>
-                      <option value="oz">oz</option>
-                      <option value="gal">gal</option>
-                  </select>
-              </div>
-          </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="mb-3">
+                <label for="totalVolume" class="form-label">Celkové množství roztoku:</label>
+                <div class="input-group">
+                    <input type="number" id="totalVolume" class="form-control" value="1000">
+                    <select id="totalVolumeUnit" class="form-select">
+                        <option value="ml">ml</option>
+                        <option value="l">l</option>
+                        <option value="oz">oz</option>
+                        <option value="gal">gal</option>
+                    </select>
+                </div>
+            </div>
 
-          <div class="mb-3">
-              <label for="ratioSelect" class="form-label">Poměr ředění:</label>
-              <div class="input-group">
-                  <select id="ratioSelect" class="form-select">
-                      <option value="1:1">1:1</option>
-                      <option value="1:2">1:2</option>
-                      <option value="1:5">1:5</option>
-                      <option value="1:10">1:10</option>
-                      <option value="1:15" selected>1:15</option>
-                      <option value="1:20">1:20</option>
-                      <option value="1:50">1:50</option>
-                      <option value="1:100">1:100</option>
-                      <option value="custom">Vlastní</option>
-                  </select>
-                  <input type="number" id="customRatio" class="form-control" style="display: none;" placeholder="Zadejte X">
-              </div>
-          </div>
+            <div class="mb-3">
+                <label for="ratioSelect" id="ratioLabel" class="form-label">Poměr ředění:</label>
+                <div class="input-group">
+                    <select id="ratioSelect" class="form-select">
+                        <option value="1:1">1:1</option>
+                        <option value="1:2">1:2</option>
+                        <option value="1:5">1:5</option>
+                        <option value="1:10" selected>1:10</option>
+                        <option value="1:15">1:15</option>
+                        <option value="1:20">1:20</option>
+                        <option value="custom">Vlastní</option>
+                    </select>
+                    <input type="number" id="customRatio" class="form-control" style="display: none;" placeholder="Zadejte X">
+                </div>
+            </div>
 
-          <div class="mb-3 form-check">
-              <input type="checkbox" id="round" class="form-check-input" checked>
-              <label for="round" class="form-check-label">Zaokrouhlovat na 2 desetinná místa</label>
-          </div>
-
-          <div class="results alert alert-success">
-              <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
-              <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
-          </div>
-      </div>
+            <div class="results alert alert-success">
+                <p>Potřebné množství přípravku: <span id="concentrate"></span> <span id="concentrateUnit"></span></p>
+                <p>Potřebné množství vody: <span id="water"></span> <span id="waterUnit"></span></p>
+            </div>
+        </div>
     </div>
 </div>
-
+<script>
+  function calculate() {
+    const totalVolume = parseFloat(document.getElementById("totalVolume").value);
+    const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
+    const ratioSelect = document.getElementById("ratioSelect").value;
+    const customRatio = parseFloat(document.getElementById("customRatio").value);
+  
+    let ratio;
+    if (ratioSelect === "custom") {
+      ratio = customRatio;
+    } else {
+      ratio = parseFloat(ratioSelect.split(":")[1]);
+    }
+  
+    // Konverze na ml
+    let totalVolumeMl = convertToMl(totalVolume, totalVolumeUnit);
+  
+    const concentrateMl = totalVolumeMl / (1 + ratio);
+    const waterMl = totalVolumeMl - concentrateMl;
+  
+    // Konverze zpět na zvolené jednotky
+    const concentrate = convertFromMl(concentrateMl, totalVolumeUnit);
+    const water = convertFromMl(waterMl, totalVolumeUnit);
+  
+    document.getElementById("concentrate").textContent = concentrate.toFixed(0);
+    document.getElementById("water").textContent = water.toFixed(0);
+    document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
+    document.getElementById("waterUnit").textContent = totalVolumeUnit;
+  }
+  
+  function convertToMl(value, unit) {
+    switch (unit) {
+      case "l":
+        return value * 1000;
+      case "oz":
+        return value * 29.5735;
+      case "gal":
+        return value * 3785.41;
+      default: // ml
+        return value;
+    }
+  }
+  
+  function convertFromMl(value, unit) {
+    switch (unit) {
+      case "l":
+        return value / 1000;
+      case "oz":
+        return value / 29.5735;
+      case "gal":
+        return value / 3785.41;
+      default: // ml
+        return value;
+    }
+  }
+  
+  // Zobrazení/skrytí pole pro vlastní poměr
+  document.getElementById("ratioSelect").addEventListener("change", function() {
+    const customRatioInput = document.getElementById("customRatio");
+    const ratioLabel = document.getElementById("ratioLabel");
+    if (this.value === "custom") {
+      customRatioInput.style.display = "inline-block";
+      ratioLabel.textContent = "Poměr ředění (1:X):";
+    } else {
+      customRatioInput.style.display = "none";
+      ratioLabel.textContent = "Poměr ředění:";
+    }
+  });
+  
+  // Event listenery pro automatický výpočet
+  document.getElementById("totalVolume").addEventListener("input", calculate);
+  document.getElementById("totalVolumeUnit").addEventListener("change", calculate);
+  document.getElementById("ratioSelect").addEventListener("change", calculate);
+  document.getElementById("customRatio").addEventListener("input", calculate);
+  
+  // Prvotní výpočet
+  calculate();
+  </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
 </body>

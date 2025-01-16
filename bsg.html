@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>BSG/BCM Units</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="novestyly.css">
 </head>
 <body data-bs-theme="dark">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">AutoDiag</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,26 +20,26 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Domů</a>
+                        <a class="nav-link" href="index.html">Domů</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Jednotky
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="gateway.html">Gateway</a></li>
-                            <li><a class="dropdown-item" href="comfort.html">Komfortní</a></li>
-                            <li><a class="dropdown-item active" href="bsg.html">BSG/BCM</a></li>
+                            <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
+                            <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
+                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="download.html">Download</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Ostatní
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownOther">
                             <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
                         </ul>
                     </li>
@@ -45,10 +48,10 @@
         </div>
     </nav>
     <section id="bsg" class="container mt-4">
-        <h1 class="text-center mb-4">BSG/BCM Jednotky (Přísvit)</h1>
-        <div id="bsgUnits"></div>
+        <h1>BSG/BCM Jednotky (Přísvit)</h1>
+        <div id="bsgUnits" class="table-container"></div>
     </section>
-    <div id="copyNotification" class="copy-notification alert alert-success" style="display: none;">Zkopírováno!</div>
+    <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
