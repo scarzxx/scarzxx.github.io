@@ -62,7 +62,7 @@ table {
     border-radius: 10px;
     overflow: hidden;
     font-size: 0.9em;
-    table-layout: fixed;
+    table-layout: auto;
     margin: 0 auto;
 }
 
