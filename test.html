@@ -1,171 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
   <title>Kalkulačka ředění</title>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Konfigurace Tailwind CSS
+    tailwind.config = {
+      darkMode: 'class', // Aktivace dark mode pomocí class
+    };
+  </script>
   <style>
-    /* Vlastní styly pro tmavý režim */
-    body {
-      padding: 20px;
-      background-color: #212121;
-      color: #e0e0e0;
+    .toggle-checkbox:checked {
+      @apply: right-0 border-green-400;
+      right: 0;
+      border-color: #68d391;
     }
-    .demo-form {
-      margin-bottom: 24px;
-    }
-    .mdc-text-field--outlined {
-      --mdc-notched-outline-border-color: #555;
-    }
-    .mdc-text-field .mdc-floating-label {
-        color: rgba(224, 224, 224, 0.6);
-    }
-    .mdc-text-field .mdc-floating-label--float-above {
-        color: #e0e0e0;
-    }
-    .mdc-text-field__input {
-      color: #e0e0e0;
-    }
-    .mdc-button--raised {
-      --mdc-theme-primary: #424242;
-      --mdc-theme-on-primary: #e0e0e0;
-    }
-    .mdc-data-table__header-cell,
-    .mdc-data-table__cell {
-      color: #e0e0e0 !important;
-    }
-    .mdc-data-table__row:hover .mdc-data-table__cell,
-    .mdc-data-table__row:hover .mdc-data-table__header-cell {
-      background-color: #333 !important;
-    }
-    .mdc-data-table__header-row {
-      background-color: #333;
-    }
-    .mdc-data-table__content {
-        background-color: #212121;
-    }
-    .mdc-data-table__row {
-        border-color: #555;
+    .toggle-checkbox:checked + .toggle-label {
+      @apply: bg-green-400;
+      background-color: #68d391;
     }
   </style>
 </head>
-<body>
-  <h2 class="mdc-typography--headline4">Kalkulačka ředění</h2>
-
-  <div class="demo-form">
-    <div class="mdc-text-field mdc-text-field--outlined">
-      <input
-        type="number"
-        id="totalVolume"
-        class="mdc-text-field__input"
-        value="1000"
-      />
-      <div class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <label for="totalVolume" class="mdc-floating-label"
-            >Celkové množství roztoku (ml)</label
-          >
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
-      </div>
+<body class="bg-white dark:bg-gray-900 p-6">
+  <!-- Přepínač tmavého režimu -->
+  <div class="flex justify-end mb-6">
+    <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+        <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
     </div>
+    <label for="toggle" class="text-gray-700 dark:text-gray-200">Tmavý režim</label>
   </div>
 
-  <div class="demo-form">
-    <div class="mdc-text-field mdc-text-field--outlined">
-      <input
-        type="number"
-        id="ratio"
-        class="mdc-text-field__input"
-        value="15"
-      />
-      <div class="mdc-notched-outline">
-        <div class="mdc-notched-outline__leading"></div>
-        <div class="mdc-notched-outline__notch">
-          <label for="ratio" class="mdc-floating-label"
-            >Poměr ředění (1:X)</label
-          >
-        </div>
-        <div class="mdc-notched-outline__trailing"></div>
-      </div>
-    </div>
+  <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Kalkulačka ředění</h2>
+
+  <div class="mb-4">
+    <label for="totalVolume" class="block mb-2 text-gray-700 dark:text-gray-200">Celkové množství roztoku (ml):</label>
+    <input type="number" id="totalVolume" value="1000" class="w-full px-3 py-2 border rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
   </div>
 
-  <button class="mdc-button mdc-button--raised" onclick="calculate()">
-    <span class="mdc-button__label">Vypočítat</span>
-  </button>
-
-  <div style="margin-top: 20px">
-    <p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
-    <p>Potřebné množství vody: <span id="water"></span> ml</p>
+  <div class="mb-4">
+    <label for="ratio" class="block mb-2 text-gray-700 dark:text-gray-200">Poměr ředění (1:X):</label>
+    <input type="number" id="ratio" value="15" class="w-full px-3 py-2 border rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
   </div>
 
-  <div class="mdc-data-table" style="margin-top: 20px; width: 400px;">
-    <table class="mdc-data-table__table" aria-label="Výsledky ředění">
+  <button onclick="calculate()" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">Vypočítat</button>
+
+  <div class="mt-4">
+    <p class="text-gray-700 dark:text-gray-200">Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
+    <p class="text-gray-700 dark:text-gray-200">Potřebné množství vody: <span id="water"></span> ml</p>
+  </div>
+
+  <div class="mt-6">
+    <table class="w-full border-collapse">
       <thead>
-        <tr class="mdc-data-table__header-row">
-          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Poměr</th>
-          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Přípravek (ml)</th>
-          <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Voda (ml)</th>
+        <tr class="bg-gray-200 dark:bg-gray-700">
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200">Poměr</th>
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200">Přípravek (ml)</th>
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200">Voda (ml)</th>
         </tr>
       </thead>
-      <tbody class="mdc-data-table__content" id="dilutionTable">
+      <tbody id="dilutionTable">
       </tbody>
     </table>
   </div>
 
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script>
-    // Inicializace MDC komponent
-    const textFields = document.querySelectorAll('.mdc-text-field');
-    for (const textField of textFields) {
-      mdc.textField.MDCTextField.attachTo(textField);
+    // Funkce pro přepínání tmavého režimu
+    const toggle = document.getElementById('toggle');
+
+    // Kontrola preference v localStorage
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.documentElement.classList.add('dark');
+      toggle.checked = true;
     }
-    mdc.dataTable.MDCDataTable.attachTo(document.querySelector('.mdc-data-table'));
+
+    toggle.addEventListener('change', function() {
+      if (this.checked) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('darkMode', null);
+      }
+    });
 
     function calculate() {
-      const totalVolume = parseFloat(
-        document.getElementById("totalVolume").value
-      );
-      const ratio = parseFloat(document.getElementById("ratio").value);
+      const totalVolume = parseFloat(document.getElementById('totalVolume').value);
+      const ratio = parseFloat(document.getElementById('ratio').value);
 
       const concentrate = totalVolume / (1 + ratio);
       const water = totalVolume - concentrate;
 
-      document.getElementById("concentrate").textContent =
-        concentrate.toFixed(2);
-      document.getElementById("water").textContent = water.toFixed(2);
+      document.getElementById('concentrate').textContent = concentrate.toFixed(2);
+      document.getElementById('water').textContent = water.toFixed(2);
 
-      // Naplnění tabulky
-      const tableBody = document.getElementById("dilutionTable");
-      tableBody.innerHTML = "";
+      const tableBody = document.getElementById('dilutionTable');
+      tableBody.innerHTML = '';
 
       for (let i = 1; i <= ratio; i++) {
         const currentConcentrate = totalVolume / (1 + i);
         const currentWater = totalVolume - currentConcentrate;
 
-        const row = document.createElement("tr");
-        row.classList.add("mdc-data-table__row");
+        const row = document.createElement('tr');
+        row.classList.add('border-b', 'border-gray-200', 'dark:border-gray-600', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
 
-        const ratioCell = document.createElement("td");
-        ratioCell.classList.add("mdc-data-table__cell");
+        const ratioCell = document.createElement('td');
+        ratioCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200');
         ratioCell.textContent = `1:${i}`;
         row.appendChild(ratioCell);
 
-        const concentrateCell = document.createElement("td");
-        concentrateCell.classList.add("mdc-data-table__cell");
+        const concentrateCell = document.createElement('td');
+        concentrateCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200');
         concentrateCell.textContent = currentConcentrate.toFixed(2);
         row.appendChild(concentrateCell);
 
-        const waterCell = document.createElement("td");
-        waterCell.classList.add("mdc-data-table__cell");
+        const waterCell = document.createElement('td');
+        waterCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200');
         waterCell.textContent = currentWater.toFixed(2);
         row.appendChild(waterCell);
 
