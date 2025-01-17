@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kalkulačka ředění</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  />
+  <style>
+    /* Případné vlastní styly */
+    body {
+      padding: 20px;
+    }
+    .demo-form {
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kalkulačka ředění</h2>
+
+  <div class="demo-form">
+    <div class="mdc-text-field mdc-text-field--outlined">
+      <input
+        type="number"
+        id="totalVolume"
+        class="mdc-text-field__input"
+        value="1000"
+      />
+      <div class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <label for="totalVolume" class="mdc-floating-label"
+            >Celkové množství roztoku (ml)</label
+          >
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-form">
+    <div class="mdc-text-field mdc-text-field--outlined">
+      <input
+        type="number"
+        id="ratio"
+        class="mdc-text-field__input"
+        value="15"
+      />
+      <div class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+          <label for="ratio" class="mdc-floating-label"
+            >Poměr ředění (1:X)</label
+          >
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="mdc-button mdc-button--raised" onclick="calculate()">
+    <span class="mdc-button__label">Vypočítat</span>
+  </button>
+
+  <div style="margin-top: 20px">
+    <p>Potřebné množství přípravku: <span id="concentrate"></span> ml</p>
+    <p>Potřebné množství vody: <span id="water"></span> ml</p>
+  </div>
+
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script>
+    // Inicializace MDC komponent
+    mdc.textField.MDCTextField.attachTo(
+      document.querySelector(".mdc-text-field")
+    );
+
+    function calculate() {
+      const totalVolume = parseFloat(
+        document.getElementById("totalVolume").value
+      );
+      const ratio = parseFloat(document.getElementById("ratio").value);
+
+      const concentrate = totalVolume / (1 + ratio);
+      const water = totalVolume - concentrate;
+
+      document.getElementById("concentrate").textContent =
+        concentrate.toFixed(2);
+      document.getElementById("water").textContent = water.toFixed(2);
+    }
+  </script>
+</body>
+</html>
