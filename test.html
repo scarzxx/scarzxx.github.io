@@ -8,13 +8,12 @@
       darkMode: 'class',
       theme: {
         extend: {
-          // Přidání vlastních animací
           transitionProperty: {
             'bg': 'background-color',
-            'colors': 'background-color, color', // Pro plynulejší přechod barev
+            'colors': 'background-color, color',
           },
           transitionDuration: {
-            '400': '400ms', // Vlastní trvání animace
+            '400': '400ms',
           },
         }
       }
@@ -29,6 +28,15 @@
     .toggle-checkbox:checked + .toggle-label {
       @apply: bg-green-400;
       background-color: #68d391;
+    }
+    /* Styly pro tabulku (skrytá) */
+    #gatewayTableContainer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out;
+    }
+    #gatewayTableContainer.open {
+      max-height: 500px; /* Upravte dle potřeby */
     }
   </style>
 </head>
@@ -71,6 +79,27 @@
         </tr>
       </thead>
       <tbody id="dilutionTable">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tlačítko pro zobrazení tabulky s Gateway jednotkami -->
+  <button id="showGatewayTable" class="mt-6 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-400">
+    Zobrazit kompatibilní Gateway jednotky
+  </button>
+
+  <!-- Kontejner pro tabulku s Gateway jednotkami -->
+  <div id="gatewayTableContainer" class="mt-4">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-200 dark:bg-gray-700">
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200 transition-colors duration-400">Part Number</th>
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200 transition-colors duration-400">Software Version</th>
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200 transition-colors duration-400">Compatible</th>
+          <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-200 transition-colors duration-400">Notes</th>
+        </tr>
+      </thead>
+      <tbody id="gatewayTableBody">
       </tbody>
     </table>
   </div>
@@ -133,6 +162,52 @@
         tableBody.appendChild(row);
       }
     }
+
+    // Načtení dat z JSON souboru
+    fetch('units7N0.json')
+      .then(response => response.json())
+      .then(data => {
+        const gatewayTableBody = document.getElementById('gatewayTableBody');
+        const gatewayTableContainer = document.getElementById('gatewayTableContainer');
+        const showGatewayTableButton = document.getElementById('showGatewayTable');
+
+        // Zpracování dat a naplnění tabulky
+        data.gatewayUnits.forEach(unit => {
+          const row = document.createElement('tr');
+          row.classList.add('border-b', 'border-gray-200', 'dark:border-gray-600', 'hover:bg-gray-100', 'dark:hover:bg-gray-800', 'transition-colors', 'duration-400');
+
+          const partNumberCell = document.createElement('td');
+          partNumberCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200', 'transition-colors', 'duration-400');
+          partNumberCell.textContent = unit.partNumber;
+          row.appendChild(partNumberCell);
+
+          const softwareVersionCell = document.createElement('td');
+          softwareVersionCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200', 'transition-colors', 'duration-400');
+          softwareVersionCell.textContent = unit.softwareVersion;
+          row.appendChild(softwareVersionCell);
+
+          const compatibleCell = document.createElement('td');
+          compatibleCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200', 'transition-colors', 'duration-400');
+          compatibleCell.textContent = unit.compatible;
+          row.appendChild(compatibleCell);
+
+          const notesCell = document.createElement('td');
+          notesCell.classList.add('px-4', 'py-2', 'text-gray-700', 'dark:text-gray-200', 'transition-colors', 'duration-400');
+          notesCell.textContent = unit.notes;
+          row.appendChild(notesCell);
+
+          gatewayTableBody.appendChild(row);
+        });
+
+        // Skrytí tabulky po načtení dat
+        gatewayTableContainer.classList.remove('open');
+
+        // Event listener pro zobrazení/skrytí tabulky
+        showGatewayTableButton.addEventListener('click', () => {
+          gatewayTableContainer.classList.toggle('open');
+        });
+      })
+      .catch(error => console.error('Chyba při načítání JSON souboru:', error));
   </script>
 </body>
 </html>
