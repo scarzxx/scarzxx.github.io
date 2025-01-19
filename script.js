@@ -1,55 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     const page = window.location.pathname.split('/').pop();
-
-    // Funkce pro načtení a zobrazení tabulek
-    function loadAndPopulateTable(url, tableId, formatter) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (page === 'gateway.html' && tableId === 'gatewayUnits') {
-                    populateTable(tableId, data.gatewayUnits, formatter);
-                } else if (page === 'comfort.html' && tableId === 'comfortUnits') {
-                    populateTable(tableId, data.comfortUnits, formatter);
-                    addComfortUnitsDescription();
-                } else if (page === 'bsg.html' && tableId === 'bsgUnits') {
-                    populateTable(tableId, data.bsgUnits, formatter);
-                } else if (page === 'gateway.html' && tableId === '7N0TableContainer'){
-                    populateTable(tableId, data.gatewayUnits, formatter);
-                }
-            });
-    }
-
-    // Načtení příslušných tabulek pro danou stránku
-    if (page === 'gateway.html') {
-        loadAndPopulateTable('units.json', 'gatewayUnits', formatGatewayUnits);
-        // Tabulka 7N0 se načte po kliknutí na odkaz
-        const toggle7N0Info = document.getElementById('toggle7N0Info');
-        if (toggle7N0Info) {
-            toggle7N0Info.addEventListener('click', (event) => {
-                event.preventDefault();
-                const tableContainer = document.getElementById('7N0TableContainer');
-                if (tableContainer.classList.contains('hidden')) {
-                    // Načte tabulku, pokud ještě nebyla načtena
-                    if (!tableContainer.querySelector('table')) {
-                        loadAndPopulateTable('units7N0.json', '7N0TableContainer', formatGatewayUnits);
-                    }
-                    tableContainer.classList.remove('hidden');
-                } else {
-                    tableContainer.classList.add('hidden');
-                }
-            });
-        }
-    } else if (page === 'comfort.html') {
-        loadAndPopulateTable('units.json', 'comfortUnits', formatComfortUnits);
-    } else if (page === 'bsg.html') {
-        loadAndPopulateTable('units.json', 'bsgUnits', formatBsgUnits);
-    }
-
+    fetch('units.json')
+        .then(response => response.json())
+        .then(data => {
+            if (page === 'gateway.html') {
+                populateTable('gatewayUnits', data.gatewayUnits, formatGatewayUnits);
+            } else if (page === 'comfort.html') {
+                populateTable('comfortUnits', data.comfortUnits, formatComfortUnits);
+                addComfortUnitsDescription();
+            } else if (page === 'bsg.html') {
+                populateTable('bsgUnits', data.bsgUnits, formatBsgUnits);
+            }
+        });
+        
     adjustMenuToggleSize();
     window.addEventListener('resize', adjustMenuToggleSize);
-    fetchUpdates();
-
+    fetchUpdates(); // Přidáno volání funkce pro načítání aktualizací
     if (page === 'code.html') {
+        // Event listenery pro automatický výpočet
         const totalVolume = document.getElementById("totalVolume");
         const totalVolumeUnit = document.getElementById("totalVolumeUnit");
         const ratioSelect = document.getElementById("ratioSelect");
@@ -60,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalVolumeUnit.addEventListener("change", calculate);
             ratioSelect.addEventListener("change", calculate);
             customRatio.addEventListener("input", calculate);
+            // Prvotní výpočet
             calculate();
         }
     }
@@ -86,19 +55,18 @@ function fetchUpdates() {
         .catch(error => console.error('Error fetching version.xml:', error));
 }
 
-function populateTable(tableId, units, formatter) {
-    const container = document.getElementById(tableId);
+function populateTable(id, units, formatter) {
+    const container = document.getElementById(id);
+    const tableContainer = document.createElement('div');
+    tableContainer.classList.add('table-container');
     const table = document.createElement('table');
-    table.classList.add('w-full', 'border-collapse');
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
 
     const headers = Object.keys(units[0]);
     const headerRow = document.createElement('tr');
-    headerRow.classList.add('bg-gray-700');
     headers.forEach(header => {
         const th = document.createElement('th');
-        th.classList.add('px-4', 'py-2', 'text-left', 'text-gray-200','cursor-pointer');
         th.textContent = header;
         th.addEventListener('click', () => sortTable(table, headers.indexOf(header)));
         headerRow.appendChild(th);
@@ -113,30 +81,32 @@ function populateTable(tableId, units, formatter) {
 
     table.appendChild(thead);
     table.appendChild(tbody);
-    container.appendChild(table);
+    tableContainer.appendChild(table);
+    container.appendChild(tableContainer);
 }
 
 function formatGatewayUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
-        cell.classList.add('px-4', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-600','text-gray-200');
         if (key === 'partNumber') {
-            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon text-blue-500 hover:text-blue-700 cursor-pointer"></i>`;
-            cell.querySelector('.fa-copy').addEventListener('click', () => copyToClipboard(unit[key]));
+            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon" onclick="copyToClipboard('${unit[key]}')"></i>`;
         } else {
             cell.textContent = unit[key];
         }
-        if (key === 'compatible') {
-            if (unit[key] === 'Ne') {
-                cell.classList.add('bg-compatible-no-bg', 'text-compatible-no-text');
-            } else if (unit[key] === 'Ano') {
-                cell.classList.add('bg-compatible-yes-bg', 'text-compatible-yes-text');
-            }
+        if (key === 'compatible' && unit[key] === 'Ne') {
+            cell.classList.add('compatible-no');
         }
-        if (key === 'notes' && (unit[key] === 'Dostupná aktualizace' || unit[key] === 'Nevybíjí baterii')) {
-            cell.classList.add('bg-compatible-yes-bg', 'text-compatible-yes-text');
-        } else if (key === 'notes' && unit[key] === 'Pouze výměna') {
-            cell.classList.add('bg-compatible-no-bg', 'text-compatible-no-text');
+        if (key === 'compatible' && unit[key] === 'Ano') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Dostupná aktualizace') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Nevybíjí baterii') {
+            cell.classList.add('compatible-yes');
+        }
+        if (key === 'notes' && unit[key] === 'Pouze výměna') {
+            cell.classList.add('compatible-no');
         }
         row.appendChild(cell);
     });
@@ -145,20 +115,18 @@ function formatGatewayUnits(row, unit) {
 function formatComfortUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
-        cell.classList.add('px-4', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-600','text-gray-200');
         if (key === 'partNumber') {
-            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon text-blue-500 hover:text-blue-700 cursor-pointer"></i>`;
-            cell.querySelector('.fa-copy').addEventListener('click', () => copyToClipboard(unit[key]));
+            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon" onclick="copyToClipboard('${unit[key]}')"></i>`;
         } else if (key === 'notes') {
             const notes = unit[key].split('\n');
             notes.forEach(note => {
                 const noteSpan = document.createElement('span');
                 noteSpan.textContent = note;
                 if (note.includes('Highend')) {
-                    noteSpan.classList.add('text-yellow-500');
+                    noteSpan.classList.add('notes-high-end');
                 }
                 if (note.includes('Podpora Komfortního Menu v Maxidotu')) {
-                    noteSpan.classList.add('text-green-500');
+                    noteSpan.classList.add('notes-comfort-menu');
                 }
                 cell.appendChild(noteSpan);
                 cell.appendChild(document.createElement('br'));
@@ -166,12 +134,12 @@ function formatComfortUnits(row, unit) {
         } else if (key === 'frequency' && unit[key].includes('PR-5D1: 434 Mhz')) {
             const frequencySpan = document.createElement('span');
             frequencySpan.textContent = unit[key];
-            frequencySpan.classList.add('text-green-500');
+            frequencySpan.classList.add('notes-comfort-menu');
             cell.appendChild(frequencySpan);
         } else if (key === 'frequency' && unit[key].includes('PR-5D')) {
             const frequencySpan = document.createElement('span');
             frequencySpan.textContent = unit[key];
-            frequencySpan.classList.add('text-yellow-500');
+            frequencySpan.classList.add('notes-medium');
             cell.appendChild(frequencySpan);
         } else {
             cell.textContent = unit[key];
@@ -179,44 +147,95 @@ function formatComfortUnits(row, unit) {
         row.appendChild(cell);
     });
 }
+function populate7N0Table() {
+    fetch('units7N0.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('7N0TableContainer');
+            const tableContainer = document.createElement('div');
+            tableContainer.classList.add('table-container');
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
 
+            const headers = Object.keys(data.gatewayUnits[0]);
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                th.addEventListener('click', () => sortTable(table, headers.indexOf(header)));
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            data.gatewayUnits.forEach(unit => {
+                const row = document.createElement('tr');
+                formatGatewayUnits(row, unit); // Použijeme stejnou funkci pro formátování jako u ostatních gateway jednotek
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            tableContainer.appendChild(table);
+            container.appendChild(tableContainer);
+        });
+}
+
+// Zobrazí/skryje tabulku po kliknutí na odkaz 
+const toggle7N0Info = document.getElementById('toggle7N0Info');
+if (toggle7N0Info) {
+    toggle7N0Info.addEventListener('click', (event) => {
+        event.preventDefault();
+        const tableContainer = document.getElementById('7N0TableContainer');
+        if (tableContainer.innerHTML === '') {
+            populate7N0Table(); // Načte tabulku, pokud ještě nebyla načtena
+        }
+        if (tableContainer.style.display === 'none') {
+            tableContainer.style.display = 'block';
+            // Přidáme posun na tabulku
+            setTimeout(() => {
+                tableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50); // Malé zpoždění pro plynulejší animaci
+        } else {
+            tableContainer.style.display = 'none';
+        }
+    });
+}
 function formatBsgUnits(row, unit) {
     Object.keys(unit).forEach(key => {
         const cell = document.createElement('td');
-        cell.classList.add('px-4', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-600','text-gray-200');
         if (key === 'partNumber') {
-            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon text-blue-500 hover:text-blue-700 cursor-pointer"></i>`;
-            cell.querySelector('.fa-copy').addEventListener('click', () => copyToClipboard(unit[key]));
+            cell.innerHTML = `${unit[key]} <i class="fas fa-copy copy-icon" onclick="copyToClipboard('${unit[key]}')"></i>`;
         } else {
             cell.textContent = unit[key];
         }
         if (key === 'notes') {
             if (unit[key] === 'Medium') {
-                cell.classList.add('text-yellow-500');
+                cell.classList.add('notes-medium');
             }
             if (unit[key] === 'Highend') {
-                cell.classList.add('text-green-500');
+                cell.classList.add('notes-highend');
             }
         }
         if (key === 'fogLightSupport') {
             if (unit[key] === 'Ne') {
-                cell.classList.add('bg-compatible-no-bg', 'text-compatible-no-text');
+                cell.classList.add('fog-light-no');
             }
             if (unit[key] === 'Mlhovkami') {
-                cell.classList.add('bg-compatible-yes-bg', 'text-compatible-yes-text');
+                cell.classList.add('fog-light-mlhovkami');
             }
             if (unit[key] === 'Pouze dálkovými světly') {
-                cell.classList.add('bg-yellow-200', 'text-yellow-800');
+                cell.classList.add('fog-light-dalkovymi');
             }
         }
         row.appendChild(cell);
     });
 }
-
 fetch('https://api.ipify.org?format=json')
   .then(response => response.json())
   .then(data => {
     console.log('Vaše IP adresa:', data.ip);
+    // Zde můžete IP adresu dále zpracovat, např. zobrazit na stránce
     const ipAddressElement = document.getElementById('ip-address');
     if (ipAddressElement) {
         ipAddressElement.textContent = data.ip;
@@ -225,36 +244,35 @@ fetch('https://api.ipify.org?format=json')
   .catch(error => {
     console.error('Chyba při získávání IP adresy:', error);
   });
-
 function addComfortUnitsDescription() {
     const container = document.getElementById('comfortUnitsDescription');
     const descriptionContainer = document.createElement('div');
-    descriptionContainer.classList.add('mt-4');
+    descriptionContainer.classList.add('description-container');
     descriptionContainer.innerHTML = `
-        <h2 class="text-xl font-bold mb-2 text-gray-200">Zkratky v tabulce Komfortních Jednotek:</h2>
-        <p class="text-gray-200"><strong>NAR</strong> – North American Region: Vozidla nebo komponenty určené pro severoamerický trh (USA, Kanada). Splňují standardy DOT/SAE.</p>
-        <p class="text-gray-200"><strong>JOK</strong> – Japan, Oceania, Korea: Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy a normami.</p>
-        <p class="text-gray-200"><strong>J</strong> – Japan: Vozidla nebo komponenty specificky určené pro japonský trh.</p>
+        <h2>Zkratky v tabulce Komfortních Jednotek:</h2>
+        <p><strong>NAR</strong> – North American Region: Vozidla nebo komponenty určené pro severoamerický trh (USA, Kanada). Splňují standardy DOT/SAE.</p>
+        <p><strong>JOK</strong> – Japan, Oceania, Korea: Specifikace vozidel nebo dílů pro Japonsko, oblast Oceánie (Austrálie, Nový Zéland) a Jižní Koreu. Obvykle se řídí místními předpisy a normami.</p>
+        <p><strong>J</strong> – Japan: Vozidla nebo komponenty specificky určené pro japonský trh.</p>
     `;
     container.appendChild(descriptionContainer);
 }
 
+
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         const notification = document.getElementById('copyNotification');
-        notification.classList.add('show');
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
+        if (notification) {
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
     });
 }
 
 function sortTable(table, columnIndex) {
     const rows = Array.from(table.tBodies[0].rows);
-    const isAscending = !table.tHead.rows[0].cells[columnIndex].classList.contains('asc');
-    table.tHead.rows[0].cells[columnIndex].classList.toggle('asc', isAscending);
+    const isAscending = table.tHead.rows[0].cells[columnIndex].classList.toggle('asc');
     rows.sort((rowA, rowB) => {
         const cellA = rowA.cells[columnIndex].textContent.trim();
         const cellB = rowB.cells[columnIndex].textContent.trim();
@@ -287,9 +305,75 @@ function adjustMenuToggleSize() {
     }
 }
 
-// Funkce pro kalkulačku ředění (pokud je script.js sdílený mezi více stránkami)
-if (page === 'code.html') {
-    function calculate() {
-        // ... (zbytek kódu pro kalkulačku ředění)
+// Dilution calculator functions
+function calculate() {
+    const totalVolume = parseFloat(document.getElementById("totalVolume").value);
+    const totalVolumeUnit = document.getElementById("totalVolumeUnit").value;
+    const ratioSelect = document.getElementById("ratioSelect").value;
+    const customRatio = parseFloat(document.getElementById("customRatio").value);
+    const round = document.getElementById("round").checked;
+
+    let ratio;
+    if (ratioSelect === "custom") {
+        ratio = customRatio;
+    } else {
+        ratio = parseFloat(ratioSelect.split(":")[1]);
+    }
+
+    // Konverze na ml
+    let totalVolumeMl = convertToMl(totalVolume, totalVolumeUnit);
+
+    const concentrateMl = totalVolumeMl / (1 + ratio);
+    const waterMl = totalVolumeMl - concentrateMl;
+
+    // Konverze zpět na zvolené jednotky
+    const concentrate = convertFromMl(concentrateMl, totalVolumeUnit);
+    const water = convertFromMl(waterMl, totalVolumeUnit);
+
+    if (round) {
+        document.getElementById("concentrate").textContent = concentrate.toFixed(2);
+        document.getElementById("water").textContent = water.toFixed(2);
+    } else {
+        document.getElementById("concentrate").textContent = concentrate;
+        document.getElementById("water").textContent = water;
+    }
+
+    document.getElementById("concentrateUnit").textContent = totalVolumeUnit;
+    document.getElementById("waterUnit").textContent = totalVolumeUnit;
+}
+
+function convertToMl(value, unit) {
+    switch (unit) {
+        case "l":
+            return value * 1000;
+        case "oz":
+            return value * 29.5735;
+        case "gal":
+            return value * 3785.41;
+        default: // ml
+            return value;
     }
 }
+
+function convertFromMl(value, unit) {
+    switch (unit) {
+        case "l":
+            return value / 1000;
+        case "oz":
+            return value / 29.5735;
+        case "gal":
+            return value / 3785.41;
+        default: // ml
+            return value;
+    }
+}
+
+// Zobrazení/skrytí pole pro vlastní poměr
+document.getElementById("ratioSelect").addEventListener("change", function() {
+    const customRatioInput = document.getElementById("customRatio");
+    if (this.value === "custom") {
+        customRatioInput.style.display = "inline-block";
+    } else {
+        customRatioInput.style.display = "none";
+    }
+});

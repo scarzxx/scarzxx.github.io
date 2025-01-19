@@ -2,134 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>BSG/BCM Units</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // or 'media' if you want to use OS preference
-            theme: {
-                extend: {
-                    colors: {
-                        'compatible-yes-bg': '#e0f2f1', // TeXtreme Green from your CSS
-                        'compatible-yes-text': '#0d9488', // TeXtreme Green - darker
-                        'compatible-no-bg': '#fee2e2',
-                        'compatible-no-text': '#ef4444',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .copy-notification {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #4b5563; /* Updated color */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .copy-notification.show {
-            opacity: 1;
-        }
-        .toggle-checkbox:checked {
-            @apply: right-0 border-green-400;
-            right: 0;
-            border-color: #68d391;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            @apply: bg-green-400;
-            background-color: #68d391;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="novestyly.css">
 </head>
-<body class="bg-gray-900 text-white">
-    <nav class="bg-gray-800">
-        <div class="container mx-auto px-4 py-2 flex items-center justify-between">
-            <a class="text-xl font-bold text-white" href="#">AutoDiag</a>
-            <button class="md:hidden bg-gray-700 text-white px-3 py-2 rounded-md" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+<body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AutoDiag</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="hidden md:block" id="navbarNav">
-                <ul class="flex space-x-4">
-                    <li><a class="hover:text-gray-300" href="index.html">Domů</a></li>
-                    <li class="relative group">
-                        <a class="hover:text-gray-300 cursor-pointer" id="navbarDropdown">Jednotky</a>
-                        <ul class="absolute hidden group-hover:block bg-gray-800 mt-1 space-y-2 w-48">
-                            <li><a class="block px-4 py-2 hover:text-gray-300" href="gateway.html">Gateway Jednotky</a></li>
-                            <li><a class="block px-4 py-2 hover:text-gray-300" href="comfort.html">Komfortní Jednotky</a></li>
-                            <li><a class="block px-4 py-2 hover:text-gray-300" href="bsg.html">BSG/BCM Jednotky</a></li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Domů</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Jednotky
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
+                            <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
+                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
                         </ul>
                     </li>
-                    <li><a class="hover:text-gray-300" href="download.html">Download</a></li>
-                    <li class="relative group">
-                        <a class="hover:text-gray-300 cursor-pointer" id="navbarDropdownOther">Ostatní</a>
-                        <ul class="absolute hidden group-hover:block bg-gray-800 mt-1 space-y-2 w-48">
-                            <li><a class="block px-4 py-2 hover:text-gray-300" href="code.html">Kalkulačka ředění</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="download.html">Download</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ostatní
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownOther">
+                            <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-             <!-- Přepínač tmavého režimu -->
-            <div class="flex justify-end mb-6">
-                <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                    <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                    <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                </div>
-                <label for="toggle" class="text-gray-700 dark:text-gray-200">Tmavý režim</label>
-            </div>
         </div>
     </nav>
-    <section id="bsg" class="container mx-auto mt-4 px-4">
-        <h1 class="text-2xl font-bold mb-4">BSG/BCM Jednotky (Přísvit)</h1>
-        <div id="bsgUnits" class="overflow-x-auto"></div>
+    <section id="bsg" class="container mt-4">
+        <h1>BSG/BCM Jednotky (Přísvit)</h1>
+        <div id="bsgUnits" class="table-container"></div>
     </section>
     <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-         // Funkce pro přepínání tmavého režimu
-        const toggle = document.getElementById('toggle');
-
-        // Kontrola preference v localStorage
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.documentElement.classList.add('dark');
-            toggle.checked = true;
-        }
-
-        toggle.addEventListener('change', function() {
-        if (this.checked) {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('darkMode', null);
-            }
-        });
-        // Zajištění, že DOM je načtený před spuštěním skriptů
-        document.addEventListener('DOMContentLoaded', () => {
-            // Inicializace dropdown menu
-            const dropdowns = document.querySelectorAll('.group');
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', function() {
-                    const ul = this.querySelector('ul');
-                    ul.classList.toggle('hidden');
-                });
-            });
-            // Inicializace mobilního menu
-            const mobileMenuButton = document.querySelector('[data-bs-toggle="collapse"]');
-            const mobileNavMenu = document.getElementById('navbarNav');
-            if (mobileMenuButton && mobileNavMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileNavMenu.classList.toggle('hidden');
-                });
-            }
-        });
-    </script>
 </body>
 </html>

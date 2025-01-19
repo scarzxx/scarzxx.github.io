@@ -57,12 +57,12 @@ body {
 /* Table styling */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse;	
     background-color: #2c2c2c;
     border-radius: 10px;
     overflow: hidden;
     font-size: 0.9em;
-    table-layout: auto;
+    table-layout: fixed;
     margin: 0 auto;
 }
 
