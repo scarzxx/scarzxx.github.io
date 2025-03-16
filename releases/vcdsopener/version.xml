@@ -80,4 +80,12 @@
 			- Aktualizován binární soubor updater.exe.
 		</whatsNew>
 	</update>
+		<update>
+		<version>1.0.10</version>
+		<hash>896541651</hash>
+		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+			- Upraveny metody CheckForInternet a CheckForUpdates tak, aby byly asynchronní, což zlepšuje odezvu aplikace.
+		</whatsNew>
+	</update>
 </updates>
