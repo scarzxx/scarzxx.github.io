@@ -89,4 +89,20 @@
 			- CheckForUpdates tak, aby byly asynchronní, což zlepšuje odezvu aplikace.
 		</whatsNew>
 	</update>
+		</update>
+		<update>
+		<version>1.0.11</version>
+		<hash>896541651</hash>
+		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+			- Přidány nové obrázkové zdroje.
+			- Přidána nová položka kontextového menu `otevřít složku pro otevírání složky.
+			- Změněn text **"Otevřít"** na **"Spustit"** a aktualizována jeho ikona.
+			- Změněn text  **"Aktualizace"** na **"Aktualizovat"**, upravena jeho barva.
+			- Přidána možnost vyhledání chybového kódu pomocí klávesy ENTER.
+			- Aktualizovaná metoda pro změnu stavu připojení k internetu.
+			- Vylepšená metoda pro kontrolu času poslední aktualizace, deaktivaci odkazu během aktualizace a zpracování výjimek.
+			- Přidána nová metoda pro otevření vybrané složky ve Windows Exploreru.
+		</whatsNew>
+	</update>
 </updates>
