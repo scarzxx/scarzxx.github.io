@@ -85,8 +85,8 @@
 		<hash>896541651</hash>
 		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
 		<whatsNew>
-			- Upraveny metody CheckForInternet a CheckForUpdates tak, 
-			  aby byly asynchronní, což zlepšuje odezvu aplikace.
+			- Upraveny metody CheckForInternet 
+			- CheckForUpdates tak, aby byly asynchronní, což zlepšuje odezvu aplikace.
 		</whatsNew>
 	</update>
 </updates>
