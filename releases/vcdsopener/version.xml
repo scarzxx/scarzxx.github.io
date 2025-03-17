@@ -89,7 +89,6 @@
 			- CheckForUpdates tak, aby byly asynchronní, což zlepšuje odezvu aplikace.
 		</whatsNew>
 	</update>
-		</update>
 		<update>
 		<version>1.0.11</version>
 		<hash>896541651</hash>
