@@ -1,0 +1,70 @@
+{
+  "updates": [
+    {
+      "version": "1.0.12",
+      "hash": "02DA64D3D072183C255DCB7F3753FD1F",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidána reference na knihovnu CredentialManagement v AutoDiagnostika.csproj. - Přidán EncryptionHelper.cs pro bezpečné zpracování dat. - Implementován ModernNotificationLabel.cs pro vylepšené notifikace. - Aktualizován Form1, aby používal ModernNotificationLabel místo starého notifikačního systému. - Upraven Settings.cs pro šifrování citlivých dat. - Vytvořen packages.config pro správu závislostí."
+    },
+    {
+      "version": "1.0.11",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidány nové obrázkové zdroje. - Přidána nová položka kontextového menu \u0060otevřít složku\u0060 pro otevírání složky. - Změněn text Otevřít na Spustit a aktualizována jeho ikona. - Změněn text Aktualizace na Aktualizovat, upravena jeho barva. - Přidána možnost vyhledání chybového kódu pomocí klávesy ENTER. - Aktualizovaná metoda pro změnu stavu připojení k internetu. - Vylepšená metoda pro kontrolu času poslední aktualizace, deaktivaci odkazu během aktualizace a zpracování výjimek. - Přidána nová metoda pro otevření vybrané složky ve Windows Exploreru."
+    },
+    {
+      "version": "1.0.10",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Upraveny metody CheckForInternet - CheckForUpdates tak, aby byly asynchronní, což zlepšuje odezvu aplikace. "
+    },
+    {
+      "version": "1.0.9",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Aktualizován binární soubor updater.exe. "
+    },
+    {
+      "version": "1.0.8",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Aktualizace adresy URL v metodě CheckForUpdates linkLabel1_LinkClicked a metodě CheckForDailyUpdate, aby byl odstraněn segment „unit“. Tím je zajištěno, že aplikace odkazuje na správné místo pro informace o aktualizacích. "
+    },
+    {
+      "version": "1.0.7",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidáno button5 s popiskem \u0022Uložit a Zavřít\u0022 do formuláře - Nastaveno TextBox4 a TextBox3 na pouze pro čtení - Implementována obsluha události button5_Click pro uložení a zavření - Zavedena metoda FileMatches pro kontrolu shody souborového vzoru a fráze pomocí regulárních výrazů. - Aktualizována metoda FileMatches pro použití Path.GetFileNameWithoutExtension. - Upravená podmínka v metodě FileMatches pro shodu fráze jako celého slova nebo části názvu souboru. - Přidán URL do výzvy k online vyhledávání chybového kódu s \u0022vcds\u0022. - Implementována obsluha události pictureBox1_Click pro zobrazení formuláře Settings. "
+    },
+    {
+      "version": "1.0.6",
+      "hash": "",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidána notifikace místo messageboxu. - Oprava kódu. "
+    },
+    {
+      "version": "1.0.5",
+      "hash": "",
+      "url": "https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidána kontrola aktualizací každý den. - Oprava kódu. "
+    },
+    {
+      "version": "1.0.4",
+      "hash": "",
+      "url": "https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Updater opraven. - Staré soubory se smažou pokud existují. "
+    },
+    {
+      "version": "1.0.3",
+      "hash": "",
+      "url": "https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidán updater. - Přidána verze do názvu. - Uprava kódu. "
+    },
+    {
+      "version": "1.0.2",
+      "hash": "",
+      "url": "https://scarzxx.github.io/unit/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - První verze. - Kontrola složek pouze pro Anglickou a Českou verzi. - Uprava kódu. "
+    }
+  ]
+}
