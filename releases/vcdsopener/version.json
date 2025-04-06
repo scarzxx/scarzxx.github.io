@@ -2,7 +2,7 @@
   "updates": [
     {
       "version": "1.0.12",
-      "hash": "6D6C217800876A816C8636CDAD5E6C0B",
+      "hash": "9A8977C21EE42CFFF9C82EA051C1A21A",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
       "whatsNew": " - Přidána reference na knihovnu CredentialManagement v AutoDiagnostika.csproj. - Přidán EncryptionHelper.cs pro bezpečné zpracování dat. - Implementován ModernNotificationLabel.cs pro vylepšené notifikace. - Aktualizován Form1, aby používal ModernNotificationLabel místo starého notifikačního systému. - Upraven Settings.cs pro šifrování citlivých dat. - Vytvořen packages.config pro správu závislostí."
     },
