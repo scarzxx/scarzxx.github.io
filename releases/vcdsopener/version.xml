@@ -104,4 +104,17 @@
 			- Přidána nová metoda pro otevření vybrané složky ve Windows Exploreru.
 		</whatsNew>
 	</update>
+		</update>
+		<update>
+		<version>1.0.12</version>
+		<hash></hash>
+		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
+		<whatsNew>
+			- Aktualizován updater
+			- změna kontroly verze na version.json z xml
+			- Změněna notifikace na modernější
+			- Zašifrování OnlineVIS hesla
+			- Oprava chyb
+		</whatsNew>
+	</update>
 </updates>
