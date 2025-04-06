@@ -4,7 +4,7 @@
       "version": "1.0.13",
       "hash": "68E6225694D85AC196E8A70599A2464A",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
-      "whatsNew": " - Oprava chyb - Oprava načítání OnlineVIS - Oprava změny kontroly verze na version.json z xml - Přidány posledni novinky aktualizace do Nastavení-Novinky"
+      "whatsNew": " - Oprava chyb - Oprava načítání OnlineVIS - Oprava změny kontroly verze na version.json z xml - Přidány posledni novinky aktualizace do Nastavení-Novinky  - Načteno z json"
     },
     {
       "version": "1.0.12",
