@@ -106,7 +106,7 @@
 	</update>
 			<update>
 		<version>1.0.12</version>
-		<hash>896541651</hash>
+		<hash></hash>
 		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
 		<whatsNew>
 			- Aktualizován updater
@@ -117,8 +117,8 @@
 		</whatsNew>
 	</update>
 			<update>
-		<version>1.0.12</version>
-		<hash>896541651</hash>
+		<version>1.0.13</version>
+		<hash></hash>
 		<url>https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip</url>
 		<whatsNew>
 		- Oprava chyb
