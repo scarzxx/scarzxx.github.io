@@ -8,21 +8,33 @@
       @font-face {
         font-family: 'LucideIcons';
         src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
+        font-display: block; /* Helps ensure icons render */
       }
       .lucide {
         font-family: 'LucideIcons';
-        font-size: 1.25rem; /* Adjust icon size as needed */
+        font-size: 1.25rem; /* Adjust icon size */
         line-height: 1;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        /* Better rendering */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       /* Basic styles for dropdown */
       .dropdown-menu {
-        display: none; /* Hidden by default */
+        display: none; /* Hidden by default, shown by JS */
         position: absolute;
-        z-index: 50; /* Ensure dropdown is above other content */
+        z-index: 50;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
       }
-      .dropdown:hover .dropdown-menu,
-      .dropdown:focus-within .dropdown-menu { /* Show on hover or focus within */
+      .dropdown-menu.show { /* Class added by JS */
         display: block;
+        opacity: 1;
+        transform: translateY(0);
       }
       /* Hide content sections by default */
       .content-section {
@@ -35,11 +47,29 @@
       /* Pulsating animation */
       @keyframes pulse-text {
         0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+        50% { opacity: 0.6; }
       }
       .animate-pulse-text {
         animation: pulse-text 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
+      /* Style for wiring colors */
+      .wire-red-yellow { color: #dc2626; } /* red-600 */
+      .wire-yellow { color: #f59e0b; } /* amber-500 */
+      .wire-brown { color: #78350f; } /* amber-800 */
+      .wire-purple-white { color: #9333ea; } /* purple-600 */
+      .wire-black-blue { color: #2563eb; } /* blue-600 */
+      .dark .wire-black-blue { color: #60a5fa; } /* blue-400 in dark */
+      .dark .wire-brown { color: #d97706; } /* amber-600 in dark */
+      .dark .wire-red-yellow { color: #f87171; } /* red-400 in dark */
+      .dark .wire-purple-white { color: #c084fc; } /* purple-400 in dark */
+
+      .icon-inline {
+          display: inline-block;
+          vertical-align: middle; /* Align icon with text */
+          margin-left: 0.25rem; /* Space before icon */
+          font-size: 1rem; /* Smaller icon size */
+      }
+
     </style>
     <script>
         tailwind.config = {
@@ -49,43 +79,47 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'], // Use Inter font
                     },
+                    // Add custom colors if needed, e.g.:
+                    // colors: {
+                    //     'wire-brown': '#854d0e',
+                    // }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300 text-sm sm:text-base">
 
     <nav class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40 rounded-b-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Golf V Info</span>
+                    <a href="#" data-target="home" class="nav-link text-xl font-bold text-indigo-600 dark:text-indigo-400">Golf V Info</a>
                 </div>
 
-                <div class="hidden md:flex md:items-center md:space-x-4">
+                <div class="hidden md:flex md:items-center md:space-x-1 lg:space-x-2">
                     <a href="#" data-target="home" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Domů</a>
                     <div class="relative dropdown">
-                        <button class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
+                        <button type="button" class="dropdown-toggle px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
                             <span>Golf V</span>
                             <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <div class="dropdown-menu mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
+                        <div class="dropdown-menu mt-2 w-48 origin-top-right rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
                             <a href="#" data-target="gateway" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Gateway</a>
                             <a href="#" data-target="bsg" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">BSG</a>
                             <a href="#" data-target="komfort" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Komfort</a>
                         </div>
                     </div>
                     <div class="relative dropdown">
-                        <button class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
+                        <button type="button" class="dropdown-toggle px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
                             <span>Ostatní</span>
                             <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <div class="dropdown-menu mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
+                        <div class="dropdown-menu mt-2 w-56 origin-top-right rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
                             <a href="#" data-target="retrofit" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Retrofit senzoru deště/světla</a>
                             <a href="#" data-target="kalkulacka" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Kalkulačka ředění</a>
                         </div>
@@ -94,12 +128,13 @@
 
                 <div class="flex items-center">
                     <button id="theme-toggle" type="button" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                        <span class="lucide" id="theme-icon">&#xe9a7;</span> </button>
+                        <span class="sr-only">Přepnout světlý/tmavý režim</span>
+                        <span class="lucide" id="theme-icon"></span> </button>
 
                     <div class="ml-2 md:hidden">
                         <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
                             <span class="sr-only">Otevřít hlavní menu</span>
-                            <span class="lucide block h-6 w-6" id="mobile-menu-icon">&#xe99a;</span> </button>
+                            <span class="lucide block h-6 w-6" id="mobile-menu-icon"></span> </button>
                     </div>
                 </div>
             </div>
@@ -140,10 +175,10 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <section id="home" class="content-section active text-center">
-            <p class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-4 animate-pulse-text rounded-md p-2 bg-orange-100 dark:bg-orange-900/50 border border-orange-300 dark:border-orange-700">
+             <p class="text-base sm:text-lg font-semibold text-orange-600 dark:text-orange-400 mb-6 animate-pulse-text rounded-md p-3 bg-orange-100 dark:bg-orange-900/50 border border-orange-300 dark:border-orange-700">
                 Upozornění: Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.
             </p>
-            <h1 class="text-3xl font-bold mb-2">Vítejte</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">Vítejte</h1>
             <p class="text-gray-600 dark:text-gray-400">Vyberte kategorii z menu pro zobrazení.</p>
         </section>
 
@@ -153,23 +188,13 @@
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-gray-700">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
-                                Klíč
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                Hodnota
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
-                                Popis
-                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">Klíč</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Hodnota</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">Popis</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="gateway-table-body">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
-                        </tr>
+                        <tr><td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Vyberte sekci pro načtení dat.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -178,26 +203,16 @@
         <section id="bsg" class="content-section">
             <h2 class="text-2xl font-semibold mb-4">BSG Informace</h2>
              <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-gray-700">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
-                                Klíč
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                Hodnota
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
-                                Popis
-                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">Klíč</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Hodnota</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">Popis</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="bsg-table-body">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
-                        </tr>
+                         <tr><td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Vyberte sekci pro načtení dat.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -206,26 +221,16 @@
         <section id="komfort" class="content-section">
             <h2 class="text-2xl font-semibold mb-4">Komfort Informace</h2>
              <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-gray-700">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
-                                Klíč
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                Hodnota
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
-                                Popis
-                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">Klíč</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Hodnota</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">Popis</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="komfort-table-body">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
-                        </tr>
+                        <tr><td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Vyberte sekci pro načtení dat.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -233,100 +238,54 @@
 
         <section id="retrofit" class="content-section">
             <h2 class="text-2xl font-semibold mb-4">Retrofit senzoru deště/světla</h2>
-            <p class="text-gray-600 dark:text-gray-400">Obsah pro retrofit senzoru deště/světla přijde sem...</p>
-            </section>
+            <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 space-y-6">
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 border-b pb-2 border-gray-300 dark:border-gray-600">Schéma zapojení senzoru deště/světla a automaticky stmívatelného zrcátka</h3>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-md font-semibold text-indigo-600 dark:text-indigo-400">Senzor deště / světla</h4>
+                    <p><strong>Pin 1</strong> (<span class="wire-red-yellow font-medium">červeno</span>/<span class="wire-yellow font-medium">žlutý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Pojistka 17 (5A) <span class="lucide icon-inline text-amber-500" title="Pojistka">&#xea01;</span></p>
+                    <p><strong>Pin 2</strong> (<span class="wire-brown font-medium">hnědý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Kostra <span class="lucide icon-inline text-stone-500" title="Kostra">&#xe9b6;</span></p>
+                    <p><strong>Pin 3</strong> (<span class="wire-purple-white font-medium">fialovo/bílý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> BSG jednotka, konektor F, pin 3</p>
+                </div>
+
+                <div class="space-y-3">
+                     <h4 class="text-md font-semibold text-indigo-600 dark:text-indigo-400">Automaticky stmívatelné zrcátko</h4>
+                    <p><strong>Pin 1</strong> (<span class="wire-black-blue font-medium">černo/modrý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Pojistka 7 (5A) <span class="lucide icon-inline text-amber-500" title="Pojistka">&#xea01;</span></p>
+                    <p><strong>Pin 2</strong> (<span class="wire-brown font-medium">hnědý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Kostra <span class="lucide icon-inline text-stone-500" title="Kostra">&#xe9b6;</span></p>
+                    <p><strong>Pin 3</strong> (<span class="wire-black-blue font-medium">černo/modrý</span>, 0,35) <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> BSG jednotka, konektor B, pin 1 <span class="text-xs text-gray-500 dark:text-gray-400">(poznámka: u BSG je vodič 0,5 mm)</span></p>
+                    <p><strong>Pin 4</strong> <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Viz poznámka 1</p>
+                    <p><strong>Pin 5</strong> <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Viz poznámka 1</p>
+                    <p><strong>Pin 6</strong> <span class="text-gray-500 dark:text-gray-400 mx-1">-&gt;</span> Konektor stropní konzole (modrý konektor), pin 6</p>
+                </div>
+
+                 <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                    <p class="text-sm text-gray-600 dark:text-gray-400"><strong class="font-semibold">Poznámka 1:</strong> Pro piny 4 a 5 automaticky stmívatelného zrcátka je třeba ověřit zapojení dle konkrétního modelu a výbavy vozidla (např. pro signály zpátečky, vnitřního osvětlení).</p>
+                </div>
+
+            </div>
+        </section>
 
         <section id="kalkulacka" class="content-section">
             <h2 class="text-2xl font-semibold mb-4">Kalkulačka ředění</h2>
-            <p class="text-gray-600 dark:text-gray-400">Obsah pro kalkulačku ředění přijde sem...</p>
-             </section>
+            <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+                <p class="text-gray-600 dark:text-gray-400">Obsah pro kalkulačku ředění přijde sem...</p>
+                 </div>
+        </section>
 
     </main>
 
     <script>
+        // --- DOM Elements ---
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
-        const sunIcon = '&#xe9a7;'; // Lucide sun icon code
-        const moonIcon = '&#xe99e;'; // Lucide moon icon code
         const htmlElement = document.documentElement;
-
-        // --- Theme Persistence ---
-        // Check for saved theme preference or use system preference
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            htmlElement.classList.add('dark');
-            themeIcon.innerHTML = sunIcon; // Show sun in dark mode
-        } else {
-            htmlElement.classList.remove('dark');
-            themeIcon.innerHTML = moonIcon; // Show moon in light mode
-        }
-
-        // --- Theme Toggle Button Event ---
-        themeToggle.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            const isDarkMode = htmlElement.classList.contains('dark');
-            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            themeIcon.innerHTML = isDarkMode ? sunIcon : moonIcon;
-        });
-
-        // --- Navigation Logic ---
-        const navLinks = document.querySelectorAll('.nav-link');
-        const contentSections = document.querySelectorAll('.content-section');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = document.getElementById('mobile-menu-icon');
-        const menuIconCode = '&#xe99a;'; // Lucide menu icon
-        const closeIconCode = '&#xea7f;'; // Lucide x icon
-
-        function setActiveSection(targetId) {
-            contentSections.forEach(section => {
-                if (section.id === targetId) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
-            });
-            // Close mobile menu after navigation
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-                mobileMenuIcon.innerHTML = menuIconCode;
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            }
-             // Scroll to top of the content area
-             document.querySelector('main').scrollTop = 0; // For overflow containers
-             window.scrollTo({ top: document.querySelector('nav').offsetHeight, behavior: 'smooth' }); // Scroll viewport below nav
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                const targetId = link.getAttribute('data-target');
-                if (targetId) {
-                    setActiveSection(targetId);
-                }
-            });
-        });
-
-        // --- Mobile Menu Toggle ---
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenu.classList.toggle('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenuIcon.innerHTML = isExpanded ? menuIconCode : closeIconCode;
-        });
-
-        // --- Mobile Dropdown Toggle ---
-        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-        mobileDropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const content = toggle.nextElementSibling; // Get the dropdown content div
-                const arrow = toggle.querySelector('svg');
-                content.classList.toggle('hidden');
-                arrow.classList.toggle('rotate-90'); // Rotate arrow on open/close
-            });
-        });
-
-        // --- Initial Setup ---
-        // E
+        const navLinks = document.querySelectorAll('.nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdownMenus = document.querySele
