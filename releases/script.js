@@ -1,23 +1,40 @@
 
+// script.js
+
+// Přepínání světlého/tmavého režimu
 function toggleTheme() {
-  document.documentElement.classList.toggle('dark');
+  const html = document.documentElement;
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const gatewayData = ["Gateway řádek 1", "Gateway řádek 2"];
-  const bsgData = ["BSG řádek 1", "BSG řádek 2"];
-  const komfortData = ["Komfort řádek 1", "Komfort řádek 2"];
+// Nastavení výchozího režimu při načtení
+window.addEventListener('DOMContentLoaded', () => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
 
-  const fillTable = (id, data) => {
-    const tbody = document.getElementById(id);
-    data.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td class="border px-4 py-2">${item}</td>`;
-      tbody.appendChild(row);
+  // Dropdowny
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const menu = dropdown.querySelector('.dropdown-menu');
+
+    trigger.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
     });
-  };
 
-  fillTable("gateway-data", gatewayData);
-  fillTable("bsg-data", bsgData);
-  fillTable("komfort-data", komfortData);
+    // Zavření když klikneš mimo
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  });
 });

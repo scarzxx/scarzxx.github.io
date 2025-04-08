@@ -1,24 +1,37 @@
-
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BSG</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-black dark:bg-gray-900 dark:text-white">
-  <header class="p-4 shadow-md flex justify-between items-center">
-    <h1 class="text-xl font-bold">BSG</h1>
-    <a href="index.html" class="text-blue-500 hover:underline">← Zpět domů</a>
-  </header>
-  <main class="p-6">
-    <table class="min-w-full table-auto border border-gray-400 dark:border-gray-600">
-      <thead><tr><th class="border px-4 py-2">Data</th></tr></thead>
-      <tbody id="bsg-data"></tbody>
-    </table>
-  </main>
-  <script src="script.js"></script>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen flex flex-col">
+
+  <nav class="bg-gray-100 dark:bg-gray-800 p-4 shadow-md flex justify-between items-center">
+    <ul class="flex space-x-4 items-center">
+      <li><a href="index.html" class="hover:underline">Domů</a></li>
+      <li class="relative dropdown">
+        <button class="dropdown-trigger cursor-pointer hover:underline">Golf V</button>
+        <ul class="dropdown-menu hidden absolute bg-white dark:bg-gray-700 shadow-md mt-2 rounded z-10">
+          <li><a href="gateway.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Gateway</a></li>
+          <li><a href="bsg.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">BSG</a></li>
+          <li><a href="komfort.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Komfort</a></li>
+        </ul>
+      </li>
+      <li class="relative dropdown">
+        <button class="dropdown-trigger cursor-pointer hover:underline">Ostatní</button>
+        <ul class="dropdown-menu hidden absolute bg-white dark:bg-gray-700 shadow-md mt-2 rounded z-10">
+          <li><a href="retrofit.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Retrofit senzoru</a></li>
+          <li><a href="kalkulacka.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Kalkulačka ředění</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-600 text-sm px-3 py-1 rounded">Přepnout téma</button>
+  </nav>
+
+  <main class="flex-grow p-6"><h1 class='text-xl font-bold mb-4'>BSG</h1><table class='w-full table-auto border-collapse border border-gray-400'><thead><tr><th class='border px-4 py-2'>Sloupec 1</th><th class='border px-4 py-2'>Sloupec 2</th></tr></thead><tbody></tbody></table></main>
+
 </body>
 </html>
