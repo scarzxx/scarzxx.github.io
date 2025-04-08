@@ -35,26 +35,61 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchUpdates() {
-    fetch('releases/vcdsopener/version.xml')
-        .then(response => response.text())
+    // 1. Změna URL na JSON soubor
+    fetch('releases/vcdsopener/version.json')
+        .then(response => {
+            // Kontrola, zda byl požadavek úspěšný
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // 2. Zpracování odpovědi jako JSON
+            return response.json();
+        })
         .then(data => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(data, 'application/xml');
-            const updates = xml.getElementsByTagName('update');
-            const latestUpdate = updates[updates.length - 1];
-            const whatsNew = latestUpdate.getElementsByTagName('whatsNew')[0].textContent;
+            // 'data' nyní obsahuje parsovaný JSON objekt
+
+            // Kontrola, zda JSON obsahuje pole 'updates' a není prázdné
+            if (!data || !data.updates || data.updates.length === 0) {
+                console.error('JSON neobsahuje žádné aktualizace nebo má nesprávný formát.');
+                return; // Ukončení, pokud nejsou data
+            }
+
+            // 3. Získání pole aktualizací
+            const updatesArray = data.updates;
+
+            // 4. Předpokládáme, že poslední záznam v poli je nejnovější
+            const latestUpdate = updatesArray[updatesArray.length - 1];
+
+            // 5. Získání textu 'whatsNew' přímo z objektu
+            const whatsNew = latestUpdate.whatsNew;
+
+            // Získání elementu seznamu z DOM
             const whatsNewList = document.getElementById('whats-new-list');
+
+            // Vyčištění seznamu před přidáním nových položek (doporučeno)
+            whatsNewList.innerHTML = '';
+
+            // 6. Zpracování textu 'whatsNew' (stejné jako předtím)
+            // Rozdělení textu podle nových řádků a vytvoření položek seznamu
             whatsNew.split('\n').forEach(item => {
-                if (item.trim()) {
+                const trimmedItem = item.trim();
+                // Přidat položku pouze pokud není po oříznutí prázdná
+                if (trimmedItem) {
                     const li = document.createElement('li');
-                    li.textContent = item.trim();
+                    li.textContent = trimmedItem;
                     whatsNewList.appendChild(li);
                 }
             });
         })
-        .catch(error => console.error('Error fetching version.xml:', error));
+        .catch(error => {
+            // Vylepšené chybové hlášení
+            console.error('Chyba při načítání nebo zpracování version.json:', error);
+        });
 }
 
+// Pro spuštění funkce (například po načtení stránky):
+// document.addEventListener('DOMContentLoaded', fetchUpdates);
+// nebo ji zavolejte, jak potřebujete.
 function populateTable(id, units, formatter) {
     const container = document.getElementById(id);
     const tableContainer = document.createElement('div');
