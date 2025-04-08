@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="cs" class="light"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf V Info</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @font-face {
+        font-family: 'LucideIcons';
+        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
+      }
+      .lucide {
+        font-family: 'LucideIcons';
+        font-size: 1.25rem; /* Adjust icon size as needed */
+        line-height: 1;
+      }
+      /* Basic styles for dropdown */
+      .dropdown-menu {
+        display: none; /* Hidden by default */
+        position: absolute;
+        z-index: 50; /* Ensure dropdown is above other content */
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu { /* Show on hover or focus within */
+        display: block;
+      }
+      /* Hide content sections by default */
+      .content-section {
+        display: none;
+      }
+      /* Show the active section */
+      .content-section.active {
+        display: block;
+      }
+      /* Pulsating animation */
+      @keyframes pulse-text {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      .animate-pulse-text {
+        animation: pulse-text 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Use Inter font
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+
+    <nav class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40 rounded-b-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Golf V Info</span>
+                </div>
+
+                <div class="hidden md:flex md:items-center md:space-x-4">
+                    <a href="#" data-target="home" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Domů</a>
+                    <div class="relative dropdown">
+                        <button class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
+                            <span>Golf V</span>
+                            <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
+                            <a href="#" data-target="gateway" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Gateway</a>
+                            <a href="#" data-target="bsg" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">BSG</a>
+                            <a href="#" data-target="komfort" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Komfort</a>
+                        </div>
+                    </div>
+                    <div class="relative dropdown">
+                        <button class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 inline-flex items-center">
+                            <span>Ostatní</span>
+                            <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 py-1">
+                            <a href="#" data-target="retrofit" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Retrofit senzoru deště/světla</a>
+                            <a href="#" data-target="kalkulacka" class="nav-link block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">Kalkulačka ředění</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <button id="theme-toggle" type="button" class="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                        <span class="lucide" id="theme-icon">&#xe9a7;</span> </button>
+
+                    <div class="ml-2 md:hidden">
+                        <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Otevřít hlavní menu</span>
+                            <span class="lucide block h-6 w-6" id="mobile-menu-icon">&#xe99a;</span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" data-target="home" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Domů</a>
+                <div>
+                    <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
+                        <span>Golf V</span>
+                        <svg class="h-5 w-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-1 space-y-1">
+                        <a href="#" data-target="gateway" class="nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-600">Gateway</a>
+                        <a href="#" data-target="bsg" class="nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-600">BSG</a>
+                        <a href="#" data-target="komfort" class="nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-600">Komfort</a>
+                    </div>
+                </div>
+                 <div>
+                    <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
+                        <span>Ostatní</span>
+                         <svg class="h-5 w-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 mt-1 space-y-1">
+                        <a href="#" data-target="retrofit" class="nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-600">Retrofit senzoru deště/světla</a>
+                        <a href="#" data-target="kalkulacka" class="nav-link block px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-600">Kalkulačka ředění</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <section id="home" class="content-section active text-center">
+            <p class="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-4 animate-pulse-text rounded-md p-2 bg-orange-100 dark:bg-orange-900/50 border border-orange-300 dark:border-orange-700">
+                Upozornění: Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.
+            </p>
+            <h1 class="text-3xl font-bold mb-2">Vítejte</h1>
+            <p class="text-gray-600 dark:text-gray-400">Vyberte kategorii z menu pro zobrazení.</p>
+        </section>
+
+        <section id="gateway" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">Gateway Informace</h2>
+            <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
+                                Klíč
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Hodnota
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
+                                Popis
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="gateway-table-body">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="bsg" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">BSG Informace</h2>
+             <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
+                                Klíč
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Hodnota
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
+                                Popis
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="bsg-table-body">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="komfort" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">Komfort Informace</h2>
+             <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tl-lg">
+                                Klíč
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Hodnota
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider rounded-tr-lg">
+                                Popis
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="komfort-table-body">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Načítání...</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300"></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 rounded-bl-lg rounded-br-lg"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="retrofit" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">Retrofit senzoru deště/světla</h2>
+            <p class="text-gray-600 dark:text-gray-400">Obsah pro retrofit senzoru deště/světla přijde sem...</p>
+            </section>
+
+        <section id="kalkulacka" class="content-section">
+            <h2 class="text-2xl font-semibold mb-4">Kalkulačka ředění</h2>
+            <p class="text-gray-600 dark:text-gray-400">Obsah pro kalkulačku ředění přijde sem...</p>
+             </section>
+
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const sunIcon = '&#xe9a7;'; // Lucide sun icon code
+        const moonIcon = '&#xe99e;'; // Lucide moon icon code
+        const htmlElement = document.documentElement;
+
+        // --- Theme Persistence ---
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            htmlElement.classList.add('dark');
+            themeIcon.innerHTML = sunIcon; // Show sun in dark mode
+        } else {
+            htmlElement.classList.remove('dark');
+            themeIcon.innerHTML = moonIcon; // Show moon in light mode
+        }
+
+        // --- Theme Toggle Button Event ---
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            const isDarkMode = htmlElement.classList.contains('dark');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            themeIcon.innerHTML = isDarkMode ? sunIcon : moonIcon;
+        });
+
+        // --- Navigation Logic ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+        const menuIconCode = '&#xe99a;'; // Lucide menu icon
+        const closeIconCode = '&#xea7f;'; // Lucide x icon
+
+        function setActiveSection(targetId) {
+            contentSections.forEach(section => {
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            // Close mobile menu after navigation
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.innerHTML = menuIconCode;
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            }
+             // Scroll to top of the content area
+             document.querySelector('main').scrollTop = 0; // For overflow containers
+             window.scrollTo({ top: document.querySelector('nav').offsetHeight, behavior: 'smooth' }); // Scroll viewport below nav
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                const targetId = link.getAttribute('data-target');
+                if (targetId) {
+                    setActiveSection(targetId);
+                }
+            });
+        });
+
+        // --- Mobile Menu Toggle ---
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenuIcon.innerHTML = isExpanded ? menuIconCode : closeIconCode;
+        });
+
+        // --- Mobile Dropdown Toggle ---
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling; // Get the dropdown content div
+                const arrow = toggle.querySelector('svg');
+                content.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-90'); // Rotate arrow on open/close
+            });
+        });
+
+        // --- Initial Setup ---
+        // E
