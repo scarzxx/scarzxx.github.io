@@ -35,57 +35,95 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function fetchUpdates() {
-    // 1. Změna URL na JSON soubor
-    fetch('releases/vcdsopener/version.json')
+    fetch('releases/vcdsopener/version.json') // Ujistěte se, že cesta je správná
         .then(response => {
-            // Kontrola, zda byl požadavek úspěšný
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                // Vylepšené chybové hlášení pro síťové problémy
+                throw new Error(`Chyba sítě: ${response.status} ${response.statusText}`);
             }
-            // 2. Zpracování odpovědi jako JSON
-            return response.json();
+            return response.json(); // Zpracovat odpověď jako JSON
         })
         .then(data => {
-            // 'data' nyní obsahuje parsovaný JSON objekt
-
-            // Kontrola, zda JSON obsahuje pole 'updates' a není prázdné
-            if (!data || !data.updates || data.updates.length === 0) {
-                console.error('JSON neobsahuje žádné aktualizace nebo má nesprávný formát.');
-                return; // Ukončení, pokud nejsou data
+            // Kontrola, zda data obsahují platné pole 'updates' a není prázdné
+            if (!data || !Array.isArray(data.updates) || data.updates.length === 0) {
+                console.error('JSON data jsou neplatná, neobsahují pole "updates" nebo je pole prázdné.');
+                // Můžete zde přidat i zobrazení chyby uživateli
+                const whatsNewList = document.getElementById('whats-new-list');
+                if (whatsNewList) {
+                    whatsNewList.innerHTML = '<li>Informace o aktualizacích nejsou momentálně dostupné.</li>';
+                }
+                return; // Ukončit funkci
             }
 
-            // 3. Získání pole aktualizací
-            const updatesArray = data.updates;
+            // --- ZMĚNA: Získání PRVNÍ položky jako nejnovější ---
+            const latestUpdate = data.updates[0];
 
-            // 4. Předpokládáme, že poslední záznam v poli je nejnovější
-            const latestUpdate = updatesArray[updatesArray.length - 1];
+            // Zkontrolovat, zda nejnovější aktualizace a její 'whatsNew' existují
+            if (!latestUpdate || typeof latestUpdate.whatsNew !== 'string') {
+                console.error('Nejnovější záznam v JSON nemá platný formát nebo chybí "whatsNew".');
+                const whatsNewList = document.getElementById('whats-new-list');
+                if (whatsNewList) {
+                    whatsNewList.innerHTML = '<li>Popis novinek pro poslední verzi chybí.</li>';
+                }
+                return; // Ukončit funkci
+            }
 
-            // 5. Získání textu 'whatsNew' přímo z objektu
-            const whatsNew = latestUpdate.whatsNew;
-
-            // Získání elementu seznamu z DOM
+            const whatsNewText = latestUpdate.whatsNew;
             const whatsNewList = document.getElementById('whats-new-list');
 
-            // Vyčištění seznamu před přidáním nových položek (doporučeno)
+            // Zkontrolovat, zda element pro seznam existuje v HTML
+            if (!whatsNewList) {
+                console.error('HTML element s ID "whats-new-list" nebyl nalezen.');
+                return; // Ukončit funkci, pokud není kam vkládat
+            }
+
+            // Vyčistit seznam před přidáním nových položek
             whatsNewList.innerHTML = '';
 
-            // 6. Zpracování textu 'whatsNew' (stejné jako předtím)
-            // Rozdělení textu podle nových řádků a vytvoření položek seznamu
-            whatsNew.split('\n').forEach(item => {
-                const trimmedItem = item.trim();
+            // --- ZMĚNA: Rozdělení textu podle " - " ---
+            // Předpokládáme, že každý bod začíná " - " (s mezerou před i za pomlčkou)
+            // Rozdělíme string podle tohoto vzoru. Výsledné pole bude obsahovat
+            // texty *mezi* těmito oddělovači. První prvek může být prázdný, pokud text začíná " - ".
+            const updatePoints = whatsNewText.split(' - ');
+
+            updatePoints.forEach(point => {
+                const trimmedPoint = point.trim(); // Odstranit bílé znaky z okolí
+
                 // Přidat položku pouze pokud není po oříznutí prázdná
-                if (trimmedItem) {
+                if (trimmedPoint) {
                     const li = document.createElement('li');
-                    li.textContent = trimmedItem;
+                    // Zobrazíme text *bez* úvodní pomlčky a mezery,
+                    // protože ty sloužily jako oddělovač.
+                    li.textContent = trimmedPoint;
                     whatsNewList.appendChild(li);
                 }
             });
+
+            // Pokud by po rozdělení a ořezání nezůstaly žádné platné body
+            if (whatsNewList.children.length === 0 && whatsNewText.trim() !== '') {
+                 console.warn('Text "whatsNew" byl nalezen, ale nepodařilo se jej rozdělit na body pomocí " - ". Zobrazuji jako jeden blok.');
+                 const li = document.createElement('li');
+                 li.textContent = whatsNewText.trim(); // Zobrazit celý text jako nouzové řešení
+                 whatsNewList.appendChild(li);
+            } else if (whatsNewList.children.length === 0) {
+                 // Pokud byl text whatsNew prázdný
+                 whatsNewList.innerHTML = '<li>Pro tuto verzi nejsou uvedeny žádné novinky.</li>';
+            }
+
         })
         .catch(error => {
-            // Vylepšené chybové hlášení
-            console.error('Chyba při načítání nebo zpracování version.json:', error);
+            console.error('Došlo k chybě při načítání nebo zpracování version.json:', error);
+            // Zobrazit chybu uživateli
+            const whatsNewList = document.getElementById('whats-new-list');
+            if (whatsNewList) {
+                // Zobrazit obecnou chybu nebo specifickou z error.message
+                whatsNewList.innerHTML = `<li>Chyba při načítání novinek: ${error.message}</li>`;
+            }
         });
 }
+
+// Příklad volání funkce (např. po načtení stránky)
+// document.addEventListener('DOMContentLoaded', fetchUpdates);
 
 // Pro spuštění funkce (například po načtení stránky):
 // document.addEventListener('DOMContentLoaded', fetchUpdates);
