@@ -16,78 +16,31 @@
 
   <nav class="bg-gray-100 dark:bg-gray-800 p-4">
     <ul class="flex flex-wrap gap-4">
-      <li><a href="#" class="hover:underline">Domů</a></li>
+      <li><a href="index.html" class="hover:underline">Domů</a></li>
       <li class="relative group">
         <span class="cursor-pointer hover:underline">Golf V</span>
         <ul class="absolute hidden group-hover:block bg-white dark:bg-gray-700 shadow-md mt-2 rounded">
-          <li><a href="#gateway" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Gateway</a></li>
-          <li><a href="#bsg" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">BSG</a></li>
-          <li><a href="#komfort" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Komfort</a></li>
+          <li><a href="gateway.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Gateway</a></li>
+          <li><a href="bsg.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">BSG</a></li>
+          <li><a href="komfort.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Komfort</a></li>
         </ul>
       </li>
       <li class="relative group">
         <span class="cursor-pointer hover:underline">Ostatní</span>
         <ul class="absolute hidden group-hover:block bg-white dark:bg-gray-700 shadow-md mt-2 rounded">
-          <li><a href="#retrofit" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Retrofit senzoru</a></li>
-          <li><a href="#kalkulacka" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Kalkulačka ředění</a></li>
+          <li><a href="retrofit.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Retrofit senzoru</a></li>
+          <li><a href="kalkulacka.html" class="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-600">Kalkulačka ředění</a></li>
         </ul>
       </li>
     </ul>
   </nav>
 
-  <main class="p-6 space-y-10">
-    <section class="text-center space-y-4">
-      <p class="text-red-600 font-semibold animate-pulse">
-        Upozornění: Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.
-      </p>
-      <h2 class="text-2xl font-bold">Vítejte</h2>
-      <p>Vyberte kategorii z menu pro zobrazení.</p>
-    </section>
-
-    <section id="gateway">
-      <h3 class="text-xl font-semibold">Gateway</h3>
-      <table class="min-w-full table-auto border border-gray-400 dark:border-gray-600">
-        <thead><tr><th class="border px-4 py-2">Data</th></tr></thead>
-        <tbody id="gateway-data"></tbody>
-      </table>
-    </section>
-
-    <section id="bsg">
-      <h3 class="text-xl font-semibold">BSG</h3>
-      <table class="min-w-full table-auto border border-gray-400 dark:border-gray-600">
-        <thead><tr><th class="border px-4 py-2">Data</th></tr></thead>
-        <tbody id="bsg-data"></tbody>
-      </table>
-    </section>
-
-    <section id="komfort">
-      <h3 class="text-xl font-semibold">Komfort</h3>
-      <table class="min-w-full table-auto border border-gray-400 dark:border-gray-600">
-        <thead><tr><th class="border px-4 py-2">Data</th></tr></thead>
-        <tbody id="komfort-data"></tbody>
-      </table>
-    </section>
-
-    <section id="retrofit" class="space-y-4">
-      <h3 class="text-xl font-semibold">Retrofit senzoru deště/světla</h3>
-      <ul class="space-y-2">
-        <li class="text-red-600">Pin 1 (červeno/žlutý, 0.35) → Pojistka 17 (5 A)</li>
-        <li class="text-yellow-700">Pin 2 (hnědý, 0.35) → Kostra</li>
-        <li class="text-purple-400">Pin 3 (fialovo/bílý, 0.35) → BSG jednotka, konektor F - pin 3</li>
-      </ul>
-      <h3 class="text-xl font-semibold">Automaticky stmívatelné zrcátko</h3>
-      <ul class="space-y-2">
-        <li class="text-blue-800">Pin 1 (černo/modrý, 0.35) → Pojistka 7 (5 A)</li>
-        <li class="text-yellow-700">Pin 2 (hnědý, 0.35) → Kostra</li>
-        <li class="text-blue-800">Pin 3 (černo/modrý, 0.35) → BSG jednotka, konektor B - pin 1</li>
-        <li>Pin 6 → Stropní konzole (modrý konektor) - pin 6</li>
-      </ul>
-    </section>
-
-    <section id="kalkulacka">
-      <h3 class="text-xl font-semibold">Kalkulačka ředění</h3>
-      <p>Připravuje se...</p>
-    </section>
+  <main class="p-6 text-center space-y-4">
+    <p class="text-red-600 font-semibold animate-pulse">
+      Upozornění: Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.
+    </p>
+    <h2 class="text-2xl font-bold">Vítejte</h2>
+    <p>Vyberte kategorii z menu pro zobrazení.</p>
   </main>
 
   <script src="script.js"></script>

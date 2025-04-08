@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Komfort</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white">
+  <header class="p-4 shadow-md flex justify-between items-center">
+    <h1 class="text-xl font-bold">Komfort</h1>
+    <a href="index.html" class="text-blue-500 hover:underline">← Zpět domů</a>
+  </header>
+  <main class="p-6">
+    <table class="min-w-full table-auto border border-gray-400 dark:border-gray-600">
+      <thead><tr><th class="border px-4 py-2">Data</th></tr></thead>
+      <tbody id="komfort-data"></tbody>
+    </table>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
