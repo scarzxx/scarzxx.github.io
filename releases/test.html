@@ -8,11 +8,11 @@
       @font-face {
         font-family: 'LucideIcons';
         src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
-        font-display: block; /* Helps ensure icons render */
+        font-display: block; /* Attempt to force rendering */
       }
       .lucide {
         font-family: 'LucideIcons';
-        font-size: 1.25rem; /* Adjust icon size */
+        font-size: 1.25rem; /* Icon size */
         line-height: 1;
         font-style: normal;
         font-weight: normal;
@@ -22,29 +22,30 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Basic styles for dropdown */
+      /* Dropdown Menu Styles */
       .dropdown-menu {
-        display: none; /* Hidden by default, shown by JS */
+        display: none; /* Hide by default */
         position: absolute;
         z-index: 50;
         opacity: 0;
         transform: translateY(-10px);
-        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out, display 0.2s; /* Added display transition (though limited effect) */
+        visibility: hidden; /* Use visibility for better transition handling */
       }
-      .dropdown-menu.show { /* Class added by JS */
-        display: block;
+      .dropdown-menu.show { /* Class added by JS to show */
+        display: block; /* Make it take space */
         opacity: 1;
         transform: translateY(0);
+        visibility: visible; /* Make it visible */
       }
-      /* Hide content sections by default */
+      /* Content Section Styles */
       .content-section {
         display: none;
       }
-      /* Show the active section */
       .content-section.active {
         display: block;
       }
-      /* Pulsating animation */
+      /* Pulsating Text Animation */
       @keyframes pulse-text {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.6; }
@@ -52,7 +53,7 @@
       .animate-pulse-text {
         animation: pulse-text 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
-      /* Style for wiring colors */
+      /* Wiring Color Styles */
       .wire-red-yellow { color: #dc2626; } /* red-600 */
       .wire-yellow { color: #f59e0b; } /* amber-500 */
       .wire-brown { color: #78350f; } /* amber-800 */
@@ -65,24 +66,20 @@
 
       .icon-inline {
           display: inline-block;
-          vertical-align: middle; /* Align icon with text */
-          margin-left: 0.25rem; /* Space before icon */
-          font-size: 1rem; /* Smaller icon size */
+          vertical-align: middle;
+          margin-left: 0.25rem;
+          font-size: 1rem;
       }
-
     </style>
     <script>
+        // Tailwind Configuration
         tailwind.config = {
-            darkMode: 'class', // Enable class-based dark mode
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'], // Use Inter font
+                        sans: ['Inter', 'sans-serif'],
                     },
-                    // Add custom colors if needed, e.g.:
-                    // colors: {
-                    //     'wire-brown': '#854d0e',
-                    // }
                 }
             }
         }
@@ -144,7 +141,7 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" data-target="home" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700">Domů</a>
                 <div>
-                    <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
+                    <button type="button" class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
                         <span>Golf V</span>
                         <svg class="h-5 w-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -157,7 +154,7 @@
                     </div>
                 </div>
                  <div>
-                    <button class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
+                    <button type="button" class="mobile-dropdown-toggle w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-200 dark:hover:bg-gray-700 flex justify-between items-center">
                         <span>Ostatní</span>
                          <svg class="h-5 w-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -278,14 +275,16 @@
     </main>
 
     <script>
-        // --- DOM Elements ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const htmlElement = document.documentElement;
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const contentSections = document.querySelectorAll('.content-section');
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-        const dropdownMenus = document.querySele
+        // Wait for the DOM to be fully loaded before running scripts
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- DOM Elements ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const htmlElement = document.documentElement;
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const dropdownTo
