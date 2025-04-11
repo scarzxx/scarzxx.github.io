@@ -1,6 +1,12 @@
 {
   "updates": [
     {
+      "version": "1.0.15",
+      "hash": "C8D8BBA9EA358E519B86E0C8DAE5904C",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Oprava chyb"
+    },
+    {
       "version": "1.0.14",
       "hash": "81DE07F189ACF5986BD15C9A307A7822",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
