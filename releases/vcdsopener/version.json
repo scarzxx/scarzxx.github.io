@@ -2,7 +2,7 @@
   "updates": [
     {
       "version": "1.0.14",
-      "hash": "6BE0A3E2818509FBCA37D9EAC01D3491DB4980E193DFC5D23CB131B4B90242B9",
+      "hash": "81DE07F189ACF5986BD15C9A307A7822",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
       "whatsNew": " - Přidána možnost šifrování přihlašovacích údajů pro vyšší bezpečnost. - Opraveny problémy s načítáním cest k VCDS souborům. - Zlepšena práce s nastavením průhlednosti aplikace. - Přidána podpora pro nové diagnostické nástroje. - Opraveny drobné chyby a vylepšena stabilita aplikace."
     },
