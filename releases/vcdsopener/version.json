@@ -1,10 +1,16 @@
 {
   "updates": [
     {
+      "version": "1.0.14",
+      "hash": "6BE0A3E2818509FBCA37D9EAC01D3491DB4980E193DFC5D23CB131B4B90242B9",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Přidána možnost šifrování přihlašovacích údajů pro vyšší bezpečnost. - Opraveny problémy s načítáním cest k VCDS souborům. - Zlepšena práce s nastavením průhlednosti aplikace. - Přidána podpora pro nové diagnostické nástroje. - Opraveny drobné chyby a vylepšena stabilita aplikace."
+    },
+    {
       "version": "1.0.13",
       "hash": "68E6225694D85AC196E8A70599A2464A",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
-      "whatsNew": " - Oprava chyb - Oprava načítání OnlineVIS - Oprava změny kontroly verze na version.json z xml - Přidány posledni novinky aktualizace do Nastavení-Novinky  - Načteno z json"
+      "whatsNew": " - Oprava chyb - Oprava načítání OnlineVIS - Oprava změny kontroly verze na version.json z xml - Přidány posledni novinky aktualizace do Nastavení-Novinky"
     },
     {
       "version": "1.0.12",
