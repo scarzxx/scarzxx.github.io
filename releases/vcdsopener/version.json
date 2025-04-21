@@ -1,6 +1,12 @@
 {
   "updates": [
     {
+      "version": "1.0.17",
+      "hash": "34B95F62CB09B32C65776BA9D3DCD669",
+      "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
+      "whatsNew": " - Aktualizován updater - Vylepšeno načítání chybových kódů – přidáno ošetření chyb a zpětná vazba uživateli. - Vylepšeno otevírání složek – nyní používá systémové rozhraní pro lepší správu chyb. - Do nastavení přidáno tlačítko pro zobrazení logu updateru. - Vylepšeny chybové zprávy při chybějících souborech nebo složkách."
+    },
+    {
       "version": "1.0.16",
       "hash": "D43F237F4E5171EB7CF4854AA1109A28",
       "url": "https://scarzxx.github.io/releases/vcdsopener/autodiagnostika.zip",
