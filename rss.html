@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderní RSS Čtečka</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        #loading-message {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            padding: 20px;
+        }
+
+        .rss-feed-section {
+            margin-bottom: 40px;
+        }
+
+        .feed-title {
+            font-size: 1.8em;
+            color: #34495e;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .rss-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .rss-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rss-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .rss-item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #ecf0f1; /* Placeholder color */
+        }
+        
+        .rss-item-image-placeholder {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ecf0f1;
+            color: #bdc3c7;
+            font-size: 1em;
+        }
+
+
+        .rss-item-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rss-item-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .rss-item-title a {
+            text-decoration: none;
+            color: #2980b9;
+        }
+
+        .rss-item-title a:hover {
+            text-decoration: underline;
+        }
+
+        .rss-item-description {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 10px;
+            /* Omezení počtu řádků popisku */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Počet řádků */
+            -webkit-box-orient: vertical;
+        }
+        
+        .rss-item-description img { /* Skrytí obrázků v textovém popisu, pokud máme hlavní obrázek */
+            display: none;
+        }
+
+        .rss-item-date {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: auto; /* Posune datum na konec karty */
+            text-align: right;
+        }
+
+        /* Pro menší obrazovky */
+        @media (max-width: 600px) {
+            .rss-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .feed-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Moje RSS Feedy</h1>
+        <div id="loading-message">Načítám RSS kanály...</div>
+        <div id="rss-container"></div>
+    </div>
+
+    <script>
+        const rssFeeds = [
+            { name: "Kinobox TMDB TV Seriály (CZ)", url: "https://raw.githubusercontent.com/scarzxx/kinobox-tmdb-rss-cz/refs/heads/main/feed/tmdb_tv_rss.xml" },
+            { name: "Kinobox Trendy", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/kinobox_trendy_rss.xml" },
+            { name: "Kinobox TMDB Populární Filmy", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/tmdb_popular_rss.xml" }
+        ];
+
+        const rssContainer = document.getElementById('rss-container');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Funkce pro parsování HTML a extrakci src prvního obrázku
+        function extractImageUrl(htmlString) {
+            if (!htmlString) return null;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            const img = doc.querySelector('img');
+            return img ? img.src : null;
+        }
+
+        // Funkce pro odstranění HTML tagů z textu
+        function stripHtml(html) {
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = html;
+            // Nahrazení <br> novým řádkem pro lepší čitelnost, pokud chceme zachovat nějaké formátování
+            // tempDiv.innerHTML = tempDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+            return tempDiv.textContent || tempDiv.innerText || "";
+        }
+
+        async function fetchAndDisplayFeeds() {
+            let allItemsProcessed = 0;
+            const totalFeeds = rssFeeds.length;
+
+            for (const feed of rssFeeds) {
+                try {
+                    const response = await fetch(feed.url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status} for ${feed.name}`);
+                    }
+                    const xmlText = await response.text();
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+                    
+                    const items = xmlDoc.querySelectorAll("item");
+                    
+                    if (items.length > 0) {
+                        const feedSection = document.createElement('div');
+                        feedSection.className = 'rss-feed-section';
+                        
+                        const feedTitleElement = document.createElement('h2');
+                        feedTitleElement.className = 'feed-title';
+                        feedTitleElement.textContent = feed.name;
+                        feedSection.appendChild(feedTitleElement);
+
+                        const gridElement = document.createElement('div');
+                        gridElement.className = 'rss-grid';
+                        
+                        items.forEach(item => {
+                            const title = item.querySelector("title")?.textContent || "Bez názvu";
+                            const link = item.querySelector("link")?.textContent || "#";
+                            const descriptionHTML = item.querySelector("description")?.textContent || "";
+                            const pubDateStr = item.querySelector("pubDate")?.textContent;
+
+                            const imageUrl = extractImageUrl(descriptionHTML);
+                            const cleanDescription = stripHtml(descriptionHTML);
+
+                            let formattedDate = "Neznámé datum";
+                            if (pubDateStr) {
+                                try {
+                                    const date = new Date(pubDateStr);
+                                    formattedDate = date.toLocaleDateString('cs-CZ', {
+                                        year: 'numeric', month: 'long', day: 'numeric',
+                                        // hour: '2-digit', minute: '2-digit' // pokud chcete i čas
+                                    });
+                                } catch (e) {
+                                    console.warn("Chyba parsování data:", pubDateStr, e);
+                                }
+                            }
+                            
+                            const itemElement = document.createElement('div');
+                            itemElement.className = 'rss-item';
+
+                            if (imageUrl) {
+                                const imgElement = document.createElement('img');
+                                imgElement.src = imageUrl;
+                                imgElement.alt = title;
+                                imgElement.className = 'rss-item-image';
+                                imgElement.onerror = function() { // Fallback, if image fails to load
+                                    this.style.display = 'none'; // Hide broken image
+                                    const placeholder = document.createElement('div');
+                                    placeholder.className = 'rss-item-image-placeholder';
+                                    placeholder.textContent = 'Obrázek nedostupný';
+                                    itemElement.insertBefore(placeholder, itemElement.firstChild);
+                                };
+                                itemElement.appendChild(imgElement);
+                            } else {
+                                const placeholder = document.createElement('div');
+                                placeholder.className = 'rss-item-image-placeholder';
+                                placeholder.textContent = 'Žádný obrázek';
+                                itemElement.appendChild(placeholder);
+                            }
+                            
+                            const contentElement = document.createElement('div');
+                            contentElement.className = 'rss-item-content';
+
+                            const titleElement = document.createElement('h3');
+                            titleElement.className = 'rss-item-title';
+                            const linkElement = document.createElement('a');
+                            linkElement.href = link;
+                            linkElement.target = "_blank"; // Otevřít v novém tabu
+                            linkElement.rel = "noopener noreferrer";
+                            linkElement.textContent = title;
+                            titleElement.appendChild(linkElement);
+                            
+                            const descriptionElement = document.createElement('p');
+                            descriptionElement.className = 'rss-item-description';
+                            descriptionElement.textContent = cleanDescription;
+
+                            const dateElement = document.createElement('p');
+                            dateElement.className = 'rss-item-date';
+                            dateElement.textContent = formattedDate;
+
+                            contentElement.appendChild(titleElement);
+                            contentElement.appendChild(descriptionElement);
+                            contentElement.appendChild(dateElement);
+                            itemElement.appendChild(contentElement);
+                            gridElement.appendChild(itemElement);
+                        });
+                        feedSection.appendChild(gridElement);
+                        rssContainer.appendChild(feedSection);
+                    } else {
+                         console.warn(`Žádné položky nalezeny v kanálu: ${feed.name}`);
+                         const noItemsMsg = document.createElement('p');
+                         noItemsMsg.textContent = `V kanálu "${feed.name}" nebyly nalezeny žádné položky.`;
+                         rssContainer.appendChild(noItemsMsg);
+                    }
+
+                } catch (error) {
+                    console.error(`Chyba při načítání RSS kanálu ${feed.name}:`, error);
+                    const errorElement = document.createElement('p');
+                    errorElement.style.color = 'red';
+                    errorElement.textContent = `Nepodařilo se načíst kanál: ${feed.name}. (${error.message})`;
+                    rssContainer.appendChild(errorElement);
+                } finally {
+                    allItemsProcessed++;
+                    if (allItemsProcessed === totalFeeds) {
+                        loadingMessage.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayFeeds);
+    </script>
+</body>
+</html>
