@@ -71,7 +71,16 @@
             font-size: 1.2em;
             color: var(--subtle-text-color);
             padding: 20px;
+            transition: opacity 0.5s ease-out; /* Pro plynulé zmizení */
         }
+
+        #loading-message.hidden {
+            opacity: 0;
+            height: 0;
+            padding: 0; /* Aby nezabíralo místo po skrytí */
+            overflow: hidden;
+        }
+
 
         /* Styly pro záložky */
         .tabs-navigation {
@@ -299,6 +308,7 @@
         }
 
         function switchTab(activeIndex) {
+            // console.log(`Switching to tab: ${activeIndex}`); // Pro ladění
             tabsNavContainer.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
@@ -314,6 +324,13 @@
         }
 
         async function fetchAndDisplayFeeds() {
+            // console.log("fetchAndDisplayFeeds: Start"); // Pro ladění
+            if (!rssFeeds || rssFeeds.length === 0) {
+                loadingMessage.textContent = "Nebyly nakonfigurovány žádné RSS kanály.";
+                loadingMessage.classList.remove('hidden'); // Ujistíme se, že je viditelná, pokud už byla skryta
+                return;
+            }
+
             rssFeeds.forEach((feed, index) => {
                 const button = document.createElement('button');
                 button.className = 'tab-button';
@@ -328,36 +345,28 @@
                 tabsContentContainer.appendChild(panel);
             });
 
-            // Malá úprava pro mobilní zobrazení záložek - pokud je málo záložek, roztáhnou se
-            if (rssFeeds.length < 4 && window.innerWidth <= 600) { // Příklad: méně než 4 záložky
+            if (rssFeeds.length < 4 && window.innerWidth <= 600) {
                 tabsNavContainer.classList.add('fill-width');
             }
 
-
-            let feedsProcessed = 0;
-
-            for (let i = 0; i < rssFeeds.length; i++) {
-                const feed = rssFeeds[i];
+            const feedPromises = rssFeeds.map(async (feed, i) => {
                 const currentPanel = tabsContentContainer.querySelector(`.tab-content-panel[data-index="${i}"]`);
+                // console.log(`Fetching feed: ${feed.name}`); // Pro ladění
                 
                 try {
-                    // Použití proxy pro обход CORS, pokud je potřeba (např. allorigins)
-                    // const proxyUrl = 'https://api.allorigins.win/raw?url=';
-                    // const response = await fetch(proxyUrl + encodeURIComponent(feed.url));
                     const response = await fetch(feed.url);
-
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status} for ${feed.name}`);
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const xmlText = await response.text();
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(xmlText, "application/xml");
                     
-                    // Kontrola chyb parsování XML
-                    const-parserError = xmlDoc.querySelector("parsererror");
+                    // ----> KLÍČOVÁ OPRAVA ZDE <----
+                    const parserError = xmlDoc.querySelector("parsererror"); 
                     if (parserError) {
-                        console.error("Chyba parsování XML pro: " + feed.name, parserError.textContent);
-                        throw new Error(`Chyba parsování XML: ${parserError.textContent.split('\n')[0]}`);
+                        console.error(`XML parsing error for ${feed.name}:`, parserError.textContent);
+                        throw new Error(`Chyba parsování XML: ${parserError.textContent.split('\n')[0].trim()}`);
                     }
                     
                     const items = xmlDoc.querySelectorAll("item");
@@ -392,7 +401,7 @@
                                     formattedDate = date.toLocaleDateString('cs-CZ', {
                                         year: 'numeric', month: 'long', day: 'numeric'
                                     });
-                                } catch (e) { console.warn("Chyba parsování data:", pubDateStr, e); }
+                                } catch (e) { console.warn(`Error parsing date for ${feed.name}: "${pubDateStr}"`, e); }
                             }
                             
                             const itemElement = document.createElement('div');
@@ -406,10 +415,9 @@
                                 imgElement.src = imageUrl;
                                 imgElement.alt = title;
                                 imgElement.className = 'rss-item-image';
-                                imgElement.loading = 'lazy'; // Lazy loading pro obrázky
+                                imgElement.loading = 'lazy';
                                 imgElement.onerror = function() {
-                                    // this.style.display = 'none'; // Skryje poškozený img tag - lepší je nechat placeholder
-                                    this.remove(); // Odstraní img element
+                                    this.remove(); 
                                     const placeholderText = document.createElement('span');
                                     placeholderText.className = 'rss-item-image-placeholder-text';
                                     placeholderText.textContent = 'Obrázek nedostupný';
@@ -452,20 +460,16 @@
                             itemElement.appendChild(contentElement);
                             gridElement.appendChild(itemElement);
                         });
-                        currentPanel.appendChild(gridElement);
+                        if (currentPanel) currentPanel.appendChild(gridElement);
                     } else {
                          const noItemsMsg = document.createElement('p');
                          noItemsMsg.className = 'no-items-message';
                          noItemsMsg.textContent = `V tomto kanálu nebyly nalezeny žádné položky.`;
-                         currentPanel.appendChild(noItemsMsg);
+                         if (currentPanel) currentPanel.appendChild(noItemsMsg);
                     }
-
+                    return { status: 'fulfilled', name: feed.name };
                 } catch (error) {
-                    console.error(`Chyba při načítání RSS kanálu ${feed.name}:`, error);
+                    console.error(`Error fetching/processing RSS feed ${feed.name}:`, error);
                     const errorElement = document.createElement('p');
                     errorElement.className = 'error-message-feed';
-                    errorElement.textContent = `Nepodařilo se načíst kanál: ${feed.name}. (Chyba: ${error.message})`;
-                    currentPanel.appendChild(errorElement);
-                } finally {
-                    feedsProcessed++;
-                    if (feedsProcessed === rssFeeds.length)
+                    errorElement.textC
