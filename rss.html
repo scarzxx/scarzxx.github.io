@@ -7,29 +7,29 @@
     <style>
         :root {
             /* Tmavý Režim */
-            --bg-color: #1a1d22; /* Tmavě modrošedá */
-            --text-color: #e0e0e0; /* Světle šedá pro text */
-            --card-bg: #252a31; /* Pozadí karet, o něco světlejší než tělo */
-            --border-color: #3a414c; /* Barva ohraničení */
-            --accent-color: #4e9aef; /* Světlejší modrá pro akcenty */
-            --accent-color-darker: #3a7bc8; /* Tmavší odstín akcentní barvy pro hover */
-            --header-color: #cdd5de; /* Barva hlavních nadpisů */
-            --secondary-text-color: #a0a7b2; /* Pro méně důležitý text (popisky) */
-            --subtle-text-color: #7a828e; /* Pro velmi jemný text (datum, metadata) */
+            --bg-color: #1a1d22; 
+            --text-color: #e0e0e0; 
+            --card-bg: #252a31; 
+            --border-color: #3a414c; 
+            --accent-color: #4e9aef; 
+            --accent-color-darker: #3a7bc8; 
+            --header-color: #cdd5de; 
+            --secondary-text-color: #a0a7b2; 
+            --subtle-text-color: #7a828e; 
             
-            --shadow-color: rgba(0, 0, 0, 0.3); /* Stín pro karty */
-            --shadow-hover-color: rgba(0, 0, 0, 0.45); /* Stín pro karty při hoveru */
+            --shadow-color: rgba(0, 0, 0, 0.3); 
+            --shadow-hover-color: rgba(0, 0, 0, 0.45); 
             
-            --placeholder-bg: #30363e; /* Pozadí pro placeholder obrázku */
-            --placeholder-text: #6a737e; /* Text placeholderu obrázku */
+            --placeholder-bg: #30363e; 
+            --placeholder-text: #6a737e; 
             
-            --error-bg: #4d1f1f; /* Pozadí chybové zprávy */
-            --error-border: #a03030; /* Ohraničení chybové zprávy */
-            --error-text: #f5c5c5; /* Text chybové zprávy */
+            --error-bg: #4d1f1f; 
+            --error-border: #a03030; 
+            --error-text: #f5c5c5; 
             
-            --info-bg: #30363e; /* Pozadí informační zprávy */
-            --info-border: #4a515c; /* Ohraničení informační zprávy */
-            --info-text: #9da5b0; /* Text informační zprávy */
+            --info-bg: #30363e; 
+            --info-border: #4a515c; 
+            --info-text: #9da5b0; 
 
             --font-family-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
@@ -71,24 +71,14 @@
             font-size: 1.2em;
             color: var(--subtle-text-color);
             padding: 20px;
-            transition: opacity 0.5s ease-out; /* Pro plynulé zmizení */
         }
 
-        #loading-message.hidden {
-            opacity: 0;
-            height: 0;
-            padding: 0; /* Aby nezabíralo místo po skrytí */
-            overflow: hidden;
-        }
-
-
-        /* Styly pro záložky */
         .tabs-navigation {
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 25px;
             border-bottom: 1px solid var(--border-color);
-            gap: 4px; /* Mezery mezi tlačítky */
+            gap: 4px;
         }
 
         .tab-button {
@@ -100,7 +90,7 @@
             font-weight: 500;
             color: var(--accent-color);
             border-bottom: 3px solid transparent;
-            margin-bottom: -1px; /* Aby překryl border-bottom .tabs-navigation */
+            margin-bottom: -1px; 
             transition: color 0.3s ease, border-bottom-color 0.3s ease, background-color 0.2s ease;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
@@ -108,7 +98,7 @@
 
         .tab-button:hover {
             color: var(--accent-color-darker);
-            background-color: rgba(78, 154, 239, 0.08); /* Jemné pozadí při hoveru */
+            background-color: rgba(78, 154, 239, 0.08);
         }
 
         .tab-button.active {
@@ -147,7 +137,7 @@
         .rss-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px; /* Větší mezery mezi kartami */
+            gap: 25px; 
             padding-top: 10px;
         }
 
@@ -193,7 +183,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Pro mezery mezi titulkem, popisem a datem */
+            gap: 12px; 
         }
 
         .rss-item-title {
@@ -221,18 +211,18 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 4; /* Omezí počet řádků */
+            -webkit-line-clamp: 4; 
             -webkit-box-orient: vertical;
         }
         
         .rss-item-description img {
-            display: none; /* Skryje obrázky v popisu, zachováno z původního kódu */
+            display: none; 
         }
 
         .rss-item-date {
             font-size: 0.8em;
             color: var(--subtle-text-color);
-            margin-top: auto; /* Posune datum na konec karty, pokud je málo textu */
+            margin-top: auto; 
             text-align: right;
         }
 
@@ -247,19 +237,18 @@
         }
         @media (max-width: 600px) {
             .rss-grid {
-                grid-template-columns: 1fr; /* Jedna karta na řádek */
+                grid-template-columns: 1fr; 
             }
             h1 {
                 font-size: 1.7em;
             }
             .tabs-navigation {
-                justify-content: flex-start; /* Zarovnání na začátek, s wrapem se přizpůsobí */
+                justify-content: flex-start; 
             }
             .tab-button {
-                 flex-grow: 0; /* Nechat tlačítka přirozeně velká */
+                 flex-grow: 0; 
                  text-align: center;
             }
-             /* Pokud chcete, aby i na mobilu vyplnila šířku, pokud je málo záložek: */
             .tabs-navigation.fill-width .tab-button {
                  flex-grow: 1;
             }
@@ -308,7 +297,6 @@
         }
 
         function switchTab(activeIndex) {
-            // console.log(`Switching to tab: ${activeIndex}`); // Pro ladění
             tabsNavContainer.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
@@ -324,13 +312,6 @@
         }
 
         async function fetchAndDisplayFeeds() {
-            // console.log("fetchAndDisplayFeeds: Start"); // Pro ladění
-            if (!rssFeeds || rssFeeds.length === 0) {
-                loadingMessage.textContent = "Nebyly nakonfigurovány žádné RSS kanály.";
-                loadingMessage.classList.remove('hidden'); // Ujistíme se, že je viditelná, pokud už byla skryta
-                return;
-            }
-
             rssFeeds.forEach((feed, index) => {
                 const button = document.createElement('button');
                 button.className = 'tab-button';
@@ -345,27 +326,30 @@
                 tabsContentContainer.appendChild(panel);
             });
 
-            if (rssFeeds.length < 4 && window.innerWidth <= 600) {
+            if (tabsNavContainer && rssFeeds.length < 4 && window.innerWidth <= 600) {
                 tabsNavContainer.classList.add('fill-width');
             }
 
-            const feedPromises = rssFeeds.map(async (feed, i) => {
+            let feedsProcessed = 0;
+
+            for (let i = 0; i < rssFeeds.length; i++) {
+                const feed = rssFeeds[i];
                 const currentPanel = tabsContentContainer.querySelector(`.tab-content-panel[data-index="${i}"]`);
-                // console.log(`Fetching feed: ${feed.name}`); // Pro ladění
                 
                 try {
                     const response = await fetch(feed.url);
+
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        throw new Error(`HTTP error! status: ${response.status} for ${feed.name}`);
                     }
                     const xmlText = await response.text();
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(xmlText, "application/xml");
                     
-                    // ----> KLÍČOVÁ OPRAVA ZDE <----
+                    // OPRAVA ZDE: Byla zde syntaktická chyba "const-parserError"
                     const parserError = xmlDoc.querySelector("parsererror"); 
                     if (parserError) {
-                        console.error(`XML parsing error for ${feed.name}:`, parserError.textContent);
+                        console.error("Chyba parsování XML pro: " + feed.name, parserError.textContent);
                         throw new Error(`Chyba parsování XML: ${parserError.textContent.split('\n')[0].trim()}`);
                     }
                     
@@ -401,7 +385,7 @@
                                     formattedDate = date.toLocaleDateString('cs-CZ', {
                                         year: 'numeric', month: 'long', day: 'numeric'
                                     });
-                                } catch (e) { console.warn(`Error parsing date for ${feed.name}: "${pubDateStr}"`, e); }
+                                } catch (e) { console.warn("Chyba parsování data:", pubDateStr, e); }
                             }
                             
                             const itemElement = document.createElement('div');
@@ -421,7 +405,7 @@
                                     const placeholderText = document.createElement('span');
                                     placeholderText.className = 'rss-item-image-placeholder-text';
                                     placeholderText.textContent = 'Obrázek nedostupný';
-                                    if (!imageContainer.querySelector('.rss-item-image-placeholder-text')) {
+                                    if (imageContainer && !imageContainer.querySelector('.rss-item-image-placeholder-text')) {
                                         imageContainer.appendChild(placeholderText);
                                     }
                                 };
@@ -460,16 +444,47 @@
                             itemElement.appendChild(contentElement);
                             gridElement.appendChild(itemElement);
                         });
-                        if (currentPanel) currentPanel.appendChild(gridElement);
+                        currentPanel.appendChild(gridElement);
                     } else {
                          const noItemsMsg = document.createElement('p');
                          noItemsMsg.className = 'no-items-message';
                          noItemsMsg.textContent = `V tomto kanálu nebyly nalezeny žádné položky.`;
-                         if (currentPanel) currentPanel.appendChild(noItemsMsg);
+                         currentPanel.appendChild(noItemsMsg);
                     }
-                    return { status: 'fulfilled', name: feed.name };
+
                 } catch (error) {
-                    console.error(`Error fetching/processing RSS feed ${feed.name}:`, error);
+                    console.error(`Chyba při načítání RSS kanálu ${feed.name}:`, error);
                     const errorElement = document.createElement('p');
                     errorElement.className = 'error-message-feed';
-                    errorElement.textC
+                    let errorMessageText = error.message;
+                    if (errorMessageText.length > 150) { // Zkrácení pro případ velmi dlouhé zprávy z parseru
+                        errorMessageText = errorMessageText.substring(0, 150) + "...";
+                    }
+                    errorElement.textContent = `Nepodařilo se načíst kanál: ${feed.name}. (Chyba: ${errorMessageText})`;
+                    if (currentPanel) { // Ujistěte se, že panel existuje, než do něj něco přidáte
+                        currentPanel.appendChild(errorElement);
+                    }
+                } finally {
+                    feedsProcessed++;
+                    if (feedsProcessed === rssFeeds.length) {
+                        loadingMessage.style.display = 'none';
+                        if (rssFeeds.length > 0) {
+                            // Ujistíme se, že existuje alespoň jedno tlačítko a panel před přepnutím
+                            if (tabsNavContainer.querySelector('.tab-button') && tabsContentContainer.querySelector('.tab-content-panel')) {
+                                switchTab(0); 
+                            }
+                        } else {
+                            // Pokud nejsou žádné feedy, zobrazit zprávu
+                            const noFeedsDefinedMsg = document.createElement('p');
+                            noFeedsDefinedMsg.className = 'no-items-message';
+                            noFeedsDefinedMsg.textContent = 'Nebyly definovány žádné RSS kanály.';
+                            // Přidat zprávu např. do hlavního kontejneru
+                            const container = document.querySelector('.container .tabs-container');
+                            if (container) container.appendChild(noFeedsDefinedMsg);
+                        }
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayFeeds)
