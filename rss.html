@@ -71,6 +71,18 @@ header {
   color: #aaa;
 }
 
+.item img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.item-description {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
 a {
   color: var(--accent-color);
   text-decoration: none;
@@ -125,11 +137,22 @@ a:hover {
           const title = item.querySelector("title")?.textContent || "(Bez názvu)";
           const link = item.querySelector("link")?.textContent || "#";
           const pubDate = item.querySelector("pubDate")?.textContent;
+          const description = item.querySelector("description")?.textContent || "";
+
+          const imgMatch = description.match(/<img[^>]+src=["']([^"']+)["']/);
+          const imageUrl = imgMatch ? imgMatch[1] : null;
+          const cleanDesc = description.replace(/<[^>]*>?/gm, '').slice(0, 200) + '...';
+
           const date = pubDate ? luxon.DateTime.fromRFC2822(pubDate).toLocaleString(luxon.DateTime.DATETIME_MED) : "";
 
           const itemEl = document.createElement("div");
           itemEl.className = "item";
-          itemEl.innerHTML = `<a href="${link}" target="_blank">${title}</a><time>${date}</time>`;
+          itemEl.innerHTML = `
+            <a href="${link}" target="_blank"><strong>${title}</strong></a>
+            <time>${date}</time>
+            ${imageUrl ? `<img src="${imageUrl}" alt="Náhled">` : ""}
+            <div class="item-description">${cleanDesc}</div>
+          `;
 
           feedEl.appendChild(itemEl);
         });
