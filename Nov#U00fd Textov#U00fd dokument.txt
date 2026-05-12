@@ -1,0 +1,6 @@
+    <section id="units">
+        <h1>Vítejte</h1>
+        <p>Tato stránka poskytuje informace o různých typech jednotek, které můžete najít ve vašem vozidle. Vyberte kategorii z menu pro zobrazení podrobností o jednotlivých jednotkách.</p>
+        <p>Pro více informací klikněte na jednu z kategorií v navigačním menu vlevo.</p>
+        <p class="warning"><strong>Upozornění:</strong> Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.</p>
+    </section>

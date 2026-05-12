@@ -1,124 +1,100 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schéma zapojení senzoru deště/světla a automaticky stmívatelného zrcátka</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #2c3e50; /* Tmavě šedá */
-            color: #ecf0f1; /* Světle šedá */
-            line-height: 1.7;
-        }
-        h1, h2 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 2.2em;
-            font-weight: 600;
-        }
-        h2 {
-            font-size: 1.8em;
-            margin-top: 30px;
-            font-weight: 600;
-            color: #3498db; /* Modrá */
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-        }
-        li {
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            padding-left: 25px;
-            position: relative;
-        }
-        li:before {
-            content: '•';
-            color: #3498db; /* Modrá */
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 1.5em;
-        }
-        strong {
-            color: #fff; /* Bílá */
-        }
-        .warning {
-            color: #ff6b6b; /* Světle červená */
-            font-weight: bold;
-            background-color: #34495e; /* Tmavě šedá */
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ff6b6b; /* Světle červená */
-            display: inline-block;
-        }
-        hr {
-            border: 1px solid #4d6980; /* Tmavší šedá */
-            margin: 40px 0;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #2980b9;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.6em;
-            }
-            p {
-                font-size: 1em;
-            }
-            li {
-                font-size: 1em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="AutoDiag nástroje, přehled jednotek, download aplikace a technické pomůcky pro diagnostiku vozidel.">
+  <title>Schéma zapojení | AutoDiag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="novestyly.css">
+  
 </head>
-<body>
-    <h1>Schéma zapojení senzoru deště/světla a automaticky stmívatelného zrcátka</h1>
-
-    <h2>Senzor deště/světla</h2>
-    <ul>
-        <li><strong>Pin 1</strong> (červeno/žlutý, 0,35) -> Pojistka 17 (5 A)</li>
-        <li><strong>Pin 2</strong> (hnědý, 0,35) -> Kostra</li>
-        <li><strong>Pin 3</strong> (fialovo/bílý, 0,35) -> BSG jednotka, konektor F, pin 3</li>
-    </ul>
-
-    <h2>Automaticky stmívatelné zrcátko</h2>
-    <ul>
-        <li><strong>Pin 1</strong> (černo/modrý, 0,35) -> Pojistka 7 (5 A)</li>
-        <li><strong>Pin 2</strong> (hnědý, 0,35) -> Kostra</li>
-        <li><strong>Pin 3</strong> (černo/modrý, 0,35) -> BSG jednotka, konektor B, pin 1 (poznámka: u BSG je vodič 0,5 mm)</li>
-        <li><strong>Pin 4</strong> -> Viz poznámka 1</li>
-        <li><strong>Pin 5</strong> -> Viz poznámka 1</li>
-        <li><strong>Pin 6</strong> -> Konektor stropní konzole (modrý konektor), pin 6</li>
-    </ul>
-
-    <p><strong class="warning">Poznámka 1:</strong> Pro piny 4 a 5 automaticky stmívatelného zrcátka je třeba ověřit konkrétní zapojení v dokumentaci vozidla, protože se mohou lišit v závislosti na modelu a výbavě.</p>
+<body data-bs-theme="dark">
+  <div class="site-shell">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-mark"><i class="fa-solid fa-gauge-high"></i></span> AutoDiag</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Otevřít navigaci">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domů</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jednotky</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="gateway.html">Gateway jednotky</a></li>
+                <li><a class="dropdown-item" href="comfort.html">Komfortní jednotky</a></li>
+                <li><a class="dropdown-item" href="bsg.html">BSG/BCM jednotky</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nástroje</a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
+                <li><a class="dropdown-item" href="wiring-schema.html">Schéma zapojení</a></li>
+                <li><a class="dropdown-item" href="rss.html">RSS přehled</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow"><i class="fa-solid fa-diagram-project"></i> Schéma zapojení</span>
+    <h1 class="page-title mt-3">Senzor deště/světla a stmívatelné zrcátko</h1>
+    <p class="lead-text mt-3">Přehled pinů pro zapojení senzoru a automaticky stmívatelného zrcátka.</p>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="panel h-100">
+          <h2 class="h4 fw-bold mb-3">Senzor deště/světla</h2>
+          <ul class="schema-list">
+            <li><span class="pin">Pin 1</span> červeno/žlutý, 0,35 → Pojistka 17 (5 A)</li>
+            <li><span class="pin">Pin 2</span> hnědý, 0,35 → Kostra</li>
+            <li><span class="pin">Pin 3</span> fialovo/bílý, 0,35 → BSG jednotka, konektor F, pin 3</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="panel h-100">
+          <h2 class="h4 fw-bold mb-3">Automaticky stmívatelné zrcátko</h2>
+          <ul class="schema-list">
+            <li><span class="pin">Pin 1</span> černo/modrý, 0,35 → Pojistka 7 (5 A)</li>
+            <li><span class="pin">Pin 2</span> hnědý, 0,35 → Kostra</li>
+            <li><span class="pin">Pin 3</span> černo/modrý, 0,35 → BSG jednotka, konektor B, pin 1</li>
+            <li><span class="pin">Pin 4</span> → Ověřit podle konkrétní výbavy vozidla</li>
+            <li><span class="pin">Pin 5</span> → Ověřit podle konkrétní výbavy vozidla</li>
+            <li><span class="pin">Pin 6</span> → Konektor stropní konzole, modrý konektor, pin 6</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-warning mt-4 mb-0"><strong>Poznámka:</strong> Zapojení pinů 4 a 5 se může lišit podle modelu a výbavy. Před montáží ověř dokumentaci konkrétního vozidla.</div>
+  </div>
+</section>
+</main>
+    <footer class="footer">
+      <div class="container d-flex flex-wrap justify-content-between gap-2">
+        <span>AutoDiag</span>
+        <span>Diagnostické přehledy, nástroje a aktualizace</span>
+      </div>
+    </footer>
+  </div>
+  <div id="copyNotification" class="copy-notification">Zkopírováno do schránky</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  
 </body>
 </html>

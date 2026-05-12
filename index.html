@@ -1,100 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <title>Units List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="novestyly.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="AutoDiag nástroje, přehled jednotek, download aplikace a technické pomůcky pro diagnostiku vozidel.">
+  <title>Domů | AutoDiag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="novestyly.css">
+  
 </head>
 <body data-bs-theme="dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AutoDiag</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Domů</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Jednotky
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
-                            <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
-                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="download.html">Download</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Ostatní
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownOther">
-                            <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
-                            <li><a class="dropdown-item" href="wiring-schema.html">Schéma zapojení senzoru a zrcátka</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+  <div class="site-shell">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-mark"><i class="fa-solid fa-gauge-high"></i></span> AutoDiag</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Otevřít navigaci">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domů</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jednotky</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="gateway.html">Gateway jednotky</a></li>
+                <li><a class="dropdown-item" href="comfort.html">Komfortní jednotky</a></li>
+                <li><a class="dropdown-item" href="bsg.html">BSG/BCM jednotky</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nástroje</a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
+                <li><a class="dropdown-item" href="wiring-schema.html">Schéma zapojení</a></li>
+                <li><a class="dropdown-item" href="rss.html">RSS přehled</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
-    <section id="units" class="container mt-4">
-        <p class="alert alert-warning"><strong>Upozornění:</strong> Popisy a informace na této stránce nemusí být vždy přesné. Doporučujeme ověřit všechny informace před jejich použitím.</p>
-        <h1 class="fade-in">Vítejte</h1>
-        <p class="slide-in">Vyberte kategorii z menu pro zobrazení.</p>
-    </section>
-    <div id="copyNotification" class="copy-notification">Zkopírováno!</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <style>
-        .fade-in {
-            animation: fadeIn 2s ease-in-out;
-        }
-        .slide-in {
-            animation: slideIn 2s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .warning {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
+    <main>
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow"><i class="fa-solid fa-wrench"></i> Diagnostika a přehled jednotek</span>
+    <h1 class="display-title">Rychlejší práce s <span class="text-gradient">VCDS jednotkami</span>.</h1>
+    <p class="lead-text">Přehled gateway, komfortních a BSG/BCM jednotek, nástroje pro výpočty, schémata zapojení a download aplikace AutoDiagnostika na jednom místě.</p>
+    <div class="hero-actions">
+      <a class="btn-modern btn-primary-modern" href="gateway.html"><i class="fa-solid fa-magnifying-glass"></i> Procházet jednotky</a>
+      <a class="btn-modern" href="download.html"><i class="fa-solid fa-download"></i> Stáhnout aplikaci</a>
+      <a class="btn-modern" href="code.html"><i class="fa-solid fa-calculator"></i> Kalkulačka ředění</a>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-value">16</div><div class="stat-label">Gateway jednotek</div></div>
+      <div class="stat-card"><div class="stat-value">26</div><div class="stat-label">Komfortních jednotek</div></div>
+      <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">BSG/BCM jednotek</div></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+      <a class="tool-card text-decoration-none" href="gateway.html"><span class="tool-icon"><i class="fa-solid fa-car-battery"></i></span><h3>Gateway jednotky</h3><p>Kontrola jednotek podle čísla dílu, SW verze a poznámek k vybíjení baterie.</p></a>
+      <a class="tool-card text-decoration-none" href="comfort.html"><span class="tool-icon"><i class="fa-solid fa-key"></i></span><h3>Komfortní jednotky</h3><p>Přehled frekvencí, byte variant a poznámek pro komfortní výbavu.</p></a>
+      <a class="tool-card text-decoration-none" href="bsg.html"><span class="tool-icon"><i class="fa-solid fa-lightbulb"></i></span><h3>BSG/BCM jednotky</h3><p>Orientace v podpoře přísvitu a třídách jednotek Medium / Highend.</p></a>
+      <a class="tool-card text-decoration-none" href="download.html"><span class="tool-icon"><i class="fa-solid fa-cloud-arrow-down"></i></span><h3>AutoDiagnostika</h3><p>Stažení aktuální verze aplikace včetně novinek a kontrolního hashe.</p></a>
+      <a class="tool-card text-decoration-none" href="code.html"><span class="tool-icon"><i class="fa-solid fa-flask"></i></span><h3>Kalkulačka ředění</h3><p>Výpočet koncentrátu a vody pro běžné i vlastní poměry ředění.</p></a>
+      <a class="tool-card text-decoration-none" href="wiring-schema.html"><span class="tool-icon"><i class="fa-solid fa-diagram-project"></i></span><h3>Schéma zapojení</h3><p>Rychlý přehled pinů pro senzor deště/světla a stmívatelné zrcátko.</p></a>
+    </div>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="alert alert-warning mb-0"><strong>Upozornění:</strong> Informace ber jako orientační technickou pomůcku. Před zásahem do vozidla vždy ověř konkrétní výbavu, zapojení a dokumentaci daného modelu.</div>
+  </div>
+</section>
+</main>
+    <footer class="footer">
+      <div class="container d-flex flex-wrap justify-content-between gap-2">
+        <span>AutoDiag</span>
+        <span>Diagnostické přehledy, nástroje a aktualizace</span>
+      </div>
+    </footer>
+  </div>
+  <div id="copyNotification" class="copy-notification">Zkopírováno do schránky</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  
 </body>
 </html>

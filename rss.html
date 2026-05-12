@@ -1,179 +1,121 @@
-<!DOCTYPE html><html lang="cs">
+<!DOCTYPE html>
+<html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RSS Přehled</title>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luxon/build/global/luxon.min.js"></script>
-  <style>
-    :root {
-      --bg-color: #121212;
-      --text-color: #f0f0f0;
-      --card-bg: #1e1e1e;
-      --accent-color: #00bcd4;
-    }[data-theme="light"] {
-  --bg-color: #ffffff;
-  --text-color: #111;
-  --card-bg: #f2f2f2;
-  --accent-color: #0077cc;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-header {
-  padding: 1rem;
-  text-align: center;
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--accent-color);
-}
-
-.theme-toggle {
-  cursor: pointer;
-  float: right;
-  background: none;
-  border: none;
-  color: var(--accent-color);
-  font-size: 1.2rem;
-}
-
-.container {
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.feed {
-  background: var(--card-bg);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.feed h2 {
-  margin-top: 0;
-  color: var(--accent-color);
-}
-
-.item {
-  margin-bottom: 1rem;
-}
-
-.item time {
-  display: block;
-  font-size: 0.8rem;
-  color: #aaa;
-}
-
-.item img {
-  max-width: 100%;
-  border-radius: 6px;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.item-description {
-  font-size: 0.9rem;
-  color: var(--text-color);
-}
-
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="AutoDiag nástroje, přehled jednotek, download aplikace a technické pomůcky pro diagnostiku vozidel.">
+  <title>RSS přehled | AutoDiag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="novestyly.css">
+  
 </head>
-<body>
-  <header>
-    <h1>RSS Přehled</h1>
-    <button class="theme-toggle" onclick="toggleTheme()">🌒 / ☀️</button>
-  </header>
-  <main class="container" id="feeds"></main>  <script>
-    const feeds = [
-      {
-        title: "Kinobox Trendy",
-        url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/kinobox_trendy_rss.xml"
-      },
-      {
-        title: "Kinobox Novinky",
-        url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/kinobox_novinky_rss.xml"
-      },
-      {
-        title: "TMDB Populární Filmy",
-        url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/tmdb_popular_rss.xml"
-      },
-      {
-        title: "TMDB Populární Seriály",
-        url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/tmdb_tv_rss.xml"
-      },
-    ];
+<body data-bs-theme="dark">
+  <div class="site-shell">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-mark"><i class="fa-solid fa-gauge-high"></i></span> AutoDiag</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Otevřít navigaci">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domů</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jednotky</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="gateway.html">Gateway jednotky</a></li>
+                <li><a class="dropdown-item" href="comfort.html">Komfortní jednotky</a></li>
+                <li><a class="dropdown-item" href="bsg.html">BSG/BCM jednotky</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nástroje</a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
+                <li><a class="dropdown-item" href="wiring-schema.html">Schéma zapojení</a></li>
+                <li><a class="dropdown-item" href="rss.html">RSS přehled</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow"><i class="fa-solid fa-rss"></i> Přehled filmových novinek</span>
+    <h1 class="page-title mt-3">RSS přehled</h1>
+    <p class="lead-text mt-3">Rychlý přehled trendů, novinek a populárních filmů nebo seriálů z dostupných RSS zdrojů.</p>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="feed-grid" id="feeds"></div>
+  </div>
+</section>
+</main>
+    <footer class="footer">
+      <div class="container d-flex flex-wrap justify-content-between gap-2">
+        <span>AutoDiag</span>
+        <span>Diagnostické přehledy, nástroje a aktualizace</span>
+      </div>
+    </footer>
+  </div>
+  <div id="copyNotification" class="copy-notification">Zkopírováno do schránky</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon/build/global/luxon.min.js"></script>
+<script>
+const feeds = [
+  { title: "Kinobox Trendy", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/kinobox_trendy_rss.xml" },
+  { title: "Kinobox Novinky", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/kinobox_novinky_rss.xml" },
+  { title: "TMDB Populární Filmy", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/tmdb_popular_rss.xml" },
+  { title: "TMDB Populární Seriály", url: "https://raw.githubusercontent.com/scarzxx/kinobox-rss/refs/heads/main/feed/tmdb_tv_rss.xml" }
+];
 
-    const container = document.getElementById("feeds");
+const container = document.getElementById("feeds");
+async function loadFeed(feed) {
+  try {
+    const response = await axios.get(feed.url);
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(response.data, "application/xml");
+    const items = xml.querySelectorAll("item");
+    const feedEl = document.createElement("div");
+    feedEl.className = "feed";
+    feedEl.innerHTML = `<h2>${feed.title}</h2>`;
+    items.forEach((item, index) => {
+      if (index >= 5) return;
+      const title = item.querySelector("title")?.textContent || "Bez názvu";
+      const link = item.querySelector("link")?.textContent || "#";
+      const pubDate = item.querySelector("pubDate")?.textContent;
+      const description = item.querySelector("description")?.textContent || "";
+      const imgMatch = description.match(/<img[^>]+src=["']([^"']+)["']/);
+      const imageUrl = imgMatch ? imgMatch[1] : null;
+      const cleanDesc = description.replace(/<[^>]*>?/gm, '').slice(0, 180) + '...';
+      const date = pubDate ? luxon.DateTime.fromRFC2822(pubDate).toLocaleString(luxon.DateTime.DATETIME_MED) : "";
+      const itemEl = document.createElement("div");
+      itemEl.className = "item";
+      itemEl.innerHTML = `<a href="${link}" target="_blank" rel="noopener"><strong>${title}</strong></a><time>${date}</time>${imageUrl ? `<img src="${imageUrl}" alt="Náhled">` : ""}<div class="item-description">${cleanDesc}</div>`;
+      feedEl.appendChild(itemEl);
+    });
+    container.appendChild(feedEl);
+  } catch (e) {
+    const feedEl = document.createElement("div");
+    feedEl.className = "feed";
+    feedEl.innerHTML = `<h2>${feed.title}</h2><p class="muted mb-0">Feed se momentálně nepodařilo načíst.</p>`;
+    container.appendChild(feedEl);
+  }
+}
+feeds.forEach(loadFeed);
+</script>
 
-    async function loadFeed(feed) {
-      try {
-        const response = await axios.get(feed.url);
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(response.data, "application/xml");
-        const items = xml.querySelectorAll("item");
-
-        const feedEl = document.createElement("div");
-        feedEl.className = "feed";
-        feedEl.innerHTML = `<h2>${feed.title}</h2>`;
-
-        items.forEach((item, index) => {
-          if (index >= 5) return; // max 5 položek
-          const title = item.querySelector("title")?.textContent || "(Bez názvu)";
-          const link = item.querySelector("link")?.textContent || "#";
-          const pubDate = item.querySelector("pubDate")?.textContent;
-          const description = item.querySelector("description")?.textContent || "";
-
-          const imgMatch = description.match(/<img[^>]+src=["']([^"']+)["']/);
-          const imageUrl = imgMatch ? imgMatch[1] : null;
-          const cleanDesc = description.replace(/<[^>]*>?/gm, '').slice(0, 200) + '...';
-
-          const date = pubDate ? luxon.DateTime.fromRFC2822(pubDate).toLocaleString(luxon.DateTime.DATETIME_MED) : "";
-
-          const itemEl = document.createElement("div");
-          itemEl.className = "item";
-          itemEl.innerHTML = `
-            <a href="${link}" target="_blank"><strong>${title}</strong></a>
-            <time>${date}</time>
-            ${imageUrl ? `<img src="${imageUrl}" alt="Náhled">` : ""}
-            <div class="item-description">${cleanDesc}</div>
-          `;
-
-          feedEl.appendChild(itemEl);
-        });
-
-        container.appendChild(feedEl);
-      } catch (e) {
-        console.error("Chyba načítání RSS:", e);
-      }
-    }
-
-    feeds.forEach(loadFeed);
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute("data-theme");
-      document.documentElement.setAttribute(
-        "data-theme",
-        current === "light" ? "dark" : "light"
-      );
-    }
-
-    // Nastavení výchozího tmavého režimu
-    document.documentElement.setAttribute("data-theme", "dark");
-  </script></body>
+</body>
 </html>

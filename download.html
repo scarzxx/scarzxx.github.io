@@ -1,68 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <title>Download</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="novestyly.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b12">
+  <meta name="description" content="AutoDiag nástroje, přehled jednotek, download aplikace a technické pomůcky pro diagnostiku vozidel.">
+  <title>Download | AutoDiag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="novestyly.css">
+  
 </head>
 <body data-bs-theme="dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AutoDiag</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Domů</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Jednotky
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="gateway.html">Gateway Jednotky</a></li>
-                            <li><a class="dropdown-item" href="comfort.html">Komfortní Jednotky</a></li>
-                            <li><a class="dropdown-item" href="bsg.html">BSG/BCM Jednotky</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="download.html">Download</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownOther" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Ostatní
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownOther">
-                            <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+  <div class="site-shell">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><span class="brand-mark"><i class="fa-solid fa-gauge-high"></i></span> AutoDiag</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Otevřít navigaci">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">Domů</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jednotky</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="gateway.html">Gateway jednotky</a></li>
+                <li><a class="dropdown-item" href="comfort.html">Komfortní jednotky</a></li>
+                <li><a class="dropdown-item" href="bsg.html">BSG/BCM jednotky</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="download.html">Download</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nástroje</a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="code.html">Kalkulačka ředění</a></li>
+                <li><a class="dropdown-item" href="wiring-schema.html">Schéma zapojení</a></li>
+                <li><a class="dropdown-item" href="rss.html">RSS přehled</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
-    <section id="download" class="container mt-4 text-center">
-        <h1>Download</h1>
-        <div class="download-container alert alert-success mx-auto">
-            <p>Nástroj pro spuštění diagnostiky a vyhledávání chyb. Tato aplikace vám zjednoduší a urychlí spuštění diagnostického nástroje VCDS a zároveň umožní rychlé vyhledávání chybových kódů.</p>
-            <h3>Poslední Aktualizace:</h3>
-            <ul id="whats-new-list">
-                <!-- Nové funkce budou načteny zde -->
-            </ul>
-            <a href="releases/vcdsopener/autodiagnostika.zip" download class="btn btn-primary">Stáhnout</a>
-            <div class="image-gallery mt-3">
-                <img src="images/obrazek1.png" alt="Screenshot 1" class="img-thumbnail" onclick="openImage('images/obrazek1.png')">
-                <img src="images/obrazek2.png" alt="Screenshot 2" class="img-thumbnail" onclick="openImage('images/obrazek2.png')">
-            </div>
+    <main>
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow"><i class="fa-solid fa-cloud-arrow-down"></i> Download</span>
+    <h1 class="page-title mt-3">AutoDiagnostika</h1>
+    <p class="lead-text mt-3">Aktuální balíček aplikace pro rychlejší práci s diagnostickými soubory, chybovými kódy a aktualizacemi.</p>
+  </div>
+</section>
+<section class="section-sm">
+  <div class="container">
+    <div class="download-card">
+      <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+        <div>
+          <h2 class="h3 fw-black mb-2">Stáhnout aktuální verzi</h2>
+          <p class="muted mb-0">ZIP archiv aplikace je připravený v sekci releases.</p>
         </div>
-        <p class="note alert alert-warning">Poznámka: Autor neodpovídá za případné škody způsobené nesprávným použitím aplikace nebo diagnostického nástroje VCDS. Používání aplikace a VCDS je na vlastní riziko.</p>
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+        <a class="btn-modern btn-primary-modern" href="releases/vcdsopener/autodiagnostika.zip" download><i class="fa-solid fa-download"></i> Stáhnout ZIP</a>
+      </div>
+      <div class="release-meta">
+        <span class="badge-pill">Verze: <strong id="latest-version">—</strong></span>
+        <span class="badge-pill">MD5: <strong id="latest-hash">—</strong></span>
+      </div>
+      <div class="panel mt-3">
+        <h3 class="h5 fw-bold mb-3">Novinky v poslední verzi</h3>
+        <ul id="whats-new-list" class="mb-0"></ul>
+      </div>
+      <div class="alert alert-warning mt-3 mb-0"><strong>Bezpečnost:</strong> Po stažení doporučujeme ověřit kontrolní hash a spouštět aplikaci pouze ze známého umístění.</div>
+    </div>
+    <div class="image-gallery">
+      <img src="images/obrazek1.png" alt="Ukázka aplikace AutoDiagnostika" onclick="openImage(this.src)">
+      <img src="images/obrazek2.png" alt="Ukázka prostředí aplikace" onclick="openImage(this.src)">
+    </div>
+  </div>
+</section>
+</main>
+    <footer class="footer">
+      <div class="container d-flex flex-wrap justify-content-between gap-2">
+        <span>AutoDiag</span>
+        <span>Diagnostické přehledy, nástroje a aktualizace</span>
+      </div>
+    </footer>
+  </div>
+  <div id="copyNotification" class="copy-notification">Zkopírováno do schránky</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  
 </body>
 </html>
